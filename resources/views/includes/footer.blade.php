@@ -1,0 +1,1 @@
+<div class="text-center text-white-50 text-muted">Copyright &copy; DashHound <script> document.write(new Date().getFullYear())</script>. All Rights Reserved</div>

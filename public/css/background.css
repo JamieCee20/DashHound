@@ -1,0 +1,176 @@
+body {
+    /* background-image: url('/storage/images/background.jpg'); */
+    background-color: #e9ebee;
+    height: 100%;
+}
+
+#postBox a {
+    color: black;
+}
+#postBox a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/**
+* |--------------------------
+* | Navbar Hover Effects
+* |--------------------------
+* |
+* |
+*/
+.navContent a{
+    color: #222;
+}
+.navContent a{
+    position: relative;
+}
+.navContent a:hover {
+    color: #888;
+}
+.navContent a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #77567A;
+    height: 1px;
+}
+.navContent a:hover:after {
+    width: 100%;
+}
+.navContent a, .navContent a:after, .navContent a:before {
+    transition: all .5s;
+}
+
+@media only screen and (max-width: 767px) {
+    #topicRow {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+    #topicRow #contactList {
+        width: 100%;
+        margin: auto;
+        max-width: 100%;
+    }
+    .splitter {
+        border-top: 1px solid white;
+    }
+}
+
+@media only screen and (min-width: 426px) and (max-width: 769px) {
+    #profilePosts {
+        width: 80%;
+        margin: 10%;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    #profilePosts {
+        width: 90%;
+        margin: auto;
+    }
+    .bottom-link {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width:1025px) {
+    .splitter {
+        border-top: 1px solid white;
+    }
+
+    .list-group-item a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .list-group-item a:hover {
+        font-weight: bold;
+        transition: transform .2s;
+        font-size: large;
+        margin: 0 auto;
+    }
+
+    #comments {
+        padding-left: 20px;
+    }
+
+    #profilePosts {
+        margin-right: 10%;
+    }
+    .postDesc {
+        margin-bottom: 10%;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .post-buttons {
+        margin: 10px;
+        padding: 10px;
+    }
+    #comments {
+        padding: 0;
+    }
+    #profilePosts {
+        margin: 0;
+        padding: 0;
+        margin-top: 5px;
+        height: 70%;
+    }
+}
+
+.text-md-right {
+    color: black;
+}
+.form-check-label {
+    color: black;
+}
+.bottom-link {
+    position: absolute;
+    bottom: 0;
+}
+.post-title a{
+    text-decoration: none;
+    color: black;
+}
+
+.comment {
+    margin-bottom: 45px;
+}
+
+.author-image {
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+}
+
+.author-name {
+    float: left;
+}
+
+.author-name>h4 {
+    margin: 5px;
+    margin-left: 15px;
+}
+
+.author-time {
+    font-size: 11px;
+    font-style: italic;
+    margin-left: 15px;
+    color: #aaa;
+}
+
+.comment-content {
+    clear: both;
+    margin-left: 65px;
+    font-size: 16px;
+    line-height: 1.3em;
+}
