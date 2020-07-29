@@ -11,6 +11,6 @@ Its a friendly resource allowing people to communicate, rate and share game scre
 
 DashHound is owned by http://www.jlcwd.me and is based in regards to a University Project whilst self taught Laravel as the used language.
 
-## Contents of Project#
+## Contents of Project
 
 The project is primarily based on the Laravel MVC Framework for PHP and uses the built in Vue.js for javascript attributes. All contents in terms of unique features are all built and coded by myself. I do not take credit for the features that came with Laravel and only take credit for edited features from myself.
