@@ -25,7 +25,8 @@
                 <div class="card-header text-secondary">Welcome, {{Auth::user()->name}}</div>
 
                 <div class="card-body">
-                    <p class="text-dark">Welcome to DashHound, the home of game sharing experiences</p>
+                    <p class="text-dark">Welcome to DashHound, the home of game sharing experiences!</p>
+                    <img src="http://www.jlcwd.me/img/dashhound.jpg" width="100%" alt="DashHound Logo">
                 </div>
             </div>
         </div>
