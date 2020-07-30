@@ -13,7 +13,7 @@
             <div class="rounded ml-2 px-2 pt-2">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <div class="d-flex align-items-center pb-3">
-                        <div class="h4" style="border-bottom: 2px solid black;width:100%;">{{ $user->name}}</div>
+                        <div class="h4" style="border-bottom: 2px solid black;width:100%;">Your Details</div>
                     </div>
                 </div>
     
