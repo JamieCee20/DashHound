@@ -11,7 +11,13 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
-
+.likeButton {
+    color: white;
+    text-decoration: none;
+}
+.likeButton:hover {
+    color: #999999;
+}
 
 /**
 * |--------------------------

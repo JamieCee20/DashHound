@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Verified;
 use Gate;
 use Illuminate\Http\Request;
@@ -81,8 +82,8 @@ class VerifiedController extends Controller
      */
     public function show(Verified $verified)
     {
-        $post = Verified::find($verified); // Fix issue with Laravel-like. 
-        return view('verifieds.show', compact('verified', 'post'));
+        $user = User::find($verified->user_id);
+        return view('verifieds.show', compact('user','verified'));
     }
 
     /**
