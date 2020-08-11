@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail, ReacterableContract
 {
-    use Notifiable;
+    use Notifiable, Reacterable;
 
     /**
      * The attributes that are mass assignable.

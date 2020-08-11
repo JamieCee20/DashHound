@@ -125,7 +125,4 @@ class VerifiedController extends Controller
         $verified->delete();
         return redirect('/v/posts')->with('success', 'Post Removed');
     }
-
-
-
 }
