@@ -81,7 +81,7 @@ class VerifiedController extends Controller
      */
     public function show(Verified $verified)
     {
-        return view('verifieds.show', compact('user'));
+        return view('verifieds.show', compact('verified'));
     }
 
     /**
@@ -124,5 +124,10 @@ class VerifiedController extends Controller
 
         $verified->delete();
         return redirect('/v/posts')->with('success', 'Post Removed');
+    }
+
+    public function reactCount($id) {
+        $reactant = Verified::find($id);
+        $reactionCounters = $reactant->getReactionCounters;
     }
 }
