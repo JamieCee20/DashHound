@@ -83,7 +83,8 @@ class VerifiedController extends Controller
     public function show(Verified $verified)
     {
         $user = User::find($verified->user_id);
-        return view('verifieds.show', compact('user','verified'));
+        $likes = $user->likes()->with('likeable')->paginate(20);
+        return view('verifieds.show', compact('user','verified', 'likes'));
     }
 
     /**
