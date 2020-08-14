@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="ml-3 pt-3">
                                 <span class="like-btn d-flex">
-                                    <a class="likeButton" href=""><i class="fas fa-thumbs-up mr-2"></i></a><div>5 Total Likes</div> <!-- Fix issue not being able to use Laravel-like API -->
+                                    <a class="like" href=""><i class="fas fa-thumbs-up mr-2"></i></a><div>5 Total Likes</div>
                                 </span>
                             </div>
                         </div>

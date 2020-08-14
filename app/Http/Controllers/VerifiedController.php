@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Verified;
+use Cog\Laravel\Love\ReactionType\Models\ReactionType;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -124,10 +125,5 @@ class VerifiedController extends Controller
 
         $verified->delete();
         return redirect('/v/posts')->with('success', 'Post Removed');
-    }
-
-    public function reactCount($id) {
-        $reactant = Verified::find($id);
-        $reactionCounters = $reactant->getReactionCounters;
     }
 }

@@ -75,6 +75,7 @@ Route::get('/v/{verified}', 'VerifiedController@show')->name('verifieds.show');
 Route::get('/v/{verified}/edit', 'VerifiedController@edit')->name('verifieds.edit')->middleware('can:post-verified-create');
 Route::patch('/v/{verified}', 'VerifiedController@update')->name('verifieds.update')->middleware('can:post-verified-create');
 Route::delete('/v/{verified}', 'VerifiedController@destroy')->name('verifieds.delete')->middleware('can:post-verified-create');
+Route::get('/v/toggleLike/{verified}', 'VerifiedController@toggleLike')->name('toggleLike');
 
 /**
  * |----------------------------
