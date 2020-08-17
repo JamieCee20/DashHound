@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Verified;
-use Cog\Laravel\Love\ReactionType\Models\ReactionType;
 use Gate;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class VerifiedController extends Controller
@@ -82,7 +81,8 @@ class VerifiedController extends Controller
      */
     public function show(Verified $verified)
     {
-        return view('verifieds.show', compact('verified'));
+        $likes = Like::where('verifieds_id', $verified->id)->get();
+        return view('verifieds.show', compact('verified', 'likes'));
     }
 
     /**

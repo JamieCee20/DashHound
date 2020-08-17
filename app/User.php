@@ -49,6 +49,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Verified');
     }
 
+    public function like() {
+        return $this->hasOne('App\Like');
+    }
+
+    public function likes() {
+        return $this->hasMany('App\Like');
+    }
+
     public function vposts() {
         return $this->hasMany('App\Verified')->orderBy('created_at', 'DESC');
     }

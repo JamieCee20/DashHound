@@ -5,7 +5,7 @@
 <div class="p-2 mx-3 text-white bg-secondary rounded" style="border: 2px solid #B6B8D6;">
     <div class="row">
         <div class="col-12 col-md-12 col-sm-12 col-lg-8">
-            <img src="/storage/posts/{{ $verified->image }}" class="w-100 rounded" style="border: 4px solid #B6B8D6;">
+            <img src="/storage/posts/{{ $verified->image }}" class="w-100 rounded" style="border: 4px solid #B6B8D6;" height="100%">
         </div>
         <div class="col-12 col-md-12 col-sm-12 col-lg-4">
             <div class="post-buttons">
@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="ml-3 pt-3">
                                 <span class="like-btn d-flex">
-                                    <a class="like" href=""><i class="fas fa-thumbs-up mr-2"></i></a><div>5 Total Likes</div>
+                                    <a class="like" href="/v/toggleLike/{{$verified->id}}"><i class="fas fa-thumbs-up mr-2"></i></a><div>{{ $likes->count() }}</div>
                                 </span>
                             </div>
                         </div>
