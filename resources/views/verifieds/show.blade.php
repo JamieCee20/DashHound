@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="ml-3 pt-3">
                                 <span class="like-btn d-flex">
-                                    <a class="like" href="/v/toggleLike/{{$verified->id}}"><i class="fas fa-thumbs-up mr-2"></i></a><div>{{ $likes->count() }}</div>
+                                    <a class="like" href="/v/toggleLike/{{$verified->id}}"><i class="fas fa-thumbs-up mr-2"></i></a><div>{{ $likes->count() }} like(s)</div>
                                 </span>
                             </div>
                         </div>

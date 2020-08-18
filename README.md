@@ -7,6 +7,12 @@ DashHound is a game forum website which allows different users to share their ga
 
 Its a friendly resource allowing people to communicate, rate and share game screenshots as well as browse posts which are from verified publishers like official game authors.
 
+## Components
+
+* [PHP] - Most of my project features backend coding to make the functionality work, Using mainly the MVC Framework: Laravel
+* [HTML] - Key to most front end development making the page look the way it does.
+* [Vue.js] - Feature used for javascript to make features look more fascinating.
+
 ## Ownership
 
 DashHound is owned by http://www.jlcwd.me and is based in regards to a University Project whilst self taught Laravel as the used language.
