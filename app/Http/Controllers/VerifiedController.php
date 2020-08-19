@@ -19,7 +19,6 @@ class VerifiedController extends Controller
     {
         //
         $vposts = Verified::where('id', '>', 0)->orderBy('id', 'DESC')->paginate(15);
-
         return view('verifieds.index', compact('vposts'));
         
     }
@@ -81,7 +80,7 @@ class VerifiedController extends Controller
      */
     public function show(Verified $verified)
     {
-        $likes = Like::where('verifieds_id', $verified->id)->get();
+        $likes = Like::where('verified_id', $verified->id)->get();
         return view('verifieds.show', compact('verified', 'likes'));
     }
 

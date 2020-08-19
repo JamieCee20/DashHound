@@ -15,7 +15,10 @@
                 </div>
                 <div class="col-6 text-left">
                     <p class="h2"><a href="/v/{{ $vpost->id }}">{{ $vpost->title }}</a></p><br>
-                    <p class="text-muted font-italic">Published by: {{ $vpost->user->name }}</p>
+                    <p class="text-muted font-italic">Published by: {{ $vpost->user->name }} | {{ date('F dS, Y - g:iA' ,strtotime($vpost->created_at)) }}</p><br><br>
+                    <p class="text-muted font-italic">
+                        <strong>Total Likes: </strong>{{ $vpost->likes()->count() }}
+                    </p>
                 </div>
             </div>
         @endforeach

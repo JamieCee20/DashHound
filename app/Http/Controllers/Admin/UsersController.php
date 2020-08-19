@@ -61,6 +61,10 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        if(Gate::denies('manage-users')) {
+            return redirect()->route('admin.users.index');
+        }
+
         $user->roles()->sync($request->roles);
 
         $user->name = $request->name;

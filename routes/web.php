@@ -88,7 +88,7 @@ Route::get('/profile/{user}', 'ProfilesController@index')->name('profiles.show')
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update')->middleware('auth');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 /**
  * |----------------------------
  * | Administration Section
