@@ -16,6 +16,12 @@ use App\User;
 |
 */
 
+// Test Routes
+Route::get('testing',function(){
+    $post = App\Post::where('id', 4)->with('comments')->first();
+    dd($post->comments->first()->name);
+  });
+
 /**
  * |---------------------------------------
  * | Home Functionality
@@ -32,6 +38,16 @@ Route::any('/search',function(Request $request){
     if(count($user) > 0)
         return view('home')->withDetails($user)->withQuery ( $q );
     else return view ('home')->with('error', 'No Details found. Try to search again !');
+});
+Route::any('/usersearch',function(Request $request){
+    $q = $request->get( 'qUser' );
+    $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+    if(count($user) > 0) {
+        $users = User::where('id', '>', 0)->paginate(10);
+        return view('admin.users.index', ['users' => $users])->withDetails($user)->withQuery($q);
+    } else {
+         return redirect()->route('admin.users.index')->with('error', 'No Details found. Try to search again !');
+    }     
 });
 
 /**

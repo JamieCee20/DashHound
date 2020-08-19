@@ -16,6 +16,10 @@ class Post extends Model
     }
 
     public function comments() {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getRecent() {
+        return $this->comments()->orderBy('created_at','desc')->first();
     }
 }

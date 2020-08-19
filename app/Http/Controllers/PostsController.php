@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image as Image;
@@ -30,9 +31,12 @@ class PostsController extends Controller
     public function index()
     {
         //
-        $posts = Post::where('id', '>', 0)->orderBy('id', 'DESC')->paginate(15);
-
-
+        // $posts = Post::where('id', '>', 0)->orderBy('id', 'DESC')->paginate(15);
+        $posts = Post::latest()->with([
+            'comments' => function ($query) {
+                return $query->latest();
+            },
+        ])->paginate();
         return view('posts.index', compact('posts'));
 
     }

@@ -7,12 +7,25 @@
         <h2>Be the first to post a screenshot</h2>
     @endif
     @foreach($posts as $post)
-        <div class="row my-3  p-2 bg-light" id="postBox">
-            <div class="col-8">
-                <p class="h2"><a href="/p/{{ $post->id }}">{{ $post->title }}</a></p>
-            </div>
-            <div class="col-4">
-                <p class="text-muted font-italic ml-5 float-right">Author - {{ $post->user->name }}</p>
+        <div class="container rowStripe">
+            <div class="row shadow-sm" style="height:60%;" id="postBox">
+                <div class="col-1 py-2">
+                    <img class="rounded-circle" src="/storage/profile/{{$post->user->image}}" alt="profile image" height="75%;" width="100%;">
+                </div>
+                <div class="col-7">
+                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->id }}">{{ $post->title }}</a></p>
+                    <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
+                </div>
+                <div class="col-2">
+                    <p class="justify-content-center"><span class="text-muted">Comments:</span> {{$post->comments()->count()}}</p>
+                </div>
+                <div class="col-2">
+                    @if($post->comments->isEmpty())
+                        <p class="float-right font-italic" style="opacity:0.6;font-size:14px;">No comments.</p>
+                    @else
+                        <p class="float-right font-italic" style="opacity:0.6;font-size:14px;">{{ date('MdS, g:iA' ,strtotime($post->comments->first()->created_at)) }} | {{ $post->comments->first()->name }}</p>
+                    @endif
+                </div>
             </div>
         </div>
     @endforeach
