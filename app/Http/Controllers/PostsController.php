@@ -37,7 +37,9 @@ class PostsController extends Controller
                 return $query->latest();
             },
         ])->paginate();
-        return view('posts.index', compact('posts'));
+        $popular_posts = Post::orderBy('views', 'DESC')->take(3)->get();
+        $views = Post::all('views');
+        return view('posts.index', compact('posts', 'views', 'popular_posts'));
 
     }
 
@@ -103,6 +105,13 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         //
+        $data = $post->views + 1;
+
+        if($post) {
+            $post->views = $data;
+            $post->save();
+        }
+        
         $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(20);
         return view('posts.show', compact('post', 'comments'));
     }

@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Jamie Collins',
             'email' => 'test@test.com',
             'username' => 'jamiecee20',
-            'image' => 'no-image-available.png',
+            'image' => 'ef6ElRXYheQmxAJnVA79hs5f5.gif',
             'bio' => '',
             'password' => Hash::make('123456789')
         ]);
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@test.com',
             'username' => 'administrator',
-            'image' => 'no-image-available.png',
+            'image' => 'qKhuAFA78sTmhIgMnBEXZHHaa.gif',
             'bio' => '',
             'password' => Hash::make('123456789')
         ]);
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Moderator User',
             'email' => 'moderator@test.com',
             'username' => 'moderator',
-            'image' => 'no-image-available.png',
+            'image' => 'MHY0CkXIaDXT0ZhLZZesFAU5o.jpg',
             'bio' => '',
             'password' => Hash::make('123456789')
         ]);

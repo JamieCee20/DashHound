@@ -19,7 +19,10 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('image');
+            $table->integer('views')->default('1');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->index('user_id');
         });
