@@ -94,7 +94,7 @@
             @foreach($posts as $post)
                 <div class="col-lg-4 col-sm-12 col-md-4 mb-2" id="profilePosts">
                     <div class="card h-75" style="width: 18rem;border: 3px solid #B6B8D6;">
-                        <a href="/p/{{$post->id}}"><img class="card-img-top" src="/storage/posts/{{$post->image}}" alt="Card image cap"></a>
+                        <a href="/p/{{$post->title}}"><img class="card-img-top" src="/storage/posts/{{$post->image}}" alt="Card image cap"></a>
                         <div class="card-body overflow-auto">
                             <h5 class="card-title"><u><b>{{$post->title}}</b></u></h5>
                             <p class="card-text">{{$post->description}}</p>

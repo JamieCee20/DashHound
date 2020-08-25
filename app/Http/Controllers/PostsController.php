@@ -80,19 +80,19 @@ class PostsController extends Controller
         $image_resize->resize(1200, 1200);
         $image_resize->save(public_path('storage/posts/'. $name));
 
+        $current = Post::where('title', $request->title)->first();
 
-        // $imagePath = $request->file('image')->store('posts', 'public');
-        // $image = Image::make($request->file('image')->getRealPath())->resize(1200, 1200);
-        // $image->save();
-
-
-        auth()->user()->posts()->create([
-            'title' => $data['title'],
-            'description' => $data['description'],
-            'image' => $name,
-        ]);
-
-        return redirect('/posts');
+        if($current) {
+            return redirect('/posts')->with('error', 'Post title already exists!');
+        } else {
+            auth()->user()->posts()->create([
+                'title' => $data['title'],
+                'description' => $data['description'],
+                'image' => $name,
+            ]);
+    
+            return redirect('/posts')->with('success', 'Post successfully created!');
+        }
     }
 
     /**
@@ -105,6 +105,7 @@ class PostsController extends Controller
     public function show(Post $post)
     {
         //
+        $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(20);
         $data = $post->views + 1;
 
         if($post) {
@@ -112,7 +113,6 @@ class PostsController extends Controller
             $post->save();
         }
         
-        $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(20);
         return view('posts.show', compact('post', 'comments'));
     }
 

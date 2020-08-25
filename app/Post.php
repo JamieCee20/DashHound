@@ -10,6 +10,11 @@ class Post extends Model
     // protected $guarded = [];
     protected $fillable = ['title', 'description', 'image'];
 
+    public function getRouteKeyName()
+    {
+        return 'title';
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

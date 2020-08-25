@@ -14,8 +14,8 @@
                     <img class="rounded-circle" src="/storage/profile/{{$popular->user->image}}" alt="profile image" height="90%;" width="100%;">
                 </div>
                 <div class="col-7">
-                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $popular->id }}">{{ $popular->title }}</a></p>
-                    <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
+                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $popular->title }}">{{ $popular->title }}</a></p>
+                    <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('M dS, Y' ,strtotime($popular->created_at)) }}</p>
                 </div>
                 <div class="col-2">
                     <p class="justify-content-center"><span class="text-muted">Comments:</span> {{$popular->comments()->count()}}</p>
@@ -29,7 +29,7 @@
                     @if($popular->comments->isEmpty())
                         <p class="float-right font-italic" style="opacity:0.6;font-size:14px;">No comments.</p>
                     @else
-                        <p class="float-right font-italic" style="opacity:0.6;font-size:14px;">{{ date('MdS, g:iA' ,strtotime($popular->comments->first()->created_at)) }} | {{ $popular->comments->first()->name }}</p>
+                        <p class="float-right font-italic" style="opacity:0.6;font-size:14px;">{{ date('M dS, g:iA' ,strtotime($popular->comments->first()->created_at)) }} | {{ $popular->comments->first()->name }}</p>
                     @endif
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <img class="rounded-circle" src="/storage/profile/{{$post->user->image}}" alt="profile image" height="90%;" width="100%;">
                 </div>
                 <div class="col-7">
-                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->id }}">{{ $post->title }}</a></p>
+                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->title }}">{{ $post->title }}</a></p>
                     <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
                 </div>
                 <div class="col-2">
