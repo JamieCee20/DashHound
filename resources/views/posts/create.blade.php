@@ -25,6 +25,10 @@
             {{ Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Post Description'])}}
         </div>
         <div class="form-group row">
+            {{ Form::label('spoilers', 'Spoilers?')}}
+            {{ Form::select('spoilers', array('true' => 'Yes', 'false' => 'No'), null, ['class' => 'form-control', 'placeholder' => 'Does this post contain spoilers'])}}
+        </div>
+        <div class="form-group row">
             {{ Form::label('image', 'Post Image')}}
             {{ Form::file('image', ['class' => 'form-control-file'])}}
         </div>

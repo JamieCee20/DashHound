@@ -71,7 +71,16 @@ class PostsController extends Controller
             'title' => 'required|max:255|string',
             'description' => 'required|string',
             'image' => 'required|image',
+            'spoilers' => 'required',
         ]);
+
+        if($request->spoilers == "true") {
+            $spoilers = '1';
+        } elseif ($request->spoilers == "false") {
+            $spoilers = '0';
+        } else {
+            return view('posts.create')->with('error', 'Invalid spoiler option');
+        }
 
         $file = $request->file('image');
         $name = $file->getClientOriginalName();
@@ -89,6 +98,7 @@ class PostsController extends Controller
                 'title' => $data['title'],
                 'description' => $data['description'],
                 'image' => $name,
+                'spoilers' => $spoilers,
             ]);
     
             return redirect('/posts')->with('success', 'Post successfully created!');
@@ -147,11 +157,20 @@ class PostsController extends Controller
             'title' => 'required|max:255|',
             'description' => 'required',
             'image' => 'image|',
+            'spoilers' => 'required',
         ]);
+
+        if($request->spoilers == "true") {
+            $data['spoilers'] = '1';
+        } elseif ($request->spoilers == "false") {
+            $data['spoilers'] = '0';
+        } else {
+            return view('posts.create')->with('error', 'Invalid spoiler option');
+        }
 
         $post->update($data);
 
-        return redirect('/posts');
+        return redirect('/posts')->with('success', 'Post successfully updated!');
     }
 
     /**

@@ -2,6 +2,11 @@
 @section('title', 'View Post')
 
 @section('content')
+@if($post->spoilers == '1')
+    <div class="container">
+        <p>This post may contain spoilers</p>
+    </div>
+@else
 <div class="p-2 mx-3 text-white bg-secondary rounded" style="border: 2px solid #B6B8D6;">
     <div class="row">
         <div class="col-12 col-md-12 col-sm-12 col-lg-8">
@@ -14,7 +19,7 @@
                         <div class="font-weight-bold">
                             <a href="/profile/{{$post->user->id}}"><span class="text-white">{{$post->user->name}}</span></a>
                             @can('update', $post)
-                                <a href="/p/{{$post->id}}/edit">Edit Post</a>
+                                <a href="/p/{{$post->title}}/edit">Edit Post</a>
                             @endcan    
                         </div>
                     </div>
@@ -109,4 +114,5 @@
     </div>
 
 </div>
+@endif
 @endsection
