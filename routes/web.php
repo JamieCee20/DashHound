@@ -57,10 +57,10 @@ Route::any('/usersearch',function(Request $request){
  * |
  * |
  */
+Route::get('/posts', 'PostsController@index')->name('posts');
 Route::get('/p/create', 'PostsController@create')->middleware('auth');
 Route::post('/p', 'PostsController@store')->name('post.store')->middleware('auth');
 Route::get('/p/{post}', 'PostsController@show')->name('post.show');
-Route::get('/posts', 'PostsController@index')->name('posts');
 Route::get('/p/{post}/edit', 'PostsController@edit')->name('post.edit')->middleware('auth');
 Route::patch('/p/{post}', 'PostsController@update')->name('post.update')->middleware('auth');
 Route::delete('/p/{post}', 'PostsController@destroy')->name('post.delete')->middleware('auth');
@@ -84,9 +84,9 @@ Route::delete('/comment/{comment}', 'CommentsController@destroy')->name('comment
  * |
  * |
  */
+Route::get('/v/posts', 'VerifiedController@index');
 Route::get('/v/create', 'VerifiedController@create')->middleware('can:post-verified-create');
 Route::post('/v', 'VerifiedController@store')->name('verifieds.store')->middleware('can:post-verified-create');
-Route::get('/v/posts', 'VerifiedController@index');
 Route::get('/v/{verified}', 'VerifiedController@show')->name('verifieds.show');
 Route::get('/v/{verified}/edit', 'VerifiedController@edit')->name('verifieds.edit')->middleware('can:post-verified-create');
 Route::patch('/v/{verified}', 'VerifiedController@update')->name('verifieds.update')->middleware('can:post-verified-create');

@@ -95,6 +95,8 @@ class VerifiedController extends Controller
         if(Gate::denies('post-verified-create')) {
             return view('home')->with('error', 'You do not have access to upload verified posts');
         }
+
+        $this->authorize('update', $verified);
         return view('verifieds.edit', compact('verified'));
     }
 
@@ -107,7 +109,21 @@ class VerifiedController extends Controller
      */
     public function update(Request $request, Verified $verified)
     {
-        //
+        if(Gate::denies('post-verified-create')) {
+            return view('home')->with('error', 'You do not have access to upload verified posts');
+        }
+
+        $this->authorize('update', $verified);
+
+        $data = request()->validate([
+            'title' => 'required|max:255|',
+            'description' => 'required',
+            'image' => 'image|',
+        ]);
+
+        $verified->update($data);
+
+        return redirect('/v/posts')->with('success', 'Post successfully updated!');
     }
 
     /**
@@ -119,7 +135,7 @@ class VerifiedController extends Controller
     public function destroy(Verified $verified)
     {
         if(Gate::denies('post-verified-create')) {
-            return view('home')->with('error', 'You do not have access to upload verified posts');
+            return view('home')->with('error', 'You do not have access to delete verified posts');
         }
 
         $verified->delete();

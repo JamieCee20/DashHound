@@ -37,9 +37,10 @@ class PostsController extends Controller
                 return $query->latest();
             },
         ])->paginate();
+        $spoilers = Post::all('spoilers');
         $popular_posts = Post::orderBy('views', 'DESC')->take(3)->get();
         $views = Post::all('views');
-        return view('posts.index', compact('posts', 'views', 'popular_posts'));
+        return view('posts.index', compact('posts', 'views', 'popular_posts', 'spoilers'));
 
     }
 

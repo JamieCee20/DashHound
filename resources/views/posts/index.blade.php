@@ -13,10 +13,22 @@
                 <div class="col-1 py-2">
                     <img class="rounded-circle" src="/storage/profile/{{$popular->user->image}}" alt="profile image" height="90%;" width="100%;">
                 </div>
-                <div class="col-7">
-                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $popular->title }}">{{ $popular->title }}</a></p>
-                    <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('M dS, Y' ,strtotime($popular->created_at)) }}</p>
-                </div>
+                @if($popular->spoilers == 1)
+                    <div class="col-5">
+                        <p class="ml-2 overflow-wrap" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $popular->title }}">{{ $popular->title }}</a></p>
+                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-center py-3" style="margin:auto;width:100%;">
+                            This post may contain <strong>Spoilers</strong>
+                        </p>
+                    </div>
+                @elseif($popular->spoilers == 0)
+                    <div class="col-7">
+                        <p class="ml-2 overflow-wrap" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $popular->title }}">{{ $popular->title }}</a></p>
+                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
+                    </div>
+                @endif
                 <div class="col-2">
                     <p class="justify-content-center"><span class="text-muted">Comments:</span> {{$popular->comments()->count()}}</p>
                     @if($popular->views == 0)
@@ -44,10 +56,22 @@
                 <div class="col-1 py-2">
                     <img class="rounded-circle" src="/storage/profile/{{$post->user->image}}" alt="profile image" height="90%;" width="100%;">
                 </div>
-                <div class="col-7">
-                    <p class="ml-2" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->title }}">{{ $post->title }}</a></p>
-                    <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
-                </div>
+                @if($post->spoilers == 1)
+                    <div class="col-5">
+                        <p class="ml-2 overflow-wrap" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->title }}">{{ $post->title }}</a></p>
+                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-center py-3" style="margin:auto;width:100%;">
+                            This post may contain <strong>Spoilers</strong>
+                        </p>
+                    </div>
+                @elseif($post->spoilers == 0)
+                    <div class="col-7">
+                        <p class="ml-2 overflow-wrap" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->title }}">{{ $post->title }}</a></p>
+                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
+                    </div>
+                @endif
                 <div class="col-2">
                     <p class="justify-content-center"><span class="text-muted">Comments:</span> {{$post->comments()->count()}}</p>
                     @if($post->views == 0)

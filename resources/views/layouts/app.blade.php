@@ -11,7 +11,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/toggle.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -99,14 +98,16 @@
                 @include('partials.alerts')
                 @yield('content')
             </div>
-            <div class="container">
-                <div class="fixed-bottom">
-                    <footer class="py-2 bg-secondary">
-                            @include('includes.footer')
-                    </footer>
-                </div>
-            </div>
         </main>
+    </div>
+    <div>
+        <div class="container">
+            <div class="fixed-bottom">
+                <footer class="py-2 bg-secondary">
+                        @include('includes.footer')
+                </footer>
+            </div>
+        </div>
     </div>
 </body>
 </html>
