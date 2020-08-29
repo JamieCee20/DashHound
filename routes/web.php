@@ -21,6 +21,11 @@ Route::get('testing',function(){
     $post = App\Post::where('id', 4)->with('comments')->first();
     dd($post->comments->first()->name);
   });
+  
+  Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'DONE'; //Return anything
+});
 
 /**
  * |---------------------------------------
