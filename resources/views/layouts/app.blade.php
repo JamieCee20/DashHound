@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('extra-js')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,22 +20,28 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/background.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/background.css') }}" rel="stylesheet"> --}}
+    @yield('extra-css')
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 </head>
-<body>
+<body style="background-color: #222222;">
+    <style>
+        #header-nav a {
+            color: white;
+        }
+        #header-nav a:hover {
+            color: black;
+        }
+    </style>
+    <div class="loader">
+        <img src="/storage/images/loading.gif" alt="Loading...">
+    </div>
     <div id="app">
-        <nav class="navbar navbar-expand-md" style="background-color:#B6B8D6;">
+        <nav class="navbar navbar-expand-md" id="header-nav" style="background-color:#B6B8D6;color: white;">
             <div class="container">
                 <div class="navContent">
                     <a class="navbar-brand" href="{{ url('/') }}">
                        DashHound
-                    </a>
-                    <a class="navbar-brand" href="{{ url('/posts') }}">
-                       Community Posts
-                    </a>
-                    <a class="navbar-brand" href="{{ url('/v/posts') }}">
-                       Official Publishers
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -65,7 +72,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                     <a href="/profile/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
                                     <a href="/p/create" class="dropdown-item">Create Post</a>
                                     @can('post-verified-create')
@@ -75,7 +82,10 @@
                                         <a href="{{ route('admin.users.index')}}" class="dropdown-item">User Management</a>
                                     @endcan
                                     <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
-                                    <hr>
+                                    <hr style="background-color: white;">
+                                    <a href="{{ route('post.index') }}" class="dropdown-item">Community Posts</a>
+                                    <a href="{{ route('vpost.index') }}" class="dropdown-item">Official Content</a>
+                                    <hr style="background-color: white;">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -109,5 +119,12 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+            const loader = document.querySelector(".loader");
+            loader.className += " hidden"; // make class "loader hidden"
+        })
+    </script>
 </body>
 </html>

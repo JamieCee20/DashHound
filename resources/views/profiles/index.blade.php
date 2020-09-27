@@ -1,106 +1,115 @@
 @extends('layouts.app')
 @section('title', 'Edit Profile')
 
+@section('extra-css')
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container">
-    <div class="row bg-white rounded d-flex" style="border: 2px solid #B6B8D6">
-        <div class="col-lg-5">
-            <div class="p-3 rounded h-100">
-                <img src="/storage/profile/{{$user->image}}" height="100%" width="100%" class="border border-dark rounded h-100">
+    <div class="row bg-light p-2">
+        <div class="col-3 my-auto d-flex">
+            <i class="far fa-user fa-2x"></i>
+            <div class="justify-content-center d-flex text-center my-auto">
+                <h5 class="mr-2">User: </h5><p> {{$user->username}}</p>
             </div>
         </div>
-        <div class="col-lg-5 pt-5 offset-2" id="profileBody">
-            <div class="rounded ml-2 px-2 pt-2">
-                <div class="d-flex justify-content-between align-items-baseline">
-                    <div class="d-flex align-items-center pb-3">
-                        <div class="h4" style="border-bottom: 2px solid black;width:100%;">Your Details</div>
+        <div class="col-2 offset-7 my-auto text-right">
+            @if(auth()->user() == $user)
+                <a role="button" class="btn btn-primary" href="/profile/{{$user->id}}/edit">Edit Profile</a>
+            @endif
+        </div>
+    </div>
+    <div class="row rounded bg-light pl-3 pr-3 pt-3" id="profile-border">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-4 bg-light px-1">
+                    <div class="p-3 rounded h-100">
+                        <img src="/storage/profile/{{$user->image}}" height="100%" width="75%" class="border border-dark rounded-circle">
                     </div>
                 </div>
-    
-                @if(auth()->user() == $user)
-                    <a href="/profile/{{$user->id}}/edit">Edit Profile</a>
-                @endif
-    
-                <div class="pt-4" style="font-weight: bold">
-                    <div class="row">
-                        <div class="col col-6 d-flex">
-                            <p class="text-justify" style="font-weight: bold;">Your Name: </p>
-                            <p class="text-justify ml-4" style="font-weight:normal;">
-                                {{ $user->name }}
-                            </p>
-                        </div>
-                    </div>
+                <div class="col-6 offset-2 bg-light pt-3">
+                    <h4>{{ $user->name }}</h4><br>
+                    {{-- <p>{{ $user->roles()->first()->name }}</p> --}}
+                    <p class="text-faded">
+                        Role: 
+                        @foreach($user->roles as $role)
+                            <span style="font-style: italic;">{{ $role->name }}</span>
+                            
+                            @if(!$loop->last)
+                            ,
+                            @endif
+                        @endforeach
+                    </p>
+                    <h5 style="text-decoration: underline">About Me</h5>
+                    @if(isset($user->bio))
+                    <p>
+                        {{$user->bio}}
+                    </p>
+                    @elseif(Auth::user()->id == $user->id) 
+                        <p>Edit profile to add a bio</p>
+                    @endif
                 </div>
-    
-                <div class="pt-4" style="font-weight: bold">
-                    <div class="row">
-                        <div class="col col-6 d-flex">
-                            <p class="text-justify" style="font-weight: bold;">Your Email: </p>
-                            <p class="text-justify ml-4" style="font-weight:normal;">
-                                {{ $user->email }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="pt-4" style="font-weight: bold">
-                    <div class="row">
-                        <div class="col col-6 d-flex">
-                            <p class="text-justify" style="font-weight: bold;">Your Username: </p>
-                            <p class="text-justify ml-4" style="font-weight:normal;">
-                                {{ $user->username }}
-                            </p>
-                        </div>
-                    </div>
-                </div>          
-                <div class="pt-4" style="font-weight: bold">
-                    <div class="row">
-                        <div class="col col-6 d-flex">
-                            <p class="text-justify" style="font-weight: bold;">Your Total Posts: </p>
-                            <p class="text-justify ml-4" style="font-weight:normal;">
-                                {{ $user->posts()->count() }}
-                            </p>
-                        </div>
-                    </div>
-                </div>          
             </div>
+            <div class="row bg-light">
+                <div class="col-12" style="border-bottom: 1px solid grey;">
+                    <h5>Account</h5>
+                </div>
+            </div>
+            <div class="row d-flex bg-light mt-2">
+                <div class="col-6">
+                    <h5 style="font-weight: bold;">Your Name: </h5>
+                </div>
+                <div class="col-6">
+                    <p>{{ $user->name }}</p>
+                </div>
+            </div>
+            <div class="row d-flex bg-light mt-2">
+                <div class="col-6">
+                    <h5 style="font-weight: bold;">Your Email: </h5>
+                </div>
+                <div class="col-6">
+                    <p>{{ $user->email }}</p>
+                </div>
+            </div>
+            <div class="row d-flex bg-light mt-2">
+                <div class="col-6">
+                    <h5 style="font-weight: bold;">Your Username: </h5>
+                </div>
+                <div class="col-6">
+                    <p>{{ $user->username }}</p>
+                </div>
+            </div>
+            <div class="row d-flex bg-light mt-2">
+                <div class="col-6">
+                    <h5 style="font-weight: bold;">Your Total Posts: </h5>
+                </div>
+                <div class="col-6">
+                    <p>{{ $user->posts()->count() }}</p>
+                </div>
+            </div>
+            @if($user->can('post-verified-create'))
+                <div class="row d-flex bg-light mt-2">
+                    <div class="col-6">
+                        <h5 style="font-weight: bold;">Your Total  Published Posts: </h5>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ $user->vposts()->count() }}</p>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
-<hr class="w-100" style="color:#B6B8D6;">
-@if(isset($user->bio))
-<div class="container">
-    <div class="row">
-        <div class="col col-12 text-underline">
-            <h3 class="display-4 font-weight-normal text-center">Your Bio</h3>
-        </div>
-        <div class="col col-sm-12 col-md-12">
-            {{$user->bio}}
-        </div>
-    </div>
-</div>
-@endif
-@if( count($posts) > 0)
-    <hr class="w-100" style="color:#B6B8D6;">
-@endif
-<div class="container">
-    @if( count($posts) > 0)
-        <div class="row">
-            <div class="col col-sm-12 col-md-12 text-underline">
-                <h3 class="display-4 font-weight-normal text-center">Your Posts</h3>
-            </div>
-        </div>
-        <div class="row">
+    @if(count($posts) > 0)
+        <div class="row mt-3">
             @foreach($posts as $post)
-                <div class="col-lg-4 col-sm-12 col-md-4 mb-2" id="profilePosts">
-                    <div class="card h-75" style="width: 18rem;border: 3px solid #B6B8D6;">
-                        <a href="/p/{{$post->title}}"><img class="card-img-top" src="/storage/posts/{{$post->image}}" alt="Card image cap"></a>
-                        <div class="card-body overflow-auto">
-                            <h5 class="card-title"><u><b>{{$post->title}}</b></u></h5>
-                            <p class="card-text">{{$post->description}}</p>
-                        </div>
-                        <div class="card-footer text-muted text-center mt-4">
-                        {{ date('F nS, Y - g:iA' ,strtotime($post->created_at)) }}
+                <div class="col-4">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">{{$post->title}}</div>
+                        <img src="/storage/posts/{{$post->image}}" alt="Post Image" height="100%" width="100%">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><a href="{{route('post.show', $post->title)}}" class="btn btn-outline-secondary">View Post</a></h5>
                         </div>
                     </div>
                 </div>
@@ -112,28 +121,16 @@
             </div>
         </div>
     @endif
-</div>
-@if( count($vposts) > 0)
-    <hr class="w-100" style="color:#B6B8D6;">
-@endif
-<div class="container mb-5">
-    @if( count($vposts) > 0)
-        <div class="row">
-            <div class="col col-sm-12 col-md-12 text-underline">
-                <h3 class="display-4 font-weight-normal text-center">Official Posts</h3>
-            </div>
-        </div>
-        <div class="row">
+
+    @if(count($vposts) > 0)
+        <div class="row mt-3 mb-3">
             @foreach($vposts as $vpost)
-                <div class="col-lg-4 col-sm-12 col-md-4 mb-2" id="profilePosts">
-                    <div class="card" style="width: 18rem;border: 3px solid #B6B8D6;">
-                        <a href="/v/{{$vpost->id}}"><img class="card-img-top" src="/storage/posts/{{$vpost->image}}" alt="Card image cap"></a>
-                        <div class="card-body overflow-auto" style="height:300px;">
-                            <h5 class="card-title"><u><b>{{$vpost->title}}</b></u></h5>
-                            <p class="card-text">{{$vpost->description}}</p>
-                        </div>
-                        <div class="card-footer text-muted text-center mt-4">
-                        {{ date('F nS, Y - g:iA' ,strtotime($vpost->created_at)) }}
+                <div class="col-4">
+                    <div class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">{{$vpost->title}}</div>
+                        <img src="/storage/posts/{{$vpost->image}}" alt="Post Image" height="100%" width="100%">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><a href="{{route('post.show', $vpost->title)}}" class="btn btn-outline-secondary">View Post</a></h5>
                         </div>
                     </div>
                 </div>
@@ -145,5 +142,4 @@
             </div>
         </div>
     @endif
-</div>
 @endsection

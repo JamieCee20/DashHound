@@ -18,7 +18,7 @@ class VerifiedController extends Controller
     public function index()
     {
         //
-        $vposts = Verified::where('id', '>', 0)->orderBy('id', 'DESC')->paginate(15);
+        $vposts = Verified::orderBy('id', 'DESC')->paginate(15);
         return view('verifieds.index', compact('vposts'));
         
     }

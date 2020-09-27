@@ -10,7 +10,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" name="q"
                         placeholder="Search users"><span class="input-group-btn">
-                        <button type="submit" class="btn btn-default">
+                        <button type="submit" class="btn btn-outline-secondary">
                             <i class="fas fa-search"></i>
                         </button>
                     </span>
@@ -32,10 +32,10 @@
         </div>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5 text-white">
         @if(isset($details))
             <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-        <table class="table table-striped">
+        <table class="table table-striped text-white">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -45,7 +45,7 @@
             <tbody>
                 @foreach($details as $user)
                 <tr>
-                    <td><a href="/profile/{{$user->id}}" style="color: black; text-decoration:none;">{{$user->name}}</a></td>
+                    <td><a href="/profile/{{$user->id}}" style="color: red; text-decoration:none;">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                 </tr>
                 @endforeach

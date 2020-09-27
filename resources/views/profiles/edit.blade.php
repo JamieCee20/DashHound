@@ -2,7 +2,7 @@
 @section('title', 'Edit Profile')
 
 @section('content')
-<div class="container">
+<div class="container text-white">
     {!! Form::open(['action' => ['ProfilesController@update', $user->id], 'files' => true, 'method' => 'POST']) !!}
         <div class="form-group row">
             @if ($errors->any())
@@ -40,7 +40,7 @@
             {{Form::file('image', ['class' => 'form-control-file'])}}
         </div>
         {{Form::hidden('_method', 'PATCH')}}
-        {{Form::submit('Update Profile', ['class' => 'btn btn-primary'])}}
+        {{Form::submit('Update Profile', ['class' => 'btn btn-primary', 'style' => 'margin-left: -15px'])}}
     {!! Form::close() !!}
 </div>
 @endsection

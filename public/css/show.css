@@ -1,0 +1,28 @@
+.post-image {
+    transform: skew(-7deg);
+    overflow: hidden;
+    background-color: #000;
+    transition: all 0.4s linear;
+}
+.img {
+    position: relative;
+    text-align: center;
+    color: white;
+    float: left;
+}
+
+.comments-header h2 {
+    width: "100%";
+    padding-left: 15%;
+    color: #fff;
+    border-bottom: 3px solid #B6B8D6;; line-height: 0.1em; margin: 10px 0 20px;
+}
+.comments-header h2 span {
+    background: #222222;
+    padding: 0 10px;
+}
+.comments-header h2 span .speech {
+    color: red;
+    font-size: 38px;
+    font-style: italic;
+}

@@ -5,6 +5,7 @@
 /vendor
 /database/seeds
 /database/factories
+/resources/views/vendor
 .env
 .env.backup
 .phpunit.result.cache

@@ -62,7 +62,7 @@ Route::any('/usersearch',function(Request $request){
  * |
  * |
  */
-Route::get('/posts', 'PostsController@index')->name('posts');
+Route::get('/posts', 'PostsController@index')->name('post.index');
 Route::get('/p/create', 'PostsController@create')->middleware('auth');
 Route::post('/p', 'PostsController@store')->name('post.store')->middleware('auth');
 Route::get('/p/{post}', 'PostsController@show')->name('post.show');
@@ -89,7 +89,7 @@ Route::delete('/comment/{comment}', 'CommentsController@destroy')->name('comment
  * |
  * |
  */
-Route::get('/v/posts', 'VerifiedController@index');
+Route::get('/v/posts', 'VerifiedController@index')->name('vpost.index');
 Route::get('/v/create', 'VerifiedController@create')->middleware('can:post-verified-create');
 Route::post('/v', 'VerifiedController@store')->name('verifieds.store')->middleware('can:post-verified-create');
 Route::get('/v/{verified}', 'VerifiedController@show')->name('verifieds.show');

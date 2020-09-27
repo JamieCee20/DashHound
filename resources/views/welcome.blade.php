@@ -10,106 +10,11 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-image: url('/storage/images/home-background.jpg');
-                color: #fff;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-            }
-
-            .content span, .links {
-                text-transform: uppercase;
-                display: block;
-            }
-
-            .text1 {
-                color: white;
-                font-size: 60px;
-                font-weight: 700;
-                letter-spacing: 8px;
-                margin-bottom: 20px;
-                background-image: url('/storage/images/home-background.jpg');
-                position: relative;
-                animation: text 3s 1;
-            }
-
-            .links > a {
-                color: #fff;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            @media only screen and (min-width: 1024px) {
-                @keyframes text {
-                    0%{
-                        color: white;
-                        margin-bottom: -40px;
-                    }
-                    30%{
-                        letter-spacing: 25px;
-                        margin-bottom: -40px;
-                    }
-                    85%{
-                        letter-spacing: 8px;
-                        margin-bottom: -40px;
-                    }
-                }
-            }
-
-            @media only screen and (max-width: 768px) {
-                body {
-                    width: 100%;
-                }
-                #headingTitle {
-                    width: 100%;
-                }
-                #headingTitle img {
-                    visibility: hidden;
-                }
-                #headingLinks {
-                    width: 100%;
-                }
-            }
-        </style>
+        <link rel="stylesheet" media="screen and (min-device-width: 769px)" href="{{ asset('css/home/home-big.css')}}">
+        <link rel="stylesheet" media="screen and (max-device-width: 768px)" href="{{ asset('css/home/home-small.css')}}">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="container">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -131,11 +36,16 @@
                     </div>
                 </span>
 
-                <div class="links" id="headingLinks">
-                    <a href="/posts">Game Posts</a>
-                    <a href="#">Game Reviews</a>
-                    <a href="/v/posts">Verified Publishers</a>
-                    <a href="/contact">Contact Us</a>
+                <div class="row">
+                    <div class="d-none d-sm-none d-md-block col-md-12 col-lg-12 col-xl-12">
+                        <div class="links page-links">
+                            <a href="/posts">Game Posts</a>
+                            <a href="#">Game Reviews</a>
+                            <a href="/v/posts">Verified Publishers</a>
+                            <a href="#">Official Merch</a>
+                            <a href="/contact">Contact Us</a>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <p>This website is currently still in development</p>

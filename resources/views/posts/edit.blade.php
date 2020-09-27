@@ -22,7 +22,7 @@
             {{ Form::select('spoilers', array('true' => 'Yes', 'false' => 'No'), null, ['class' => 'form-control', 'placeholder' => 'Does this post contain spoilers'])}}
         </div>
         {{ Form::hidden('_method', 'PATCH')}}
-        {{ Form::submit('Submit', ['class' => 'btn btn-outline-primary', 'style' => 'margin-left: -15px;']) }}
+        {{ Form::submit('Submit', ['class' => 'btn btn-outline-secondary', 'style' => 'margin-left: -15px;']) }}
     {!! Form::close() !!}
 </div>
 @endsection

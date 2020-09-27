@@ -33,6 +33,6 @@
             {{ Form::file('image', ['class' => 'form-control-file'])}}
         </div>
 
-        {{ Form::submit('Submit', ['class' => 'btn btn-outline-primary', 'style' => 'margin-left: -15px;']) }}
+        {{ Form::submit('Submit', ['class' => 'btn btn-outline-secondary', 'style' => 'margin-left: -15px;']) }}
     {!!Form::close() !!}
 @endsection

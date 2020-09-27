@@ -1,0 +1,61 @@
+.index-bg {
+    background-color: #474747;
+}
+.post-links a {
+    color: white;
+}
+a {
+    color: white;
+}
+a:hover {
+    color: #0E0E0E;
+    text-decoration: none;
+}
+.splitter {
+    background-color: #fff;
+}
+
+.popular-header {
+    color: #B6B8D6;
+}
+
+.img {
+    position: relative;
+    text-align: center;
+    color: white;
+    float: left;
+}
+.centered {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.text-image {
+    color: #AEB0AB;
+}
+.post-rows a:hover {
+    color: #B6B8D6;
+    text-decoration: none;
+}
+
+.post-index-image {
+    transform: skew(-7deg);
+    overflow: hidden;
+    background-color: #000;
+    opacity: 0.2;
+    transition: all 0.4s linear;
+}
+.post-index-image:hover {
+    background-color: #000;
+    opacity: 0.8;
+}
+.post-links a:hover {
+    color: #B6B8D6;
+    text-decoration: none;
+}
+.pagination {
+    color: #585D9D;
+    background-color:  #0E0E0E;
+}
+

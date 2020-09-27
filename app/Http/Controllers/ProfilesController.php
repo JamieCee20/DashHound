@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Post;
+use App\Role;
 use App\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class ProfilesController extends Controller
  * |------------------------------------
  * | Index for the profile controller
  * |------------------------------------
- * |
+ * | Index holds the information needed to display all of the users posts.
  * |
  */
     public function index(User $user)
@@ -43,7 +44,7 @@ class ProfilesController extends Controller
  * |-------------------------
  * | Edit current profile
  * |-------------------------
- * |
+ * | Checks to make sure the user editing the profile is only editing their own profile.
  * |
  */
     public function edit(User $user)
@@ -61,7 +62,7 @@ class ProfilesController extends Controller
  * |------------------------
  * | Update current profile
  * |------------------------
- * |
+ * | Send updated information to database with an extra validation to ensure self user updating.
  * |
  */
     public function update(Request $request, User $user)

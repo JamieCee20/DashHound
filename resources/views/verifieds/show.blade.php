@@ -2,20 +2,26 @@
 @section('title', 'Published Posts')
 
 @section('content')
-<div class="p-2 mx-3 text-white bg-secondary rounded" style="border: 2px solid #B6B8D6;">
+<div class="p-2 mx-3 text-white">
     <div class="row">
-        <div class="col-12 col-md-12 col-sm-12 col-lg-8">
-            <img src="/storage/posts/{{ $verified->image }}" class="w-100 rounded" style="border: 4px solid #B6B8D6;" height="100%">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+            <img src="/storage/posts/{{ $verified->image }}" class="w-100 rounded" width="100%" height="100%">
         </div>
-        <div class="col-12 col-md-12 col-sm-12 col-lg-4">
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-12">
             <div class="post-buttons">
                 <div class="d-flex align-items-center">
                     <div>
                         <div class="font-weight-bold">
-                            <a href="/profile/{{$verified->user->id}}"><span class="text-white">{{$verified->user->name}}</span></a>
-                            @can('update', $verified)
-                                <a href="/v/{{$verified->id}}/edit">Edit Post</a>
-                            @endcan    
+                            <span style="color: Red; font-weight: normal;">Posted By:</span> <a href="/profile/{{$verified->user->id}}"><span class="text-white">{{$verified->user->name}}</span></a>    
+                        </div>
+                        <div class="row">
+                            <div class="ml-3 pt-3">
+                                @can('update', $verified)
+                                    <a href="/v/{{$verified->id}}/edit">Edit Post</a>
+                                @endcan
+                            </div>
                         </div>
                         <div class="row">
                             <div class="ml-3 pt-3">
@@ -29,19 +35,23 @@
 
                 <hr class="splitter">
 
-                <p class="postDesc pb-4"><span class="font-weight-bold text-white">{{$verified->title}}: </span><br>
+                <p class="postDesc pb-4"><span class="font-weight-bold" style="color: red;">{{$verified->title}}: </span><br>
                     <span class="overflow-auto">{{$verified->description}}</span><br><br>
                     <span class="font-italic text-center" style="color:white;opacity:0.5;">posted on {{ date('F dS, Y - g:iA' ,strtotime($verified->created_at)) }}</span>
                 </p>
 
-                <div class="container bottom-link">
-                    <button class="btn btn-info float-right mr-5"><a href="/v/posts" style="color:white;text-decoration: none;">Go Back</a></button>
-                    @can('delete', $verified)
-                        {!!Form::open(['action' => ['VerifiedController@destroy', $verified->id ], 'method' => 'POST'])!!}
-                            {{Form::hidden('_method', 'DELETE')}}
-                            {{Form::submit('Delete', ['class' => 'btn btn-info float-left', 'style' => 'color:white;text-decoration: none;'])}}
-                        {!!Form::close()!!}
-                    @endcan
+                <div class="container bottom-link mb-5">
+                    <div class="row">
+                        <div class="col-12 d-flex">
+                            <button class="btn btn-outline-secondary mr-5" style="margin-left: -15px;"><a href="/v/posts" style="color:white;text-decoration: none;">Go Back</a></button>
+                            @can('delete', $verified)
+                                {!!Form::open(['action' => ['VerifiedController@destroy', $verified->id ], 'method' => 'POST'])!!}
+                                    {{Form::hidden('_method', 'DELETE')}}
+                                    {{Form::submit('Delete', ['class' => 'btn btn-outline-secondary float-left', 'style' => 'color:white;text-decoration: none;'])}}
+                                {!!Form::close()!!}
+                            @endcan
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,54 @@
+body {
+    width: 100%;
+    background-image: url('/storage/images/home-background.jpg');
+    height: 100vh;
+}
+.container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+.links > a {
+    color: #fff;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.page-links {
+    margin-top: 5%;
+    margin: auto;
+    text-decoration: none;
+    list-style: none;
+}
+.page-links > a {
+    color: white;
+    padding: 0;
+    margin: 2% auto;
+    width: 30%;
+    text-decoration: none;
+    letter-spacing: .1rem;
+    display: list-item;
+    border: 1px solid red;
+    background-color: red;
+}
+.content {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+.content img {
+    visibility: hidden;
+}
+.title {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
