@@ -41,7 +41,7 @@
                             <div class="hero-copy">
                                 <h1 class="hero-title mt-0">DashHound</h1>
                                 <p class="hero-paragraph">A creative platform designed for gamers to share their experiences and collaborate with their thoughts and feelings of all things games.</p>
-                                <div class="hero-cta"><a class="button button-primary" href="{{ route('post.index')}}">View Posts</a><a class="button" href="#">Browse the Forums</a></div>
+                                <div class="hero-cta"><a class="button" style="background: #B6B8D6;" href="{{ route('post.index')}}">View Posts</a><a class="button" href="#">Browse the Forums</a></div>
                             </div>
                             <div class="hero-figure anime-element">
                                 <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
