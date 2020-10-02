@@ -25,6 +25,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 </head>
 <body style="background-color: #222222;">
+    @yield('contact')
     <style>
         #header-nav a {
             color: white;
