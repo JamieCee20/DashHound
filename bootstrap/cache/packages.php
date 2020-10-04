@@ -24,6 +24,13 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
+  'graham-campbell/markdown' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'GrahamCampbell\\Markdown\\MarkdownServiceProvider',
+    ),
+  ),
   'intervention/image' => 
   array (
     'providers' => 

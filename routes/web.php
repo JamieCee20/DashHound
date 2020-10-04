@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use Illuminate\Support\Facades\Route;
 use App\Mail\WelcomeEmail;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ use App\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(['verify' => true]);
 
 // Test Routes
 Route::get('testing',function(){
@@ -109,7 +111,6 @@ Route::get('/profile/{user}', 'ProfilesController@index')->name('profiles.show')
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update')->middleware('auth');
 
-Auth::routes(['verify' => true]);
 /**
  * |----------------------------
  * | Administration Section
@@ -120,3 +121,13 @@ Auth::routes(['verify' => true]);
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function() {
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
 });
+
+
+/**
+ * |---------------------------------------
+ * | Forum Section
+ * |---------------------------------------
+ * |
+ * |
+ */
+Route::get('/forums', 'DiscussionController@index')->name('forum.index');
