@@ -65,30 +65,32 @@
             @endif
             <hr style="background-color: white;">
             @foreach ($discussions as $item)
-                <div class="row rounded my-2 mx-auto" style="border: 1px solid {{$item->category->color}}">
-                    <div class="col-10">
-                        <div class="row">
-                            <div class="col-12">
-                                <p class="text-white mt-2">
-                                    <a href=" {{ route('forum.show', $item->slug) }} "><span style="color: white;">{{$item->title}}</span></a>
-                                    <span class="rounded m-1" style="background-color: {{ $item->category->color }};font-weight:bold;color:white;text-shadow:1px 1px 1px black;">
-                                        <span class="p-2">
-                                            {{$item->category->name}}
+                @if ($item->pinned == '0')
+                    <div class="row rounded my-2 mx-auto" style="border: 1px solid {{$item->category->color}}">
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="text-white mt-2">
+                                        <a href=" {{ route('forum.show', $item->slug) }} "><span style="color: white;">{{$item->title}}</span></a>
+                                        <span class="rounded m-1" style="background-color: {{ $item->category->color }};font-weight:bold;color:white;text-shadow:1px 1px 1px black;">
+                                            <span class="p-2">
+                                                {{$item->category->name}}
+                                            </span>
                                         </span>
-                                    </span>
-                                </p>
-                            </div>
-                            <div class="col-12">
-                                <p style="color: lightgrey;font-style:italic;">
-                                    By {{ $item->user->name }} - {{ $item->time_ago($item->created_at) }}
-                                </p>
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <p style="color: lightgrey;font-style:italic;">
+                                        By {{ $item->user->name }} - {{ $item->time_ago($item->created_at) }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-2 text-white text-center mt-2">
+                            <i class="far fa-comment"></i> 10
+                        </div>
                     </div>
-                    <div class="col-2 text-white text-center mt-2">
-                        <i class="far fa-comment"></i> 10
-                    </div>
-                </div>
+                @endif
             @endforeach
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">

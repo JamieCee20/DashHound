@@ -45,4 +45,12 @@
             </div>
         </div>
     </div>
+    <hr style="background-color: red;">
+    <div class="row">
+        <div class="col-12">
+            <p>
+                Content
+            </p>
+        </div>
+    </div>
 @endsection

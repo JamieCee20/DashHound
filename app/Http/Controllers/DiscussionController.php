@@ -22,13 +22,19 @@ class DiscussionController extends Controller
         $pagination = 20;
         $categories = Category::all();
 
-        if(request()->category) {
+        if(request()->category) { //If there is a category request
+
+            // Post with related category query
             $discussions = Discussion::with('category')->whereHas('category', function($query) {
                 $query->where('slug', request()->category);
             })->paginate($pagination);
+
+            // Pinned posts found within category query
             $pinned = Discussion::with('category')->whereHas('category', function($query) {
                 $query->where('slug', request()->category)->where('pinned', '1');
-            })->take(3)->get();
+            })->take(3)->get(); 
+
+            // Category query as a value
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
 
             return view('forums.index', compact('discussions', 'categories', 'categoryName', 'pinned'));
