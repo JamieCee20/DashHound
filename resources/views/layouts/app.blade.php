@@ -127,5 +127,6 @@
             loader.className += " hidden"; // make class "loader hidden"
         })
     </script>
+    @yield('editor-js')
 </body>
 </html>

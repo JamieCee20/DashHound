@@ -20,6 +20,8 @@ class CreateDiscussionsTable extends Migration
             $table->unsignedBigInteger('category_id'); // Foreign Key to categories
             $table->string('slug')->unique(); // Category Slug
             $table->boolean('pinned')->default(0); // Pinned has pinned posts at top of page
+            $table->text('body'); // Body for the discussion post
+            $table->string('image'); // Any images that are added to the post
             $table->timestamps();
         });
     }

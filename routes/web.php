@@ -36,7 +36,7 @@ Route::get('testing',function(){
  * |
  * |
  */
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () { return view('welcome'); })->name('landing');
 Route::get('/contact', function() { return view('contact'); });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/search',function(Request $request){
@@ -131,3 +131,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
  * |
  */
 Route::get('/forums', 'DiscussionController@index')->name('forum.index');
+Route::get('/forums/create', 'DiscussionController@create')->name('forum.create')->middleware('auth');
+Route::post('/forums', 'DiscussionController@store')->name('forum.store')->middleware('auth');
+Route::get('/forums/{discussion}', 'DiscussionController@show')->name('forum.show');
+// Edit Route
+// Update Route
+Route::delete('/forums/{discussion}', 'DiscussionController@destroy')->name('forum.delete')->middleware('auth');
+

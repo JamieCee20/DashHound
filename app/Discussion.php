@@ -6,17 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Discussion extends Model
 {
-    //Discussion model defined.
-    protected $fillable = ['title', 'slug'];
 
-    //Define relationship to user
-    public function user() {
-        return $this->belongsTo('App\User');
+    // Define slug as primary route key
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
-    // A discussion belongs to many users.
-    public function users() {
-        return $this->belongsToMany('App\User');
+    //Discussion model defined.
+    protected $fillable = ['title', 'slug', 'pinned', 'body', 'image'];
+
+    //Define relationship to user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     //Define relationship to category

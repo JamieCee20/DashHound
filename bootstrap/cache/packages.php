@@ -24,13 +24,6 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
-  'graham-campbell/markdown' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'GrahamCampbell\\Markdown\\MarkdownServiceProvider',
-    ),
-  ),
   'intervention/image' => 
   array (
     'providers' => 
@@ -80,6 +73,17 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'stevebauman/purify' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Purify' => 'Stevebauman\\Purify\\Facades\\Purify',
     ),
   ),
 );

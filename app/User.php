@@ -43,12 +43,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // A user has one discussion
     public function discussion() {
-        return $this->hasOne('App\User');
+        return $this->hasOne('App\Discussion');
     }
 
     // A user can have many discussions
     public function discussions() {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\Discussion');
     }
 
     public function posts() {

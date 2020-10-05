@@ -10,8 +10,8 @@ class Category extends Model
     protected $fillable = ['name', 'order', 'slug'];
 
     // Define single discussion
-    public function discussion() {
-        return $this->belongsTo('App\Discussion');
+    public function discussions() {
+        return $this->hasMany('App\Discussion');
     }
 
 }
