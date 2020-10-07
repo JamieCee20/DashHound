@@ -30,11 +30,11 @@ Route::get('testing',function(){
 });
 
 /**
- * |---------------------------------------
+ * |--------------------------------------------------------------------------
  * | Home Functionality
- * |---------------------------------------
- * |
- * |
+ * |--------------------------------------------------------------------------
+ * | Search functions take parameter in search bar and find details relating
+ * | to that query and display accordinly. Other functions are basic routing
  */
 Route::get('/', function () { return view('welcome'); })->name('landing');
 Route::get('/contact', function() { return view('contact'); });
@@ -58,10 +58,11 @@ Route::any('/usersearch',function(Request $request){
 });
 
 /**
- * |---------------------------------------
+ * |--------------------------------------------------------------------------
  * | Regular User Post Section
- * |---------------------------------------
- * |
+ * |--------------------------------------------------------------------------
+ * | Basic post routing using the resource controller methods, no custom
+ * | functions were used.
  * |
  */
 Route::get('/posts', 'PostsController@index')->name('post.index');
@@ -73,11 +74,11 @@ Route::patch('/p/{post}', 'PostsController@update')->name('post.update')->middle
 Route::delete('/p/{post}', 'PostsController@destroy')->name('post.delete')->middleware('auth');
 
 /**
- * |---------------------------------------
+ * |--------------------------------------------------------------------------
  * | Regular User Post Comments
- * |---------------------------------------
- * |
- * |
+ * |--------------------------------------------------------------------------
+ * | Comments have fewer methods due to the main display of comments are
+ * | on the user posts meaning I can combine into post controller functions
  */
 Route::post('/comment/{post}', 'CommentsController@store')->name('comments.store')->middleware('auth');
 Route::get('/comment/{comment}/edit', 'CommentsController@edit')->middleware('auth');
@@ -85,9 +86,9 @@ Route::patch('/comment/{comment}', 'CommentsController@update')->name('comments.
 Route::delete('/comment/{comment}', 'CommentsController@destroy')->name('comments.delete')->middleware('auth');
 
 /**
- * |----------------------------
+ * |---------------------------------------
  * | Verified User Post Section
- * |----------------------------
+ * |---------------------------------------
  * |
  * |
  */
@@ -101,9 +102,9 @@ Route::delete('/v/{verified}', 'VerifiedController@destroy')->name('verifieds.de
 Route::get('/v/toggleLike/{verified}', 'LikesController@toggleLike')->name('toggleLike')->middleware('auth');
 
 /**
- * |----------------------------
+ * |---------------------------------------
  * | Profiles route management
- * |----------------------------
+ * |---------------------------------------
  * |
  * |
  */
@@ -112,9 +113,9 @@ Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edi
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update')->middleware('auth');
 
 /**
- * |----------------------------
+ * |---------------------------------------
  * | Administration Section
- * |----------------------------
+ * |---------------------------------------
  * |
  * |
  */
@@ -131,10 +132,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
  * |
  */
 Route::get('/forums', 'DiscussionController@index')->name('forum.index');
+Route::get('/forums/admin', 'DiscussionController@admin')->name('forum.admin')->middleware('can:forum-admin'); // Admin control panel for forums (custom function)
 Route::get('/forums/create', 'DiscussionController@create')->name('forum.create')->middleware('auth');
 Route::post('/forums', 'DiscussionController@store')->name('forum.store')->middleware('auth');
 Route::get('/forums/{discussion}', 'DiscussionController@show')->name('forum.show');
-// Edit Route
-// Update Route
+Route::get('/forums/{discussion}/edit', 'DiscussionController@edit')->name('forum.edit')->middleware('auth');
+Route::patch('/forums/{discussion}', 'DiscussionController@update')->name('forum.update')->middleware('auth');
 Route::delete('/forums/{discussion}', 'DiscussionController@destroy')->name('forum.delete')->middleware('auth');
 

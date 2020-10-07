@@ -3,7 +3,20 @@
 
 
 @section('content')
-    <div class="row" style="border: 1px solid lightgrey;background-color: lightgrey;box-shadow:5px 5px grey;">
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="h3 rounded" style="color: white">{{$discussion->title}}</div>
+        </div>
+        <div class="col-12 d-flex" style="color: white;">
+            <p>
+                <i class="fas fa-user"></i> {{$discussion->user->name}} 	&middot; <i class="fas fa-clock"></i> {{ date('M dS, g:iA' ,strtotime($discussion->created_at)) }} 	&middot; <i class="fas fa-reply"></i> 15
+            </p>
+        </div>
+        <div class="col-12">
+            <a href="{{ url()->previous() }}" role="button" class="btn btn-outline-light"><i class="fas fa-chevron-left"></i> {{$discussion->category->name}}</a>
+        </div>
+    </div>
+    <div class="row ml-0" style="background-color: lightgrey;box-shadow:5px 5px grey;">
         <div class="col-12 col-md-12 col-lg-2 col-xl-2 text-center mx-auto">
             <img src="/storage/profile/{{$discussion->user->image}}" alt="Profile Image" class="border rounded" height="50%" width="100%" style="max-height:120px;max-width:120px;"><br>
             <span style="color: goldenrod;font-weight: bold;width:100%;">{{ $discussion->user->name }}</span><br>
@@ -25,7 +38,7 @@
                 <div class="col-3 d-flex">
                     @can('update', $discussion)
                         <div class="mx-1">
-                            <a href="#" role="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="/forums/{{$discussion->slug}}/edit" role="button" class="btn btn-secondary"><i class="fas fa-edit"></i> Edit</a>
                         </div>
                     @endcan
                     @can('delete', $discussion)
@@ -48,9 +61,10 @@
     <hr style="background-color: red;">
     <div class="row">
         <div class="col-12">
-            <p>
+            <p style="color: aquamarine;">
                 Content
             </p>
         </div>
     </div>
 @endsection
+

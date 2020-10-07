@@ -45,5 +45,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('pinned-post', function($user) {
             return $user->hasAnyRoles(['owner', 'administrator']);
         });
+
+        Gate::define('forum-admin', function($user) {
+            return $user->hasAnyRoles(['owner', 'administrator', 'moderator']);
+        });
     }
 }

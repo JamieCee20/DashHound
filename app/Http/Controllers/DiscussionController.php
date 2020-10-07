@@ -122,6 +122,9 @@ class DiscussionController extends Controller
     public function edit(Discussion $discussion)
     {
         //
+        $this->authorize('update', $discussion);
+
+        return view('forums.edit', compact('discussion'));
     }
 
     /**
@@ -134,6 +137,16 @@ class DiscussionController extends Controller
     public function update(Request $request, Discussion $discussion)
     {
         //
+        $this->authorize('update', $discussion);
+
+        $data = request()->validate([
+            'title' => 'required|max:255|',
+            'body' => 'required',
+        ]);
+
+        $discussion->update($data);
+
+        return redirect('/forums')->with('success', 'Discussion Successfully Updated!');
     }
 
     /**
@@ -151,5 +164,14 @@ class DiscussionController extends Controller
         $posts = Discussion::find($id)->delete();
 
         return redirect('/forums')->with('success', 'Successfully removed discussion');
+    }
+
+    /**
+     * Display content to an admin dashboard to view all posts, categorised by pinned and all
+     * 
+     * 
+     */
+    public function admin() {
+        return "Admin Dashboard";
     }
 }
