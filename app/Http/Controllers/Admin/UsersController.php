@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Discussion;
 use App\Http\Controllers\Controller;
 use App\User;
 use Gate;
@@ -27,7 +28,10 @@ class UsersController extends Controller
     {
         //
         $users = User::where('id', '>', 0)->paginate(10);
-        return view('admin.users.index')->with('users', $users);
+        $pinned = Discussion::where('pinned', 1)->paginate(20);
+        $forums = Discussion::where('pinned', 0)->paginate(20);
+        return view('admin.users.index', compact('users', 'forums', 'pinned'));
+        // return view('admin.users.index')->with('users', $users);
     }
 
     /**

@@ -1,10 +1,11 @@
 <?php
 
+use App\User;
 use App\Category;
-use Illuminate\Support\Facades\Route;
+use App\Discussion;
 use App\Mail\WelcomeEmail;
 use Illuminate\Http\Request;
-use App\User;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,9 @@ Route::any('/usersearch',function(Request $request){
     $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
     if(count($user) > 0) {
         $users = User::where('id', '>', 0)->paginate(10);
-        return view('admin.users.index', ['users' => $users])->withDetails($user)->withQuery($q);
+        $pinned = Discussion::where('pinned', 1)->paginate(20);
+        $forums = Discussion::where('pinned', 0)->paginate(20);
+        return view('admin.users.index', ['users' => $users, 'forums' => $forums, 'pinned' => $pinned])->withDetails($user)->withQuery($q);
     } else {
          return redirect()->route('admin.users.index')->with('error', 'No Details found. Try to search again !');
     }     
