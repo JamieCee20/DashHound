@@ -140,3 +140,16 @@ Route::get('/forums/{discussion}/edit', 'DiscussionController@edit')->name('foru
 Route::patch('/forums/{discussion}', 'DiscussionController@update')->name('forum.update')->middleware('auth');
 Route::delete('/forums/{discussion}', 'DiscussionController@destroy')->name('forum.delete')->middleware('auth');
 
+
+/**
+ * |--------------------------------------------------------------------------
+ * | Reply section for forums
+ * |--------------------------------------------------------------------------
+ * | 
+ * | 
+ */
+Route::post('/reply/{reply}', 'ReplyController@store')->name('reply.store')->middleware('auth');
+Route::get('/reply/{reply}/edit', 'ReplyController@edit')->middleware('auth');
+Route::patch('/reply/{reply}', 'ReplyController@update')->name('reply.update')->middleware('auth');
+Route::delete('/reply/{reply}', 'ReplyController@destroy')->name('reply.delete')->middleware('auth');
+

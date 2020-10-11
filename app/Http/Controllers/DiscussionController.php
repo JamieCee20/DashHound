@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Discussion;
+use App\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stevebauman\Purify\Facades\Purify;
@@ -109,8 +110,9 @@ class DiscussionController extends Controller
      */
     public function show(Discussion $discussion)
     {
-        //
-        return view('forums.show', compact('discussion'));
+        $replies = $discussion->replies()->where('reply_owner_name', null)->orderBy('created_at', 'ASC')->paginate(30);
+
+        return view('forums.show', compact('discussion', 'replies'));
     }
 
     /**

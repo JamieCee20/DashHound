@@ -103,4 +103,12 @@ class User extends Authenticatable implements MustVerifyEmail
         $imagePath = ($this->image) ? $this->image : 'profile/no-image-available.png';
         return "/storage/" . $imagePath;
     }
+
+    public function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
+    public function officialPublisher($user) {
+        return '/storage/images/verified.png';
+    }
 }

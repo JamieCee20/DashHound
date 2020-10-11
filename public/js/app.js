@@ -52795,7 +52795,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('spoiler-content', __webpac
  */
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app'
+  el: '#app',
+  data: {
+    toggle: false,
+    seen: false
+  }
 });
 
 /***/ }),

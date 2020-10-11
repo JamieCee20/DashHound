@@ -13,20 +13,26 @@ class Discussion extends Model
         return 'slug';
     }
 
-    //Discussion model defined.
+    //Discussion content that can be filled.
     protected $fillable = ['title', 'slug', 'pinned', 'body', 'image'];
 
-    //Define relationship to user
+    //Discussion belongs to 1 user
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    //Define relationship to category
+    //Discussion belongs to 1 category
     public function category() {
         return $this->belongsTo('App\Category');
     }
 
+    //Discussion can have many replies
+    public function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
+    //Discussion time stamp organisation
     function time_ago($timestamp)  
     {  
         $time_ago = strtotime($timestamp);  

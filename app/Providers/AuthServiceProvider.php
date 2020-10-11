@@ -49,5 +49,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('forum-admin', function($user) {
             return $user->hasAnyRoles(['owner', 'administrator', 'moderator']);
         });
+
+        Gate::define( 'official-publisher', function($user) {
+            return $user->hasRole('verified');
+        });
     }
 }

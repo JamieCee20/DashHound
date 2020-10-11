@@ -32,7 +32,7 @@
                     <li>
                         <a href="{{ route('forum.index', ['category' => $cat->slug]) }}"><div class="chatter-box" style="background-color: {{$cat->color}}"></div>{{$cat->name}}</a>
                     </li>   
-                @endforeach<i class="far fa-comment"></i>
+                @endforeach
             </ul>
         </div>
         <div class="col-12 col-md-12 col-lg-9 col-xl-9 mx-auto">
@@ -52,13 +52,19 @@
                                 </div>
                                 <div class="col-12">
                                     <p style="color: lightgrey;font-style:italic;">
-                                        By {{ $pin->user->name }} - {{ $pin->time_ago($pin->created_at) }}
+                                        By {{ $pin->user->name }}
+                                        <span>
+                                            @if (Gate::forUser($pin->user)->allows('official-publisher', $pin->user))
+                                                <i class="fas fa-user-check"></i>
+                                            @endif   
+                                        </span>
+                                        - {{ $pin->time_ago($pin->created_at) }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-2 text-white text-center mt-2">
-                            <i class="far fa-comment"></i> 10
+                            <i class="far fa-comment"></i> {{$pin->replies->count()}}
                         </div>
                     </div>
                 @endforeach
@@ -81,13 +87,19 @@
                                 </div>
                                 <div class="col-12">
                                     <p style="color: lightgrey;font-style:italic;">
-                                        By {{ $item->user->name }} - {{ $item->time_ago($item->created_at) }}
+                                        By {{ $item->user->name }}
+                                        <span>
+                                            @if(Gate::forUser($item->user)->allows('official-publisher', $item->user))
+                                                <i class="fas fa-user-check"></i>
+                                            @endif   
+                                        </span>
+                                        - {{ $item->time_ago($item->created_at) }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-2 text-white text-center mt-2">
-                            <i class="far fa-comment"></i> 10
+                            <i class="far fa-comment"></i> {{$item->replies->count()}}
                         </div>
                     </div>
                 @endif
