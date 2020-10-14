@@ -80,7 +80,7 @@
                                     <a href="/v/create" class="dropdown-item">Create Verified Post</a>
                                     @endcan
                                     @can('manage-users')
-                                        <a href="{{ route('admin.users.index')}}" class="dropdown-item">User Management</a>
+                                        <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
                                     @endcan
                                     <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
                                     <hr style="background-color: white;">

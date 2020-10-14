@@ -26,10 +26,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-        $users = User::where('id', '>', 0)->paginate(10);
-        $pinned = Discussion::where('pinned', 1)->paginate(20);
-        $forums = Discussion::where('pinned', 0)->paginate(20);
+        // Paginate function takes items per page (10), number of cols ([*]) and name of pagination (users) to prevent changing all item paginations on same page.
+        $users = User::where('id', '>', 0)->paginate(10, ['*'], 'users');
+        $pinned = Discussion::where('pinned', 1)->paginate(20, ['*'], 'pinned');
+        $forums = Discussion::where('pinned', 0)->paginate(20, ['*'], 'forums');
         return view('admin.users.index', compact('users', 'forums', 'pinned'));
         // return view('admin.users.index')->with('users', $users);
     }

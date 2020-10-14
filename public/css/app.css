@@ -10966,3 +10966,12 @@ a.text-dark:focus {
   }
 }
 
+.forum-list a {
+  color: black;
+  text-decoration: none;
+}
+
+.forum-list a:hover {
+  font-weight: bold;
+}
+

@@ -16,6 +16,9 @@
                     <li class="nav-item">
                         <a href="#pinned-management" class="nav-link" role="tab" data-toggle="tab">Pinned Posts</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/admin/users" class="nav-link">Reset Search</a>
+                    </li>
                 </ul>
 
 
@@ -118,7 +121,7 @@
                                         </tbody>
                                     </table>
                                     <div class="d-flex justify-content-center">
-                                        {{ $users->links() }}
+                                        {{ $users->appends(['forums' => $forums->currentPage(), 'pinned' => $pinned->currentPage()])->links() }}
                                     </div>
                 
                                         
@@ -225,7 +228,7 @@
                                         </tbody>
                                     </table>
                                     <div class="d-flex justify-content-center">
-                                        {{ $users->links() }}
+                                        {{ $users->appends(['forums' => $forums->currentPage(), 'pinned' => $pinned->currentPage()])->links() }}
                                     </div>
                                 </div>
                             </div>
@@ -329,59 +332,67 @@
                                         </tbody>
                                     </table>
                                     <div class="d-flex justify-content-center">
-                                        {{ $users->links() }}
+                                        {{ $users->appends(['forums' => $forums->currentPage(), 'pinned' => $pinned->currentPage()])->links() }}
                                     </div>
                                 </div>
                             </div>
                         @endif    
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="forum-management" style="background-color: #fff;">
-                        @foreach ($forums as $discussion)
-                            <li>
-                                <a href="/forums/{{$discussion->slug}}">{{$discussion->title}}</a>
-                            </li>
-                        @endforeach
+                    <div role="tabpanel" class="tab-pane fade" id="forum-management">
+                        <div class="card">
+                            <div class="card-header text-secondary">
+                                Forum Posts
+                            </div>
+        
+                            <div class="user-management-content">
+                                <div class="card-body text-dark">
+                                    <div class="row justify-content-center pb-3">
+                                        <div class="col-md-8">
+                                            <ul class="list-group list-group-flush text-center">
+                                                @foreach ($forums as $discussion)
+                                                    <li class="list-group-item forum-list">
+                                                        <a href="/forums/{{$discussion->slug}}">{{$discussion->title}}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center pb-3">
+                                        {{ $forums->appends(['users' => $users->currentPage(), 'pinned' => $pinned->currentPage()])->links() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="pinned-management" style="background-color: #fff;">
-                        @foreach ($pinned as $pin)
-                            <li>
-                                <a href="/forums/{{$pin->slug}}">{{$pin->title}}</a>
-                            </li>
-                        @endforeach
+                    <div role="tabpanel" class="tab-pane fade" id="pinned-management">
+                        <div class="card">
+                            <div class="card-header text-secondary">
+                                Pinned Forum Posts
+                            </div>
+        
+                            <div class="user-management-content">
+                                <div class="card-body text-dark">
+                                    <div class="row justify-content-center pb-3">
+                                        <div class="col-md-8">
+                                            <ul class="list-group list-group-flush text-center">
+                                                @foreach ($pinned as $pin)
+                                                    <li class="list-group-item forum-list">
+                                                        <a href="/forums/{{$pin->slug}}">{{$pin->title}}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center pb-3">
+                                        {{ $pinned->appends(['users' => $users->currentPage(), 'forums' => $forums->currentPage()])->links() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 @endsection
