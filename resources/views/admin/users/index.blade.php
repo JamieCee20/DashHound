@@ -112,8 +112,11 @@
                                                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">
                                                             @csrf 
                                                             {{ method_field('DELETE') }}
-                                                            <button type="submit" class="btn btn-danger">&times;</button>
+                                                            <button type="submit" class="btn btn-danger ml-1">&times;</button>
                                                         </form>
+                                                    @endcan
+                                                    @can('manage-users')
+                                                        <a data-toggle="tooltip" data-html="true" data-html="true" title="Suspend this user" href="{{route('admin.user.suspend', $user)}}"><button type="button" class="btn btn-warning ml-1"><i class="fas fa-ban"></i></button></a>
                                                     @endcan
                                                 </td>
                                             </tr>
