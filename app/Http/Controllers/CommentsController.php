@@ -105,6 +105,6 @@ class CommentsController extends Controller
 
         $comment->delete();
 
-        return redirect('/posts')->with('success', 'Comment Removed');
+        return redirect('/p/'.$comment->user->post->title)->with('success', 'Comment Removed');
     }
 }

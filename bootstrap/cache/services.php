@@ -32,10 +32,12 @@
     28 => 'Collective\\Html\\HtmlServiceProvider',
     29 => 'Carbon\\Laravel\\ServiceProvider',
     30 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    31 => 'App\\Providers\\AppServiceProvider',
-    32 => 'App\\Providers\\AuthServiceProvider',
-    33 => 'App\\Providers\\EventServiceProvider',
-    34 => 'App\\Providers\\RouteServiceProvider',
+    31 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    32 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    33 => 'App\\Providers\\AppServiceProvider',
+    34 => 'App\\Providers\\AuthServiceProvider',
+    35 => 'App\\Providers\\EventServiceProvider',
+    36 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -56,10 +58,12 @@
     14 => 'Laravel\\Ui\\UiServiceProvider',
     15 => 'Carbon\\Laravel\\ServiceProvider',
     16 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    17 => 'App\\Providers\\AppServiceProvider',
-    18 => 'App\\Providers\\AuthServiceProvider',
-    19 => 'App\\Providers\\EventServiceProvider',
-    20 => 'App\\Providers\\RouteServiceProvider',
+    17 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    18 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    19 => 'App\\Providers\\AppServiceProvider',
+    20 => 'App\\Providers\\AuthServiceProvider',
+    21 => 'App\\Providers\\EventServiceProvider',
+    22 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

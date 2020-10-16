@@ -55,7 +55,11 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Update</button>
+                            <div class="row">
+                                <div class="col-12 d-flex">
+                                    <button class="btn btn-primary" type="submit">Update User</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

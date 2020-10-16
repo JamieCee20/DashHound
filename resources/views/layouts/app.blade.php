@@ -77,16 +77,16 @@
                                     <a href="/profile/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
                                     <a href="/p/create" class="dropdown-item">Create Post</a>
                                     @can('post-verified-create')
-                                    <a href="/v/create" class="dropdown-item">Create Verified Post</a>
+                                        <a href="/v/create" class="dropdown-item">Create Verified Post</a>
                                     @endcan
                                     @can('manage-users')
-                                        <a href="{{ route('admin.users.index')}}" class="dropdown-item">User Management</a>
+                                        <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
                                     @endcan
                                     <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
-                                    <hr style="background-color: white;">
+                                        <hr style="background-color: white;">
                                     <a href="{{ route('post.index') }}" class="dropdown-item">Community Posts</a>
                                     <a href="{{ route('vpost.index') }}" class="dropdown-item">Official Content</a>
-                                    <hr style="background-color: white;">
+                                        <hr style="background-color: white;">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -111,7 +111,7 @@
             </div>
         </main>
     </div>
-    <div>
+    <div class="mt-5">
         <div class="container">
             <div class="fixed-bottom">
                 <footer class="py-2 bg-secondary">
@@ -127,5 +127,6 @@
             loader.className += " hidden"; // make class "loader hidden"
         })
     </script>
+    @yield('editor-js')
 </body>
 </html>

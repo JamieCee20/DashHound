@@ -75,4 +75,15 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'stevebauman/purify' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Purify' => 'Stevebauman\\Purify\\Facades\\Purify',
+    ),
+  ),
 );

@@ -41,6 +41,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Post');
     }
 
+    // A user has one discussion
+    public function discussion() {
+        return $this->hasOne('App\Discussion');
+    }
+
+    // A user can have many discussions
+    public function discussions() {
+        return $this->hasMany('App\Discussion');
+    }
+
     public function posts() {
         return $this->hasMany('App\Post')->orderBy('created_at', 'DESC');
     }
@@ -92,5 +102,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profileImage() {
         $imagePath = ($this->image) ? $this->image : 'profile/no-image-available.png';
         return "/storage/" . $imagePath;
+    }
+
+    public function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
+    public function officialPublisher($user) {
+        return '/storage/images/verified.png';
     }
 }

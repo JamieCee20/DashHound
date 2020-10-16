@@ -34,7 +34,13 @@ Vue.component('spoiler-content', require('./components/SpoilerComponent.vue').de
 
 const app = new Vue({
     el: '#app',
+    data: {
+        toggle: false,
+        seen: false,
+    }
 });
+
+
 
 
 

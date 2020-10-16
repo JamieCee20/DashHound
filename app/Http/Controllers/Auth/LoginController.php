@@ -45,7 +45,7 @@ class LoginController extends Controller
             return $this->redirectTo;
         }
 
-        $this->redirectTo = route('posts');
+        $this->redirectTo = route('landing');
         return $this->redirectTo;
     }
 }
