@@ -106,7 +106,19 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    public function deleteUser($id) {
-        return "fish";
+    public function suspendUser(User $user) {
+        if(Gate::denies('manage-users')) {
+            return redirect()->route('admin.users.index');
+        }
+
+        if($user->banned_until == null) {
+            $suspension = now()->addDays(30);
+            $user->banned_until = $suspension;
+            $user->save();
+
+            return redirect()->route('admin.users.index')->with('warning', $user->name .' has been suspended for 30 days');
+        } else {
+            return redirect()->route('admin.users.index')->with('error', $user->name .' is already suspended');
+        }
     }
 }

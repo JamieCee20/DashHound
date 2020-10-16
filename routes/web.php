@@ -124,6 +124,7 @@ Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.upda
  */
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function() {
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+    Route::get('/suspend/{user}', 'UsersController@suspendUser')->name('user.suspend');
 });
 
 
