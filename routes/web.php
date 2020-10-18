@@ -49,14 +49,18 @@ Route::any('/search',function(Request $request){
 });
 Route::any('/usersearch',function(Request $request){
     $q = $request->get( 'qUser' );
-    $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
-    if(count($user) > 0) {
-        $users = User::where('id', '>', 0)->paginate(20, ['*'], 'users');
-        $pinned = Discussion::where('pinned', 1)->paginate(20, ['*'], 'pinned');
-        $forums = Discussion::where('pinned', 0)->paginate(20, ['*'], 'forums');
-        return view('admin.users.index', ['users' => $users, 'forums' => $forums, 'pinned' => $pinned])->withDetails($user)->withQuery($q);
+    if(isset($q)) {
+        $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+        if(count($user) > 0) {
+            $users = User::where('id', '>', 0)->paginate(20, ['*'], 'users');
+            $pinned = Discussion::where('pinned', 1)->paginate(20, ['*'], 'pinned');
+            $forums = Discussion::where('pinned', 0)->paginate(20, ['*'], 'forums');
+            return view('admin.users.index', ['users' => $users, 'forums' => $forums, 'pinned' => $pinned])->withDetails($user)->withQuery($q);
+        } else {
+            return redirect()->route('admin.users.index')->with('error', 'No Details found. Try to search again !');
+        }
     } else {
-         return redirect()->route('admin.users.index')->with('error', 'No Details found. Try to search again !');
+        return redirect()->route('admin.users.index')->with('error', 'No value entered');
     }     
 });
 

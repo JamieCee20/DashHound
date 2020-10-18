@@ -21,7 +21,7 @@ class CreateDiscussionsTable extends Migration
             $table->string('slug')->unique(); // Category Slug
             $table->boolean('pinned')->default(0); // Pinned has pinned posts at top of page
             $table->text('body'); // Body for the discussion post
-            $table->string('image'); // Any images that are added to the post
+            $table->string('image')->nullable(); // Any images that are added to the post
             $table->timestamps();
         });
     }
