@@ -80,10 +80,12 @@
                                     @can('post-verified-create')
                                         <a href="/v/create" class="dropdown-item">Create Verified Post</a>
                                     @endcan
-                                    @can('manage-users')
-                                        <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
-                                    @endcan
                                     <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
+                                        <hr style="background-color: white;">
+                                    @can('manage-users')
+                                    <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
+                                    <a href="{{ route('tickets.index')}}" class="dropdown-item">Support Tickets</a>
+                                    @endcan
                                         <hr style="background-color: white;">
                                     <a href="{{ route('post.index') }}" class="dropdown-item">Community Posts</a>
                                     <a href="{{ route('vpost.index') }}" class="dropdown-item">Official Content</a>

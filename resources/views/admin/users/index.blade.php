@@ -16,9 +16,6 @@
                     <a href="#pinned-management" class="nav-link" role="tab" data-toggle="tab">Pinned Discussions</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#ticket-management" class="nav-link" role="tab" data-toggle="tab">Support Tickets</a>
-                </li>
-                <li class="nav-item">
                     <a href="/admin/users" class="nav-link">Reset Search</a>
                 </li>
             </ul>

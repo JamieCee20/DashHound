@@ -131,6 +131,16 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::get('/suspend/{user}', 'UsersController@suspendUser')->name('user.suspend');
 });
 
+/**
+ * |---------------------------------------
+ * | Ticket System
+ * |---------------------------------------
+ * |
+ * |
+ */
+Route::get('/tickets', 'TicketController@index')->name('tickets.index');
+Route::get('/ticket/{ticket}', 'TicketController@show')->name('tickets.show');
+
 
 /**
  * |---------------------------------------
