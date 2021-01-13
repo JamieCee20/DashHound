@@ -17,9 +17,8 @@ class CreateTicketsTable extends Migration
             $table->bigIncrements('id');
             $table->string('ticket_id')->unique(); // Ticket ID
             $table->unsignedBigInteger('user_id'); // User ID of user creating the ticket
-            $table->unsignedBigInteger('manager_id'); // Alocated Supervisor to deal with ticket
+            $table->unsignedBigInteger('manager_id')->nullaable(); // Alocated Supervisor to deal with ticket
             $table->string('title');
-            $table->text('body');
             $table->unsignedBigInteger('ticket_category');
             $table->unsignedBigInteger('ticket_status');
             $table->timestamps();

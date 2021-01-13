@@ -37,6 +37,7 @@ const app = new Vue({
     data: {
         toggle: false,
         seen: false,
+        information: true,
     }
 });
 

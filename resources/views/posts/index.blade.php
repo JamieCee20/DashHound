@@ -16,6 +16,11 @@
     @endif
     <div class="p-3">
         <h4 class="text-center py-3 popular-header">Top 3 Most Views Posts</h4>
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-outline-light float-right" href="{{ route('post.create') }}">Create Post</a>
+            </div>
+        </div>
         @foreach($popular_posts as $popular)
             <div class="row shadow-sm mb-5 page-display" style="height:60%;" id="postBox">
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pr-4 mx-auto">

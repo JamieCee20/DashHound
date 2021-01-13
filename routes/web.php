@@ -73,7 +73,7 @@ Route::any('/usersearch',function(Request $request){
  * |
  */
 Route::get('/posts', 'PostsController@index')->name('post.index');
-Route::get('/p/create', 'PostsController@create')->middleware('auth');
+Route::get('/p/create', 'PostsController@create')->name('post.create')->middleware('auth');
 Route::post('/p', 'PostsController@store')->name('post.store')->middleware('auth');
 Route::get('/p/{post}', 'PostsController@show')->name('post.show');
 Route::get('/p/{post}/edit', 'PostsController@edit')->name('post.edit')->middleware('auth');
@@ -100,7 +100,7 @@ Route::delete('/comment/{comment}', 'CommentsController@destroy')->name('comment
  * |
  */
 Route::get('/v/posts', 'VerifiedController@index')->name('vpost.index');
-Route::get('/v/create', 'VerifiedController@create')->middleware('can:post-verified-create');
+Route::get('/v/create', 'VerifiedController@create')->name('vpost.create')->middleware('can:post-verified-create');
 Route::post('/v', 'VerifiedController@store')->name('verifieds.store')->middleware('can:post-verified-create');
 Route::get('/v/{verified}', 'VerifiedController@show')->name('verifieds.show');
 Route::get('/v/{verified}/edit', 'VerifiedController@edit')->name('verifieds.edit')->middleware('can:post-verified-create');
@@ -139,7 +139,20 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
  * |
  */
 Route::get('/tickets', 'TicketController@index')->name('tickets.index');
+Route::get('ticket/create', 'TicketController@create')->name('tickets.create')->middleware('auth');
+Route::post('tickets', 'TicketController@store')->name('tickets.store')->middleware('auth');
 Route::get('/ticket/{ticket}', 'TicketController@show')->name('tickets.show');
+Route::get('/ticket/close/{ticket}', 'TicketController@closeTicket')->name('tickets.close')->middleware('auth');
+Route::get('/ticket/assign/{user}/{ticket}', 'TicketController@assignUser')->name('tickets.assign')->middleware('auth');
+
+/**
+ * |---------------------------------------
+ * | Ticket Body
+ * |---------------------------------------
+ * |
+ * |
+ */
+Route::post('/ticketbodies', 'TicketBodyController@store')->name('ticket.body')->middleware('auth');
 
 
 /**

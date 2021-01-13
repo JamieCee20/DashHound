@@ -49,7 +49,6 @@
                 selector: 'textarea#discussionBody',
                 width: "100%",
                 menubar: 'file edit view format',
-                plugins: 'casechange linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker image',
                 toolbar: 'undo redo | bold | align | image | casechange checklist pageembed table media tinymcespellchecker',
                 toolbar_mode: 'floating',
                 tinycomments_mode: 'embedded',

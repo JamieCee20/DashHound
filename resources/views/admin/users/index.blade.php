@@ -347,7 +347,7 @@
                                     <div class="col-md-8">
                                         <ul class="list-group list-group-flush text-center">
                                             @foreach ($pinned as $pin)
-                                                <li class="list-group-item forum-list">
+                                                <li class="list-group-item list-group-item-info forum-list my-2">
                                                     <a href="/forums/{{$pin->slug}}">{{$pin->title}}</a>
                                                 </li>
                                             @endforeach

@@ -110,5 +110,8 @@ section .content a[data-scroll="in"] {
     transition-delay: 2s;
     opacity: 1;
 }
+.contact-color a{
+    color:#B6B8D6;
+}
 
 

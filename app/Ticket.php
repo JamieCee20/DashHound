@@ -12,14 +12,14 @@ class Ticket extends Model
         return "ticket_id";
     }
 
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'ticket_id', 'ticket_category', 'ticket_status'];
 
     // A Ticket can only belong to ONE user
     public function user() {
         return $this->belongsTo('App\User');
     }
 
-    public function asignee() {
+    public function assignee() {
         return $this->belongsTo('App\User', 'manager_id');
     }
 
@@ -31,5 +31,9 @@ class Ticket extends Model
     // A ticket can only have ONE status
     public function status() {
         return $this->belongsTo('App\TicketStatus', 'ticket_status');
+    }
+
+    public function ticketBodies() {
+        return $this->hasMany('App\TicketBody');
     }
 }
