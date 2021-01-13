@@ -16,9 +16,6 @@
                     <a href="#pinned-management" class="nav-link" role="tab" data-toggle="tab">Pinned Discussions</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#ticket-management" class="nav-link" role="tab" data-toggle="tab">Support Tickets</a>
-                </li>
-                <li class="nav-item">
                     <a href="/admin/users" class="nav-link">Reset Search</a>
                 </li>
             </ul>
@@ -350,7 +347,7 @@
                                     <div class="col-md-8">
                                         <ul class="list-group list-group-flush text-center">
                                             @foreach ($pinned as $pin)
-                                                <li class="list-group-item forum-list">
+                                                <li class="list-group-item list-group-item-info forum-list my-2">
                                                     <a href="/forums/{{$pin->slug}}">{{$pin->title}}</a>
                                                 </li>
                                             @endforeach

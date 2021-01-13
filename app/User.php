@@ -120,4 +120,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function officialPublisher($user) {
         return '/storage/images/verified.png';
     }
+
+    // A user can have MANY tickets
+    public function tickets() {
+        return $this->hasMany('App\Ticket');
+    }
+
+    public function ticketBodies() {
+        return $this->hasMany('App\TicketBody');
+    }
+
 }

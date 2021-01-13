@@ -52798,7 +52798,8 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   data: {
     toggle: false,
-    seen: false
+    seen: false,
+    information: true
   }
 });
 

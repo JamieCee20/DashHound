@@ -42,9 +42,17 @@
         <nav class="navbar navbar-expand-md" id="header-nav" style="background-color:#B6B8D6;color: white;">
             <div class="container">
                 <div class="navContent">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                       DashHound
-                    </a>
+                    @if (Auth::user())
+                        <a class="navbar-brand" href="{{ url('/home') }}">
+                            <img class="border rounded-circle" src="/storage/images/dashhound.png" alt="Logo" height="10%" width="10%">
+                            DashHound
+                        </a>
+                    @else
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <img class="border rounded-circle" src="/storage/images/dashhound.png" alt="Logo" height="10%" width="10%">
+                            DashHound
+                        </a>
+                    @endif
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <i class="fas fa-bars"></i>
@@ -76,17 +84,17 @@
 
                                 <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                     <a href="/profile/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
-                                    <a href="/p/create" class="dropdown-item">Create Post</a>
-                                    @can('post-verified-create')
-                                        <a href="/v/create" class="dropdown-item">Create Verified Post</a>
-                                    @endcan
-                                    @can('manage-users')
-                                        <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
-                                    @endcan
                                     <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
-                                        <hr style="background-color: white;">
+                                    <hr style="background-color: white;">
+                                    @can('manage-users')
+                                    <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
+                                    <a href="{{ route('tickets.index')}}" class="dropdown-item">Support Tickets</a>
+                                    <hr style="background-color: white;">
+                                    @endcan
+
                                     <a href="{{ route('post.index') }}" class="dropdown-item">Community Posts</a>
                                     <a href="{{ route('vpost.index') }}" class="dropdown-item">Official Content</a>
+                                    <a href="{{ route('forum.index') }}" class="dropdown-item">Forums</a>
                                         <hr style="background-color: white;">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

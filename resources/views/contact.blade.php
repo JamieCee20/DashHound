@@ -41,17 +41,11 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right bg-dark contact-color" aria-labelledby="navbarDropdown">
                                 <a href="/profile/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
-                                <a href="/p/create" class="dropdown-item">Create Post</a>
-                                @can('post-verified-create')
-                                <a href="/v/create" class="dropdown-item">Create Verified Post</a>
-                                @endcan
                                 @can('manage-users')
-                                    <a href="{{ route('admin.users.index')}}" class="dropdown-item">User Management</a>
+                                    <a href="{{ route('admin.users.index')}}" class="dropdown-item">Admin Dashboard</a>
                                 @endcan
-                                <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
-                                <hr style="background-color: white;">
                                 <a href="{{ route('post.index') }}" class="dropdown-item">Community Posts</a>
                                 <a href="{{ route('vpost.index') }}" class="dropdown-item">Official Content</a>
                                 <hr style="background-color: white;">
@@ -76,7 +70,7 @@
             <h2>Do you have a concern?</h2><br><br>
             <h3>What to do if you have any concerns when browsing DashHound</h3>
             <p>If you have any concerns you may use the built in ticket system to raise a query. Make sure to include a title, a short description detailing your concern and any evidence if you are able to provide any.</p>
-            <a href="#" disabled>Create a ticket</a>
+            <a href="{{ route('tickets.index') }}" disabled>Create a ticket</a>
         </div>
     </section>
     <section>
@@ -115,7 +109,7 @@
                 # Leaking of personal data of any kind<br>
                 # No Spamming i.e. advertising or referral links to other services<br>
                 # No Discussions of software piracy, hacking or illegal material<br><br>
-                If you see a post or comment that goes against these terms then please report it using the report icon and provide a reason and/or evidence as to why this post breaks our rules and a member of the staff team will respond to your query and deal with the content reported as soon as possible.
+                If you see a post or comment that goes against these terms then please report it by creating a <a href="{{ route('tickets.index') }}">ticket</a> and provide a reason and/or evidence as to why this post breaks our rules and a member of the staff team will respond to your query and deal with the content reported as soon as possible.
             </p>
         </div>
     </section>

@@ -53,5 +53,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define( 'official-publisher', function($user) {
             return $user->hasRole('verified');
         });
+
+        Gate::define('manage-tickets', function($user) {
+            return $user->hasAnyRoles(['owner', 'administrator', 'moderator']);
+        });
     }
 }

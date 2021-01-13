@@ -8,6 +8,11 @@
         @endif
     </div>
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-outline-light float-right" href="{{ route('vpost.create') }}">Create Post</a>
+            </div>
+        </div>
         @foreach($vposts as $vpost)
             <div class="row my-3  p-2" id="postBox">
                 <div class="col-6">
