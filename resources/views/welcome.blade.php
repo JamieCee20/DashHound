@@ -26,7 +26,7 @@
                         <div class="brand header-brand">
                             <h1 class="m-0">
                                 <a href="#">
-                                    <img class="header-logo-image" src="storage/images/logo.svg" alt="Logo">
+                                    <img class="header-logo-image" src="storage/images/dashhound.png" alt="Logo" height="25px" width="25px">
                                 </a>
                             </h1>
                         </div>
