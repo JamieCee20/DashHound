@@ -60,6 +60,7 @@ class TicketController extends Controller
         $data = $request->validate([
             'title' => 'required|max:255|string',
             'body' => 'required|string',
+            'image' => 'image',
             'category' => 'required',
         ]);
 
@@ -84,25 +85,25 @@ class TicketController extends Controller
 
                 $ticketBody = Ticket::where('ticket_id', $ticketId)->first();
 
-                if($request->file('file')) {
-                    $file = $request->file('file');
+                if($request->file('image')) {
+                    $file = $request->file('image');
                     $string = Str::random(25);
                     $name = $string.'.'.$file->getClientOriginalExtension();
             
                     $dest = public_path('storage/ticketFile/');
                     $file->move($dest, $name);
                     $input = $request->all();
-                    $input['file'] = $name;
+                    $input['image'] = $name;
             
                     auth()->user()->ticketBodies()->create([
-                        'ticket_id' => $request->ticket_id,
+                        'ticket_id' => $ticketBody->id,
                         'user_id' => auth()->user()->id,
                         'body' => $data['body'],
                         'image' => $name
                     ]);
                 } else {
                     auth()->user()->ticketBodies()->create([
-                        'ticket_id' => $request->ticket_id,
+                        'ticket_id' => $ticketBody->id,
                         'user_id' => auth()->user()->id,
                         'body' => $data['body']
                     ]);

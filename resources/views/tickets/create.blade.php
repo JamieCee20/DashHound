@@ -29,6 +29,10 @@
                 {{ Form::textarea('body', '', ['class' => 'form-control', 'placeholder' => 'Type your query here...', 'id' => 'ticketBody'])}}
             </div>
             <div class="form-group row">
+                {{ Form::label('image', 'Attach Image')}}
+                {{ Form::file('image', ['class' => 'form-control-file'])}}
+            </div>
+            <div class="form-group row">
                 <span class="text-white">{{ Form::label('category', 'Select your issue')}}</span>
                 <span class="my-auto ml-2">{{ Form::select('category', $categories, ['class' => 'form-control'])}}</span>
             </div> 

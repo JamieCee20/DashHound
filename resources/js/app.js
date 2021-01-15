@@ -25,6 +25,7 @@ Vue.use(VueSimpleAlert);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('spoiler-content', require('./components/SpoilerComponent.vue').default);
+Vue.component('edit-reply', require('./components/TicketBodyComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,6 +39,7 @@ const app = new Vue({
         toggle: false,
         seen: false,
         information: true,
+        edit: false,
     }
 });
 

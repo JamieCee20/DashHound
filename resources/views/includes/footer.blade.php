@@ -5,7 +5,7 @@
                 <div class="col-3 px-5">
                     <div class="brand footer-brand mr-3">
                         <a href="{{ url('/') }}">
-                            <img class="header-logo-image" src="storage/images/dashhound.png" alt="Logo" height="25px" width="25px">
+                            <img class="header-logo-image" src="/storage/images/dashhound.png" alt="Logo" height="25px" width="25px">
                         </a>
                     </div>
                 </div>

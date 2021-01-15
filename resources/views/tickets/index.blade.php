@@ -30,17 +30,19 @@
                         </div>
                     @endif
                     @if (!request()->category)
-                        <div class="dropdown p-2">
-                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Filter
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                                @foreach($ticketStaff as $staff)
-                                    <a class="dropdown-item {{  setActiveCategory($staff->manager_id) }}" href="{{ route('tickets.index', ['staff' => $staff->manager_id]) }}">{{$staff->assignee->name}}</a>
-                                @endforeach    
-                                <a class="dropdown-item" href="{{ route('tickets.index') }}">All</a>
+                            <div class="dropdown p-2">
+                                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Filter
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                                    @foreach($ticketStaff as $staff)
+                                    @if ($staff->manager_id !== null)
+                                        <a class="dropdown-item {{  setActiveCategory($staff->manager_id) }}" href="{{ route('tickets.index', ['staff' => $staff->manager_id]) }}">{{$staff->assignee->name}}</a>
+                                    @endif
+                                    @endforeach    
+                                    <a class="dropdown-item" href="{{ route('tickets.index') }}">All</a>
+                                </div>
                             </div>
-                        </div>
                     @endif
                 </div>
             </div>
@@ -56,7 +58,7 @@
                                     <div class="col-lg-9">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <h4><strong>{{$ticket->title}}</strong></h4>
+                                                <h4><strong>{!! $ticket->title !!}</strong></h4>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -138,7 +140,7 @@
                                     <div class="col-lg-9">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <h4><strong>{{$ticket->title}}</strong></h4>
+                                                <h4><strong>{!! $ticket->title !!}</strong></h4>
                                             </div>
                                         </div>
                                         <div class="row">

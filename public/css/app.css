@@ -11079,6 +11079,7 @@ a.text-dark:focus {
 
 .ticket-body {
   background-color: #fff;
+  padding: 0 25%;
 }
 
 .slide-enter-active {
