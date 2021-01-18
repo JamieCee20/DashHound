@@ -119,6 +119,18 @@ Route::get('/profile/{user}', 'ProfilesController@index')->name('profiles.show')
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update')->middleware('auth');
 
+Route::post('/profile/privacy/{user}', function () {
+    if(request()->privateToggle == false) {
+        $value = 0;
+    } elseif (request()->privateToggle == true) {
+        $value = 1;
+    }
+    User::where('id', Auth::user()->id)->update(['privacy' => $value]); //update database with new amount
+    $result = User::where('id', Auth::user()->id)->first(); //save all amounts to $result
+    return $result; //return result so I can update the vue
+});
+
+
 /**
  * |---------------------------------------
  * | Administration Section

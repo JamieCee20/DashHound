@@ -38,13 +38,13 @@
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 border-left post-links">
                     @if($popular->spoilers == 1)
                             <h2 class="overflow-wrap" style="min-width:100%;letter-spacing:2px;"><a href="/p/{{ $popular->title }}">{{ $popular->title }}</a></h2>
-                            <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
+                            <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->username }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
                             <p class="text-center py-3 text-white" style="margin:auto;width:100%;">
                                 &diams; This post may contain <strong>Spoilers</strong> &diams;
                             </p>
                     @elseif($popular->spoilers == 0)
                             <h2 class="overflow-wrap" style="min-width:100%;letter-spacing:2px;"><a href="/p/{{ $popular->title }}">{{ $popular->title }}</a></h2>
-                            <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->name }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
+                            <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $popular->user->username }} &middot; {{ date('MdS, Y' ,strtotime($popular->created_at)) }}</p>
                     @endif
                     @if(strlen($popular->description) > 200)
                         <p class="text-white comment more">
@@ -83,7 +83,7 @@
                 @if($post->spoilers == 1)
                     <div class="col-8 col-sm-8 col-md-5 col-lg-5 col-xl-5">
                         <p class="ml-2 overflow-wrap" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->title }}">{{ $post->title }}</a></p>
-                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
+                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->username }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
                     </div>
                     <div class="col-2">
                         <p class="text-center py-3" style="margin:auto;width:100%;">
@@ -93,7 +93,7 @@
                 @elseif($post->spoilers == 0)
                     <div class="col-7">
                         <p class="ml-2 overflow-wrap" style="min-width:100%;letter-spacing:2px;font-size:18px;"><a href="/p/{{ $post->title }}">{{ $post->title }}</a></p>
-                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->name }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
+                        <p style="font-size:12px;" class="text-muted font-italic ml-2">{{ $post->user->username }} &middot; {{ date('MdS, Y' ,strtotime($post->created_at)) }}</p>
                     </div>
                 @endif
                 <div class="d-none d-sm-none d-md-block col-md-2 col-lg-2 col-xl-2">

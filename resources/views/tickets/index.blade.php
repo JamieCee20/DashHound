@@ -30,19 +30,20 @@
                         </div>
                     @endif
                     @if (!request()->category)
-                            <div class="dropdown p-2">
-                                <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Filter
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                                    @foreach($ticketStaff as $staff)
-                                    @if ($staff->manager_id !== null)
-                                        <a class="dropdown-item {{  setActiveCategory($staff->manager_id) }}" href="{{ route('tickets.index', ['staff' => $staff->manager_id]) }}">{{$staff->assignee->name}}</a>
+                        <div class="dropdown p-2">
+                            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                                @foreach($ticketStaff as $staff)
+                                    @if ($staff->hasAnyRoles(['owner', 'administrator', 'moderator']))
+                                        <a class="dropdown-item" href="{{ route('tickets.index', ['staff' => $staff->id]) }}">{{$staff->name}}</a>
                                     @endif
-                                    @endforeach    
-                                    <a class="dropdown-item" href="{{ route('tickets.index') }}">All</a>
-                                </div>
+                                @endforeach    
+                                <a class="dropdown-item" href="{{ route('tickets.index', ['staff' => 'empty']) }}">Not Assigned</a>
+                                <a class="dropdown-item" href="{{ route('tickets.index') }}">All</a>
                             </div>
+                        </div>  
                     @endif
                 </div>
             </div>

@@ -123,7 +123,7 @@
     <div class="mt-5">
         <div class="container">
             <div class="fixed-bottom">
-                <footer class="py-2 bg-secondary">
+                <footer class="py-2 bg-light">
                         @include('includes.footer')
                 </footer>
             </div>

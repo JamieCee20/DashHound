@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Reply;
 use App\Discussion;
 use Illuminate\Http\Request;
-use Stevebauman\Purify\Facades\Purify;
 use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
@@ -35,7 +34,7 @@ class ReplyController extends Controller
         ));
 
         $input = $request->body;
-        $cleaned = Purify::clean($input);
+        $cleaned = clean($input);
         
         $reply = new Reply();
 

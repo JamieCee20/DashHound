@@ -109,4 +109,19 @@ class ProfilesController extends Controller
             return redirect("/profile/{$user->id}")->with('success', 'Profile successfully updated');
         }
     }
+
+    public function private(Request $request) {
+
+        if(request()->privateToggle == true) {
+            $record = Auth::user()->update([
+                'privacy' => 1,
+            ]);
+        } else {
+            $record = Auth::user()->update([
+                'privacy' => 0,
+            ]);
+        }
+
+        return redirect()->route('profiles.show', Auth::user()->id)->with('success', 'Privacy Mode Changed!');
+    }
 }

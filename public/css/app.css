@@ -11104,3 +11104,12 @@ a.text-dark:focus {
   max-height: 0;
 }
 
+.admin-label {
+  border-radius: 8px 4px 8px 4px;
+  background-color: red;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+}
+

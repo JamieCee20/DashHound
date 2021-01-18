@@ -5,20 +5,20 @@
                 <div class="col-3 px-5">
                     <div class="brand footer-brand mr-3">
                         <a href="{{ url('/') }}">
-                            <img class="header-logo-image" src="/storage/images/dashhound.png" alt="Logo" height="25px" width="25px">
+                            <img class="header-logo-image" src="/storage/images/dashhound.png" alt="Logo" height="50px" width="75px">
                         </a>
                     </div>
                 </div>
                 <div class="col-6">
                     <ul class="d-flex" style="list-style-type: none;">
                         <li class="mx-3">
-                            <a href="/contact" style="color:#B6B8D6">Contact</a>
+                            <a href="/contact" style="color:black">Contact</a>
                         </li>
                         <li class="mx-3">
-                            <a href="/posts" style="color:#B6B8D6">Posts</a>
+                            <a href="/posts" style="color:black">Posts</a>
                         </li>
                         <li class="mx-3">
-                            <a href="/v/posts" style="color:#B6B8D6">Published Posts</a>
+                            <a href="/v/posts" style="color:black">Published Posts</a>
                         </li>
                     </ul>
                 </div>

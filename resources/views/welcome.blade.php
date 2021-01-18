@@ -13,6 +13,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/hover-effect.css">
 
         <!-- Scripts -->
         <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
@@ -68,50 +69,58 @@
                             <div class="features-wrap">
                                 <div class="feature text-center is-revealing">
                                     <div class="feature-inner">
-                                        <div class="feature-icon">
-                                            <img src="storage/images/feature-icon-01.svg" alt="Feature 01">
+                                        <div class="feature-icon hover-effect">
+                                            <a href="{{route('post.index')}}"><img src="storage/images/feature-icon-01.svg" alt="Feature 01"></a>
                                         </div>
-                                        <h4 class="feature-title mt-24">Posts</h4>
-                                        <p class="text-sm mb-0">With Thousans of daily users, our post section is filled with a wide range of screenshots and images of fellow users experiences.</p>
+                                        <h4 class="feature-title mt-24"><a href="{{ route('post.index') }}" style="color: white; text-decoration: none;">Posts</a></h4>
+                                        <p class="text-sm mb-0">With Thousans of daily users, our post section is filled with a wide range of screenshots and images of fellow users' experiences.</p>
                                     </div>
                                 </div>
                                 <div class="feature text-center is-revealing">
                                     <div class="feature-inner">
-                                        <div class="feature-icon">
-                                            <img src="storage/images/feature-icon-02.svg" alt="Feature 02">
+                                        <div class="feature-icon hover-effect">
+                                            <a href="{{route('vpost.index')}}"><img src="storage/images/feature-icon-02.svg" alt="Feature 02"></a>
                                         </div>
-                                        <h4 class="feature-title mt-24">Published Posts</h4>
+                                        <h4 class="feature-title mt-24"><a href="{{route('vpost.index')}}" style="color: white; text-decoration: none;">Published Posts</a></h4>
                                         <p class="text-sm mb-0">In a modern day for gaming. Our published section shows content coming directly from official companies themselves, allowing you to browse images from up and coming games.</p>
                                     </div>
                                 </div>
                                 <div class="feature text-center is-revealing">
                                     <div class="feature-inner">
-                                        <div class="feature-icon">
-                                            <img src="storage/images/feature-icon-03.svg" alt="Feature 03">
+                                        <div class="feature-icon hover-effect">
+                                            <a href="{{route('forum.index')}}"><img src="storage/images/feature-icon-03.svg" alt="Feature 03"></a>
                                         </div>
-                                        <h4 class="feature-title mt-24">Forums</h4>
-                                        <p class="text-sm mb-0">Coming soon to DashHound is our forums. The forum section allows users to collaborate with each other and have discussions about any topics that they feel are relavent to themselves.</p>
+                                        <h4 class="feature-title mt-24"><a href="{{ route('forum.index') }}" style="color: white; text-decoration: none;">Forums</a></h4>
+                                        <p class="text-sm mb-0">The pride of DashHound is our community forums. Join fellow members to engage is discussion about your favourite games and make some new friends along the way.</p>
                                     </div>
                                 </div>
                                 <div class="feature text-center is-revealing">
                                     <div class="feature-inner">
-                                        <div class="feature-icon">
-                                            <img src="storage/images/feature-icon-04.svg" alt="Feature 04">
+                                        <div class="feature-icon hover-effect">
+                                            <a href="{{ route('tickets.index') }}"><img src="storage/images/feature-icon-04.svg" alt="Feature 04"></a>
                                         </div>
-                                        <h4 class="feature-title mt-24">Coming Soon</h4>
-                                        <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
+                                        <h4 class="feature-title mt-24"><a href="{{ route('tickets.index') }}" style="color: white; text-decoration: none;">Support Tickets</a></h4>
+                                        <p class="text-sm mb-0">Browsing a system such as DashHound can provide challenging from time to time. The appearing bugs, unexpected and unkind guests, it all needs a system to manage. That's why we have a support ticketing system where you can raise your concerns.</p>
                                     </div>
                                 </div>
                                 <div class="feature text-center is-revealing">
                                     <div class="feature-inner">
-                                        <div class="feature-icon">
-                                            <img src="storage/images/feature-icon-05.svg" alt="Feature 05">
+                                        <div class="feature-icon hover-effect">
+                                            @if (Auth::user())
+                                                <a href="{{ route('profiles.show', Auth::user()->id )}}"><img src="storage/images/feature-icon-05.svg" alt="Feature 05"></a>
+                                            @else 
+                                                <a href="#"><img src="storage/images/feature-icon-05.svg" alt="Feature 05"></a>    
+                                            @endif
                                         </div>
-                                        <h4 class="feature-title mt-24">Coming Soon</h4>
-                                        <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
+                                        @if (Auth::user())
+                                            <h4 class="feature-title mt-24"><a href="{{ route('profiles.show', Auth::user()->id )}}" style="color: white; text-decoration: none;">Personal Profiles</a></h4>
+                                        @else
+                                            <h4 class="feature-title mt-24">Personal Profiles</h4>
+                                        @endif
+                                        <p class="text-sm mb-0">Natural to a forum is the ability to have your own profile. DashHound allows you to create a profile to the way you like it, customising your profile picture, a bio/description about yourself and also the ability to privatise your profile from other users.</p>
                                     </div>
                                 </div>
-                                <div class="feature text-center is-revealing">
+                                {{-- <div class="feature text-center is-revealing">
                                     <div class="feature-inner">
                                         <div class="feature-icon">
                                             <img src="storage/images/feature-icon-06.svg" alt="Feature 06">
@@ -119,7 +128,7 @@
                                         <h4 class="feature-title mt-24">Coming Soon</h4>
                                         <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

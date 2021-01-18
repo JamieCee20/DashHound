@@ -24,26 +24,25 @@ class TicketController extends Controller
 
 
     public function index() {
-        // $tickets = Ticket::orderBy('created_at', 'DESC')->paginate(20);
         $issueTypes = TicketCategory::all();
         $usertickets = Ticket::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
-        // $moderatortickets = Ticket::where('manager_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
 
         $categories = TicketCategory::all();
-        // dd($tickets);
-        $ticketStaff = Ticket::all();
+        $ticketStaff = User::all();
 
 
         if(request()->category) {
-            $tickets = Ticket::where('ticket_category', request()->category)->get();
-            $moderatortickets = Ticket::where('manager_id', Auth::user()->id)->where('ticket_category', request()->category)->orderBy('created_at', 'DESC')->get();
+            $tickets = Ticket::where('ticket_category', request()->category)->paginate(20);
+            $moderatortickets = Ticket::where('manager_id', Auth::user()->id)->where('ticket_category', request()->category)->orderBy('created_at', 'DESC')->paginate(20);
         } else {
             $tickets = Ticket::orderBy('created_at', 'DESC')->paginate(20);
-            $moderatortickets = Ticket::where('manager_id', Auth::user()->id)->orderBy('created_at', 'DESC')->get();
+            $moderatortickets = Ticket::where('manager_id', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate(20);
         }
 
-        if(request()->staff) {
-            $tickets = Ticket::where('manager_id', request()->staff)->get();
+        if(request()->staff && request()->staff !== "empty") {
+            $tickets = Ticket::where('manager_id', request()->staff)->paginate(20);
+        } elseif(request()->staff && request()->staff == "empty") {
+            $tickets = Ticket::where(['manager_id' => null])->paginate(20);
         }
 
 
@@ -147,6 +146,7 @@ class TicketController extends Controller
         $specificTicket = Ticket::where('ticket_id', $ticket->ticket_id)->first();
         if($specificTicket->manager_id !== $user->id) {
             $specificTicket->manager_id = $user->id;
+            $specificTicket->ticket_status = 1;
             $specificTicket->save();
             return redirect()->route('tickets.show', compact('ticket'))->with('success', 'Staff Member Changed!');
         } else {
