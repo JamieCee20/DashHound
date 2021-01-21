@@ -79,7 +79,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
@@ -121,11 +121,15 @@
         </main>
     </div>
     <div class="mt-5">
-        <div class="container">
-            <div class="fixed-bottom">
-                <footer class="py-2 bg-light">
-                        @include('includes.footer')
-                </footer>
+        <div class="row">
+            <div class="d-none d-sm-none d-md-none d-lg-block col-lg-12">
+                <div class="container">
+                    <div class="fixed-bottom">
+                        <footer class="py-2 bg-light">
+                                @include('includes.footer')
+                        </footer>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

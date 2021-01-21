@@ -19,13 +19,22 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12">
+            <ul class="list-group list-group-horizontal my-2 justify-content-center">
+                <li class="list-group-item home-hover"><a href="{{ route('post.index') }}">Posts</a></li>
+                <li class="list-group-item home-hover"><a href="{{ route('vpost.index') }}">Official Content</a></li>
+                <li class="list-group-item home-hover"><a href="{{ route('forum.index') }}">Forums</a></li>
+                <li class="list-group-item home-hover"><a href="{{ route('profiles.show', Auth::user()->id) }}">Profile</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-secondary">Welcome, {{Auth::user()->name}}</div>
-
                 <div class="card-body">
-                    <p class="text-dark">Welcome to DashHound, the home of game sharing experiences!</p>
+                    <h3 class="text-dark text-center mt-2">Welcome to DashHound, the home of game sharing experiences!</h3>
                     <img src="http://www.jlcwd.me/img/dashhound.jpg" width="100%" alt="DashHound Logo">
                 </div>
             </div>

@@ -11113,3 +11113,22 @@ a.text-dark:focus {
   font-style: italic;
 }
 
+.mod-label {
+  border-radius: 8px 4px 8px 4px;
+  background-color: #5658DC;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.home-hover a:hover {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-hover a {
+  color: #222;
+}
+

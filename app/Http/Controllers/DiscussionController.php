@@ -80,25 +80,52 @@ class DiscussionController extends Controller
             $pinned = '0';
         }
 
-        $slug = Str::slug($request->title, '-');
+        if($request->category == 2) {
+            if(Auth::user()->hasAnyRoles(['owner', 'administrator', 'moderator'])) {
+                $slug = Str::slug($request->title, '-');
 
-        $input = $request->body;
-        $cleaned = Purify::clean($input);
-
-        $current = Discussion::where('title', $request->title)->first();
-
-        if($current) {
-            return redirect('/forums')->with('error', 'Discussion Title already exists');
+                $input = $request->body;
+                $cleaned = Purify::clean($input);
+        
+                $current = Discussion::where('title', $request->title)->first();
+        
+                if($current) {
+                    return redirect('/forums')->with('error', 'Discussion Title already exists');
+                } else {
+                    $discussion = auth()->user()->discussions()->make([
+                        'title' => $data['title'],
+                        'slug' => $slug,
+                        'pinned' => $pinned,
+                        'body' => $cleaned,
+                        'image' => null,
+                    ]);
+                    $discussion->category()->associate($request->category)->save();
+                    return redirect('/forums')->with('success', 'Discussion successfully created!');
+                }
+            } else {
+                return redirect('/forums')->with('error', 'You do not have permission to post in this category!');
+            }
         } else {
-            $discussion = auth()->user()->discussions()->make([
-                'title' => $data['title'],
-                'slug' => $slug,
-                'pinned' => $pinned,
-                'body' => $cleaned,
-                'image' => null,
-            ]);
-            $discussion->category()->associate($request->category)->save();
-            return redirect('/forums')->with('success', 'Discussion successfully created!');
+            $slug = Str::slug($request->title, '-');
+
+            $input = $request->body;
+            $cleaned = Purify::clean($input);
+    
+            $current = Discussion::where('title', $request->title)->first();
+    
+            if($current) {
+                return redirect('/forums')->with('error', 'Discussion Title already exists');
+            } else {
+                $discussion = auth()->user()->discussions()->make([
+                    'title' => $data['title'],
+                    'slug' => $slug,
+                    'pinned' => $pinned,
+                    'body' => $cleaned,
+                    'image' => null,
+                ]);
+                $discussion->category()->associate($request->category)->save();
+                return redirect('/forums')->with('success', 'Discussion successfully created!');
+            }
         }
     }
 

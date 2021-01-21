@@ -113,6 +113,11 @@
                     </div>
                 </div>
             @endforelse
+            <div class="row my-5">
+                <div class="col-12 d-flex justify-content-center">
+                    {{ $tickets->links('vendor.pagination.simple-default') }}
+                </div>
+            </div>
         @elseif(Auth::user()->hasAnyRoles(['moderator']))
             <div class="row mx-2 my-2">
                 <div class="col-12">

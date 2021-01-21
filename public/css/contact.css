@@ -11,6 +11,12 @@ body {
 .navbar-brand:hover {
     color: black;
 }
+.dropdown-item:hover {
+    color: black;
+}
+.dropdown-item {
+    color: white;
+}
 section {
     position: relative;
     width: 100%;

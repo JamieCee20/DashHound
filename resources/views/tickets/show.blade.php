@@ -155,6 +155,11 @@
                                                 </div>
                                             @endif
                                         @endforeach
+                                        <div class="row my-5">
+                                            <div class="col-12 d-flex justify-content-center">
+                                                {{ $ticketbodies->links('vendor.pagination.simple-default') }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -332,6 +337,11 @@
                                                     </div>
                                                 @endif
                                             @endforeach
+                                            <div class="row my-5">
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    {{ $ticketbodies->links('vendor.pagination.simple-default') }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

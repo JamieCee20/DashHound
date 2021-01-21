@@ -35,8 +35,9 @@ class ProfilesController extends Controller
     public function index(User $user)
     {
         //
-        $posts = Post::where('user_id', $user->id)->latest()->paginate(6);
-        $vposts = Verified::where('user_id', $user->id)->latest()->paginate(6);
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(10);
+        $vposts = Verified::where('user_id', $user->id)->latest()->paginate(10);
+
         return view('profiles.index', compact('user', 'posts', 'vposts'));
     }
 
