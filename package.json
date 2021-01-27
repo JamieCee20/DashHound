@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bootstrap-toggle": "^2.2.2",
+        "node-notifier": "^9.0.0",
         "vue-simple-alert": "^1.1.1"
     }
 }
