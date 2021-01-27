@@ -323,6 +323,11 @@
                                             @foreach ($forums as $discussion)
                                                 <li class="list-group-item forum-list">
                                                     <a href="/forums/{{$discussion->slug}}">{{$discussion->title}}</a>
+                                                    <span class="rounded m-1" style="background-color: {{ $discussion->category->color }};font-weight:bold;color:white;text-shadow:1px 1px 1px black;">
+                                                        <span class="p-2">
+                                                            {{$discussion->category->name}}
+                                                        </span>
+                                                    </span>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -349,6 +354,11 @@
                                             @foreach ($pinned as $pin)
                                                 <li class="list-group-item list-group-item-info forum-list my-2">
                                                     <a href="/forums/{{$pin->slug}}">{{$pin->title}}</a>
+                                                    <span class="rounded m-1" style="background-color: {{ $pin->category->color }};font-weight:bold;color:white;text-shadow:1px 1px 1px black;">
+                                                        <span class="p-2">
+                                                            {{$pin->category->name}}
+                                                        </span>
+                                                    </span>
                                                 </li>
                                             @endforeach
                                         </ul>

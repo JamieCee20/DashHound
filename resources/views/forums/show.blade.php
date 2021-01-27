@@ -10,6 +10,11 @@
         <div class="col-12 d-flex" style="color: white;">
             <p>
                 <i class="fas fa-user"></i> {{$discussion->user->name}} 	&middot; <i class="fas fa-clock"></i> {{ date('M dS, g:iA' ,strtotime($discussion->created_at)) }} 	&middot; <i class="fas fa-reply"></i> {{$replies->count()}}
+                @if ($discussion->pinned == 1)
+                    <span class="mx-2">
+                        <i class="fas fa-thumbtack" style="color: red;"></i>
+                    </span>
+                @endif
             </p>
         </div>
         <div class="col-12">
@@ -68,6 +73,9 @@
                 <div class="col-12">
                     <p>{!! $discussion->body !!}</p>
                 </div>
+                <div class="col-12 float-right text-right">
+                    <p class="text-muted font-italic text-right">Last Updated - {{ date('M dS, g:iA' ,strtotime($discussion->updated_at)) }}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -118,7 +126,7 @@
                 <div class="col-3 col-md-3 col-lg-3 col-xl-3 d-flex">
                     @can('update', $reply)
                         <div class="mx-1">
-                            <a href="/forums/reply_id/edit" role="button" class="btn btn-secondary m-2"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="/reply/{{$reply->id}}/edit" role="button" class="btn btn-secondary m-2"><i class="fas fa-edit"></i> Edit</a>
                         </div>
                     @endcan
                     @can('delete', $reply)

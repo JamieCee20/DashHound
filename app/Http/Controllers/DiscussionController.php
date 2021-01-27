@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Reply;
 use App\Category;
 use App\Discussion;
-use App\Reply;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Stevebauman\Purify\Facades\Purify;
-use Illuminate\Support\Str;
 
 class DiscussionController extends Controller
 {
@@ -137,7 +138,7 @@ class DiscussionController extends Controller
      */
     public function show(Discussion $discussion)
     {
-        $replies = $discussion->replies()->where('reply_owner_name', null)->orderBy('created_at', 'ASC')->paginate(30);
+        $replies = $discussion->replies()->orderBy('created_at', 'ASC')->paginate(30);
 
         return view('forums.show', compact('discussion', 'replies'));
     }
@@ -173,7 +174,11 @@ class DiscussionController extends Controller
             'body' => 'required',
         ]);
 
-        $discussion->update($data);
+        $discussion->update([
+            'title' => $data['title'],
+            'body' => $data['body'],
+            'updated_at' => Carbon::now()
+        ]);
 
         return redirect('/forums')->with('success', 'Discussion Successfully Updated!');
     }

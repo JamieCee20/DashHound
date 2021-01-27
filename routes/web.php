@@ -63,6 +63,22 @@ Route::any('/usersearch',function(Request $request){
         return redirect()->route('admin.users.index')->with('error', 'No value entered');
     }     
 });
+Route::any('/discussionsearch',function(Request $request){
+    $q = $request->get( 'qDiscussion' );
+    if(isset($q)) {
+        $forum = Discussion::where('title','LIKE','%'.$q.'%')->get();
+        if(count($forum) > 0) {
+            $discussions = Discussion::where('id', '>', 0)->paginate(20, ['*'], 'discussions');
+            $categories = Category::all();
+            $categoryName = 'All Discussions';
+            return view('forums.index', compact('discussions', 'categories', 'categoryName'))->withDetails($forum)->withQuery($q);
+        } else {
+            return redirect()->route('forum.index')->with('error', 'No Details found. Try to search again !');
+        }
+    } else {
+        return redirect()->route('forum.index')->with('error', 'No value entered');
+    }     
+});
 
 /**
  * |--------------------------------------------------------------------------
@@ -191,8 +207,8 @@ Route::delete('/forums/{discussion}', 'DiscussionController@destroy')->name('for
  * | 
  * | 
  */
-Route::post('/reply/{reply}', 'ReplyController@store')->name('reply.store')->middleware('auth');
-Route::get('/reply/{reply}/edit', 'ReplyController@edit')->middleware('auth');
+Route::post('/reply', 'ReplyController@store')->name('reply.store')->middleware('auth');
+Route::get('/reply/{reply}/edit', 'ReplyController@edit')->name('reply.edit')->middleware('auth');
 Route::patch('/reply/{reply}', 'ReplyController@update')->name('reply.update')->middleware('auth');
 Route::delete('/reply/{reply}', 'ReplyController@destroy')->name('reply.delete')->middleware('auth');
 

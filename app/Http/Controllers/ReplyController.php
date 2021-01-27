@@ -17,7 +17,6 @@ class ReplyController extends Controller
      */
     public function store(Request $request, $id)
     {
-        //
         $postId = Discussion::find($id);
         $userId = Auth::user()->id;
 
@@ -71,9 +70,12 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Reply $reply)
     {
         //
+        $this->authorize('update', $reply);
+
+        return view('replies.edit', compact('reply'));
     }
 
     /**
@@ -83,9 +85,24 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reply $reply)
     {
-        //
+        $postId = $reply->discussion->slug;
+
+        $data = request()->validate([
+            'body' => 'required|min:5',
+        ]);
+
+        if($reply->user_id == Auth::user()->id) {
+            $cleaned = clean($data);
+    
+            $reply->update($cleaned);
+    
+            $request->session()->flash('success', 'Reply updated!');
+    
+            return redirect()->route('forum.show', [$postId]);
+        }
+
     }
 
     /**
