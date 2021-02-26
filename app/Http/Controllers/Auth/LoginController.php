@@ -39,13 +39,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm() {
+        session()->put('previousUrl', url()->previous());
+        return view('auth.login');
+    }
+
+    
     public function redirectTo() {
         if(Auth::user()->hasRole('owner')) {
             $this->redirectTo = route('admin.users.index');
             return $this->redirectTo;
         }
 
-        $this->redirectTo = route('landing');
-        return $this->redirectTo;
+        return str_replace(url('/'), '', session()->get('previousUrl', '/'));
     }
 }

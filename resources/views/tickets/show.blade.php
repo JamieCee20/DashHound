@@ -198,14 +198,7 @@
             </div>
         </div>
     @elseif(Auth::user()->hasAnyRoles(['moderator']))
-        @if (Auth::user()->id !== $ticket->manager_id)
-            <div class="row">
-                <a class="px-3" href="{{route('tickets.index')}}"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
-                <div class="col-12">
-                    <p class="alert-danger text-center rounded" style="padding: 20px 0;">You are not authorized to view this ticket.</p>
-                </div>
-            </div>
-        @else
+        @if ((Auth::user()->id == $ticket->manager_id) || (Auth::user()->id == $ticket->user_id))
             <div class="row">
                 <a class="px-3" href="{{route('tickets.index')}}"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
                 <div class="col-12">
@@ -377,6 +370,13 @@
                         </div>    
                         {{ Form::submit('Submit', ['class' => 'btn btn-outline-secondary']) }}
                     {!!Form::close() !!}
+                </div>
+            </div>
+        @else
+            <div class="row">
+                <a class="px-3" href="{{route('tickets.index')}}"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+                <div class="col-12">
+                    <p class="alert-danger text-center rounded" style="padding: 20px 0;">You are not authorized to view this ticket.</p>
                 </div>
             </div>
         @endif
