@@ -62,14 +62,10 @@ class TicketController extends Controller
             'image' => 'image',
             'category' => 'required',
         ]);
-
         clean($data);
 
         $ticketId = Str::random(15);
-
-
         $current = Ticket::where('ticket_id', $ticketId)->first();
-
         if($current) {
             $ticketId = Str::random(15);
         } else {
