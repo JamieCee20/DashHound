@@ -207,7 +207,7 @@ Route::delete('/forums/{discussion}', 'DiscussionController@destroy')->name('for
  * | 
  * | 
  */
-Route::post('/reply', 'ReplyController@store')->name('reply.store')->middleware('auth');
+Route::post('/reply/{reply}', 'ReplyController@store')->name('reply.store')->middleware('auth');
 Route::get('/reply/{reply}/edit', 'ReplyController@edit')->name('reply.edit')->middleware('auth');
 Route::patch('/reply/{reply}', 'ReplyController@update')->name('reply.update')->middleware('auth');
 Route::delete('/reply/{reply}', 'ReplyController@destroy')->name('reply.delete')->middleware('auth');

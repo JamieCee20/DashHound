@@ -29,17 +29,19 @@
             </ul>
         </div>
     </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header text-secondary">Welcome, {{Auth::user()->name}}</div>
-                <div class="card-body">
-                    <h3 class="text-dark text-center mt-2">Welcome to DashHound, the home of game sharing experiences!</h3>
-                    <img src="http://www.jlcwd.me/img/dashhound.jpg" width="100%" alt="DashHound Logo">
+    @if (!(isset($details)))
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-secondary">Welcome, {{Auth::user()->name}}</div>
+                    <div class="card-body">
+                        <h3 class="text-dark text-center mt-2">Welcome to DashHound, the home of game sharing experiences!</h3>
+                        <img src="http://www.jlcwd.me/img/dashhound.jpg" width="100%" alt="DashHound Logo">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="container mt-5 text-white">
         @if(isset($details))

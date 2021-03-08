@@ -87,7 +87,7 @@ class CommentsController extends Controller
 
         $comment->update($data);
         
-        return redirect('/p/'.$comment->user->post->id)->with('success', 'Comment Edited');
+        return redirect('/p/'.$comment->user->post->title)->with('success', 'Comment Edited');
 
     }
 

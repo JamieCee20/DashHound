@@ -158,20 +158,22 @@ class PostsController extends Controller
             'title' => 'required|max:255|',
             'description' => 'required',
             'image' => 'image|',
-            'spoilers' => 'required',
+            'spoilers' => '',
         ]);
+
+        $current = Post::where('id', $post->id)->first();
 
         if($request->spoilers == "true") {
             $data['spoilers'] = '1';
         } elseif ($request->spoilers == "false") {
             $data['spoilers'] = '0';
-        } else {
-            return view('posts.create')->with('error', 'Invalid spoiler option');
+        } elseif ($request->spoilers == null) {
+            $data['spoilers'] = $current->spoilers;
         }
 
         $post->update($data);
-
-        return redirect('/posts')->with('success', 'Post successfully updated!');
+            
+        return redirect()->route('post.index')->with('success', 'Post successfully updated!');
     }
 
     /**

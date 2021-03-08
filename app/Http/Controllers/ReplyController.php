@@ -28,11 +28,11 @@ class ReplyController extends Controller
             $comment_id = $request->reply_id;
         }
 
-        $this->validate($request, array(
+        $data = $this->validate($request, array(
             'body' => 'required|min:5'
         ));
 
-        $input = $request->body;
+        $input = $data['body'];
         $cleaned = clean($input);
         
         $reply = new Reply();
