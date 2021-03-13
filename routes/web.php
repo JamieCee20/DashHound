@@ -134,6 +134,7 @@ Route::get('/v/toggleLike/{verified}', 'LikesController@toggleLike')->name('togg
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profiles.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit')->middleware('auth');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update')->middleware('auth');
+Route::delete('/profile/{user}', 'ProfilesController@destroy')->name('profile.delete')->middleware('auth');
 
 Route::post('/profile/privacy/{user}', function () {
     if(request()->privateToggle == false) {

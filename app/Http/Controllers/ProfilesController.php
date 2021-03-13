@@ -111,6 +111,17 @@ class ProfilesController extends Controller
         }
     }
 
+    public function destroy(Request $request, User $user) {
+        $toRemove = User::find($user->id);
+
+        if(Auth::user()->id == $toRemove->id) {
+            $toRemove->delete();
+            return redirect()->route('landing')->with('success', 'Account Removed');
+        } else {
+            return redirect()->route('profile.index', Auth::user()->id)->with('error', 'Cannot remove another user account');
+        }
+    }
+
     public function private(Request $request) {
 
         if(request()->privateToggle == true) {

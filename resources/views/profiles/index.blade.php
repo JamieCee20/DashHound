@@ -112,6 +112,20 @@
                                     </div>
                                 </div>
                             @endif
+                            @if (Auth::user()->id == $user->id)
+                                <div class="row d-flex bg-light mt-2">
+                                    <div class="col-6">
+                                        <h5 style="font-weight: bold;">Want to 
+                                            remove your account? </h5>
+                                    </div>
+                                    <div class="col-6">
+                                        {!!Form::open(['action' => ['ProfilesController@destroy', $user->id ], 'method' => 'POST'])!!}
+                                            {{Form::hidden('_method', 'DELETE')}}
+                                            {{Form::submit('Remove Account', ['class' => 'btn btn-danger', 'style' => 'color:white;text-decoration: none;'])}}
+                                        {!!Form::close()!!}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div role="tabpanel" class="tab-pane fade show active" id="posts">
                             @if(count($posts) > 0)
@@ -269,6 +283,20 @@
                                             </div>
                                             <div class="col-6">
                                                 <p>{{ $user->vposts()->count() }}</p>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if (Auth::user()->id == $user->id)
+                                        <div class="row d-flex bg-light mt-2">
+                                            <div class="col-6">
+                                                <h5 style="font-weight: bold;">Want to 
+                                                    remove your account? </h5>
+                                            </div>
+                                            <div class="col-6">
+                                                {!!Form::open(['action' => ['ProfilesController@destroy', $user->id ], 'method' => 'POST'])!!}
+                                                    {{Form::hidden('_method', 'DELETE')}}
+                                                    {{Form::submit('Remove Account', ['class' => 'btn btn-danger', 'style' => 'color:white;text-decoration: none;'])}}
+                                                {!!Form::close()!!}
                                             </div>
                                         </div>
                                     @endif
@@ -437,6 +465,20 @@
                                         </div>
                                     </div>
                                 @endif
+                                @if (Auth::user()->id == $user->id)
+                                <div class="row d-flex bg-light mt-2">
+                                    <div class="col-6">
+                                        <h5 style="font-weight: bold;">Want to 
+                                            remove your account? </h5>
+                                    </div>
+                                    <div class="col-6">
+                                        {!!Form::open(['action' => ['ProfilesController@destroy', $user->id ], 'method' => 'POST'])!!}
+                                            {{Form::hidden('_method', 'DELETE')}}
+                                            {{Form::submit('Remove Account', ['class' => 'btn btn-danger', 'style' => 'color:white;text-decoration: none;'])}}
+                                        {!!Form::close()!!}
+                                    </div>
+                                </div>
+                            @endif
                             </div>
                             <div role="tabpanel" class="tab-pane fade show active" id="posts">
                                 @if(count($posts) > 0)
