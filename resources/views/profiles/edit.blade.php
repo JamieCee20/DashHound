@@ -1,9 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Edit Profile')
-
-@section('content')
-<div class="container text-white">
-    {!! Form::open(['action' => ['ProfilesController@update', $user->id], 'files' => true, 'method' => 'POST']) !!}
+<div class="container">
+    {!! Form::open(['action' => ['ProfilesController@update', $user->username], 'files' => true, 'method' => 'POST']) !!}
         <div class="form-group row">
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -14,10 +10,6 @@
                     </ul>
                 </div>
             @endif
-        </div>
-        <div class="form-group row">
-            {{Form::label('name', 'Your Name')}}
-            {{Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Enter your name'])}}
         </div>
 
         <div class="form-group row">
@@ -37,10 +29,14 @@
 
         <div class="form-group row">
             {{Form::label('image', 'Profile Image', ['class' => 'mr-4'])}}
+            <img src="/storage/profile/{{$user->image}}" height="25%" width="25%" alt="Post Image">
+            <span>File Name: {{$user->image}}</span>
             {{Form::file('image', ['class' => 'form-control-file'])}}
         </div>
         {{Form::hidden('_method', 'PATCH')}}
-        {{Form::submit('Update Profile', ['class' => 'btn btn-primary', 'style' => 'margin-left: -15px'])}}
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
+        </div>
     {!! Form::close() !!}
 </div>
-@endsection

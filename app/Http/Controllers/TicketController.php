@@ -85,7 +85,7 @@ class TicketController extends Controller
                     $string = Str::random(25);
                     $name = $string.'.'.$file->getClientOriginalExtension();
             
-                    $dest = public_path('storage/ticketFile/');
+                    $dest = 'storage/ticketFile/';
                     $file->move($dest, $name);
                     $input = $request->all();
                     $input['image'] = $name;
@@ -93,14 +93,14 @@ class TicketController extends Controller
                     auth()->user()->ticketBodies()->create([
                         'ticket_id' => $ticketBody->id,
                         'user_id' => auth()->user()->id,
-                        'body' => $data['body'],
+                        'body' => clean($data['body']),
                         'image' => $name
                     ]);
                 } else {
                     auth()->user()->ticketBodies()->create([
                         'ticket_id' => $ticketBody->id,
                         'user_id' => auth()->user()->id,
-                        'body' => $data['body']
+                        'body' => clean($data['body'])
                     ]);
                 }
                 
@@ -110,8 +110,13 @@ class TicketController extends Controller
     }
 
     public function show(Ticket $ticket) {
-        $ticketbodies = TicketBody::where('ticket_id', $ticket->id)->orderBy('created_at', 'DESC')->paginate(8);
-        $staffUsers = User::all();
+        $ticketbodies = TicketBody::where('ticket_id', $ticket->id)->paginate(8);
+        $roles = ['owner', 'administrator', 'moderator'];
+        // Return all users with related roles to array above.
+        $staffUsers = User::whereHas('roles', static function($q) use ($roles) {
+            return $q->whereIn('name', $roles);
+        })->get();
+        // $staffUsers = $staffUsers->hasAnyRoles(['owner', 'administrator', 'moderator']);
         return view('tickets.show', compact('ticket', 'ticketbodies', 'staffUsers'));
     }
 
@@ -138,10 +143,15 @@ class TicketController extends Controller
         }
     }
 
-    public function assignUser(User $user, Ticket $ticket) {
+    public function assignUser(Request $request, Ticket $ticket) {
+        $request->validate([
+            'staff' => 'required'
+        ]);
+        $staffMember = User::where('id', $request->staff)->first();
+
         $specificTicket = Ticket::where('ticket_id', $ticket->ticket_id)->first();
-        if($specificTicket->manager_id !== $user->id) {
-            $specificTicket->manager_id = $user->id;
+        if($specificTicket->manager_id !== $staffMember->id) {
+            $specificTicket->manager_id = $staffMember->id;
             $specificTicket->ticket_status = 1;
             $specificTicket->save();
             return redirect()->route('tickets.show', compact('ticket'))->with('success', 'Staff Member Changed!');

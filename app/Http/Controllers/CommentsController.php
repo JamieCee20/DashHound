@@ -52,7 +52,7 @@ class CommentsController extends Controller
         $request->session()->flash('success', 'Your comment has been added');
 
 
-        return redirect()->route('post.show', [$postId]);
+        return redirect()->route('post.show', $postId);
     }
 
 /**
@@ -87,7 +87,7 @@ class CommentsController extends Controller
 
         $comment->update($data);
         
-        return redirect('/p/'.$comment->user->post->title)->with('success', 'Comment Edited');
+        return redirect('/p/'.$comment->post->slug)->with('success', 'Comment Edited');
 
     }
 

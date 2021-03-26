@@ -88,21 +88,24 @@ class PostsController extends Controller
 
         $image_resize = Image::make($file->getRealPath());
         $image_resize->resize(1200, 1200);
-        $image_resize->save(public_path('storage/posts/'. $name));
+        $image_resize->save('storage/posts/'. $name);
 
         $current = Post::where('title', $request->title)->first();
+
+        $slug = str_replace(' ', '-', $data['title']);
 
         if($current) {
             return redirect('/posts')->with('error', 'Post title already exists!');
         } else {
-            auth()->user()->posts()->create([
+            $post = auth()->user()->posts()->create([
                 'title' => $data['title'],
+                'slug' => $slug,
                 'description' => $data['description'],
                 'image' => $name,
                 'spoilers' => $spoilers,
             ]);
     
-            return redirect('/posts')->with('success', 'Post successfully created!');
+            return redirect()->route('post.show', $post)->with('success', 'Post successfully created!');
         }
     }
 
@@ -160,6 +163,7 @@ class PostsController extends Controller
             'image' => 'image|',
             'spoilers' => '',
         ]);
+        $slug = str_replace(' ', '-', $data['title']);
 
         $current = Post::where('id', $post->id)->first();
 
@@ -171,9 +175,24 @@ class PostsController extends Controller
             $data['spoilers'] = $current->spoilers;
         }
 
-        $post->update($data);
+        $post->title = $data['title'];
+        $post->slug = $slug;
+        $post->description = $data['description'];
+        if(!$request->file('image') == null) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+    
+            $image_resize = Image::make($file->getRealPath());
+            $image_resize->resize(1200, 1200);
+            $image_resize->save('storage/posts/'. $name);
+            $post->image = $name;
+        }
+        $post->spoilers = $data['spoilers'];
+
+        $post->save();
+
             
-        return redirect()->route('post.index')->with('success', 'Post successfully updated!');
+        return redirect()->route('post.show', $post->slug)->with('success', 'Post successfully updated!');
     }
 
     /**

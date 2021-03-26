@@ -37,7 +37,7 @@
                     <span class="my-auto ml-2">{{ Form::checkbox('pinned', 'true')}}</span>
                 </div>
             @endcan   
-            {{ Form::submit('Submit', ['class' => 'btn btn-outline-secondary']) }}
+            {{ Form::submit('Submit', ['class' => 'btn btn-success']) }}
         {!!Form::close() !!}
         </div>
     </div>

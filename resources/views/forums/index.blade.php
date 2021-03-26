@@ -29,8 +29,9 @@
                 {{ csrf_field() }}
                 <div class="input-group">
                     <input type="text" class="form-control" name="qDiscussion"
-                        placeholder="Search for a forum"><span class="input-group-btn">
-                        <button type="submit" class="btn btn-default" style="height: 100%;border: 1px solid rgb(182, 184, 214); background-color: rgb(182, 184, 214);">
+                        placeholder="Search for a forum"><span class="input-group-btn" style="height:auto;
+                        margin:auto;">
+                        <button type="submit" class="btn btn-default" style="border: 1px solid rgb(182, 184, 214); background-color: rgb(182, 184, 214);">
                             <i class="fas fa-search text-white"></i>
                         </button>
                     </span>

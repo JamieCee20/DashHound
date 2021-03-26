@@ -72,7 +72,6 @@ class ProfilesController extends Controller
         if($user->id == $logged_in) {
 
             $data = request()->validate([
-                'name' => 'required|string|max:255',
                 'email' => 'required|email',
                 'username' => 'required|string|max:255',
                 'bio' => 'max:1000',
@@ -91,8 +90,7 @@ class ProfilesController extends Controller
                 $input = $request->all();
                 $input['image'] = $name;
 
-                $user->update([
-                    'name' => $data['name'],
+                $user->update([ 
                     'email' => $data['email'],
                     'username' => $data['username'],
                     'image' => $name,
@@ -100,14 +98,13 @@ class ProfilesController extends Controller
                 ]);
             } else {
                 $user->update([
-                    'name' => $data['name'],
                     'email' => $data['email'],
                     'username' => $data['username'],
                     'bio' => $data['bio'],
                 ]);
             }
     
-            return redirect("/profile/{$user->id}")->with('success', 'Profile successfully updated');
+            return redirect("/profile/{$user->username}")->with('success', 'Profile successfully updated');
         }
     }
 

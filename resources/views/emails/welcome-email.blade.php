@@ -21,9 +21,8 @@ As all major forum sites, we have a team of moderstation members that will revie
 If you have any concerns or queries while using our site. Please follow the contact us page for how to get in touch.
 
 
-@component('mail::button', ['url' => '/'])
-Click here to visit our site!
-@endcomponent
+Click <a href="https://dashhound.jlcwd.me">here</a> to visit our site!
+
 
 Thanks,<br>
 {{ config('app.name') }} - Administration Team

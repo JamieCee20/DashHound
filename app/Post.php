@@ -8,11 +8,11 @@ class Post extends Model
 {
     //
     // protected $guarded = [];
-    protected $fillable = ['title', 'description', 'image', 'spoilers'];
+    protected $fillable = ['title', 'slug', 'description', 'image', 'spoilers'];
 
     public function getRouteKeyName()
     {
-        return 'title';
+        return 'slug';
     }
 
     public function user()

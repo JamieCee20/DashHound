@@ -55,7 +55,6 @@ class DiscussionController extends Controller
      */
     public function create()
     {
-        //
         $categories = Category::pluck('name', 'id');
         return view('forums.create', compact('categories'));
     }
@@ -101,21 +100,21 @@ class DiscussionController extends Controller
                         'image' => null,
                     ]);
                     $discussion->category()->associate($request->category)->save();
-                    return redirect('/forums')->with('success', 'Discussion successfully created!');
+                    return redirect()->route('forum.show', $discussion->slug)->with('success', 'Discussion successfully created!');
                 }
             } else {
-                return redirect('/forums')->with('error', 'You do not have permission to post in this category!');
+                return redirect()->route('forum.create')->with('error', 'You do not have permission to post in this category!');
             }
         } else {
             $slug = Str::slug($request->title, '-');
 
             $input = $request->body;
-            $cleaned = Purify::clean($input);
+            $cleaned = clean($input);
     
             $current = Discussion::where('title', $request->title)->first();
     
             if($current) {
-                return redirect('/forums')->with('error', 'Discussion Title already exists');
+                return redirect()->route('forum.create')->with('error', 'Discussion Title already exists');
             } else {
                 $discussion = auth()->user()->discussions()->make([
                     'title' => $data['title'],
@@ -125,7 +124,7 @@ class DiscussionController extends Controller
                     'image' => null,
                 ]);
                 $discussion->category()->associate($request->category)->save();
-                return redirect('/forums')->with('success', 'Discussion successfully created!');
+                return redirect('')->route('forum.show', $discussion->slug)->with('success', 'Discussion successfully created!');
             }
         }
     }
@@ -141,20 +140,6 @@ class DiscussionController extends Controller
         $replies = $discussion->replies()->orderBy('created_at', 'ASC')->paginate(30);
 
         return view('forums.show', compact('discussion', 'replies'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Discussion  $discussion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Discussion $discussion)
-    {
-        //
-        $this->authorize('update', $discussion);
-
-        return view('forums.edit', compact('discussion'));
     }
 
     /**
@@ -174,13 +159,16 @@ class DiscussionController extends Controller
             'body' => 'required',
         ]);
 
+        $input = $request->body;
+        $cleaned = clean($input);
+
         $discussion->update([
             'title' => $data['title'],
-            'body' => $data['body'],
+            'body' => $cleaned,
             'updated_at' => Carbon::now()
         ]);
 
-        return redirect('/forums')->with('success', 'Discussion Successfully Updated!');
+        return redirect()->route('forum.show', $discussion->slug)->with('success', 'Discussion Successfully Updated!');
     }
 
     /**

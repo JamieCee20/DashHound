@@ -26,7 +26,7 @@
             <div class="p-2">
                 <img src="/storage/profile/{{$discussion->user->image}}" alt="Profile Image" class="rounded" height="50%" width="100%" style="max-height:120px;max-width:120px;"><br>
             </div>
-            <span style="color: goldenrod;font-weight: bold;width:100%;">{{ $discussion->user->name }}
+            <span><a style="text-decoration: none;color: goldenrod;font-weight: bold;width:100%;" href="{{route('profiles.show', $discussion->user->username)}}">{{ $discussion->user->name }}</a>
                 <span>
                     @if (Gate::forUser($discussion->user)->allows('official-publisher', $discussion->user))
                         <i class="fas fa-user-check"></i>
@@ -50,9 +50,9 @@
                 </div>
                 <div class="col-3 col-md-3 col-lg-3 col-xl-3 d-flex">
                     @can('update', $discussion)
-                        <div class="mx-1">
-                            <a href="/forums/{{$discussion->slug}}/edit" role="button" class="btn btn-secondary m-2"><i class="fas fa-edit"></i> Edit</a>
-                        </div>
+                        <button type="button" class="btn btn-secondary m-2" data-toggle="modal" data-target="#discussionEditModal">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
                     @endcan
                     @can('delete', $discussion)
                         <div>
@@ -107,7 +107,7 @@
             <div class="p-2">
                 <img src="/storage/profile/{{$reply->user->image}}" alt="Profile Image" class="rounded" height="50%" width="100%" style="max-height:120px;max-width:120px;"><br>
             </div>
-            <span style="color: goldenrod;font-weight: bold;width:100%;">{{ $reply->user->name }}</span><br>
+            <span><a style="text-decoration: none;color: goldenrod;font-weight: bold;width:100%;" href="{{route('profiles.show', $reply->user->username)}}">{{ $reply->user->name }}</a></span><br>
             @foreach($reply->user->roles as $role)
                 <div>
                     <span style="font-style: italic;color: grey;">{{ $role->name }}</span>
@@ -125,9 +125,9 @@
                 </div>
                 <div class="col-3 col-md-3 col-lg-3 col-xl-3 d-flex">
                     @can('update', $reply)
-                        <div class="mx-1">
-                            <a href="/reply/{{$reply->id}}/edit" role="button" class="btn btn-secondary m-2"><i class="fas fa-edit"></i> Edit</a>
-                        </div>
+                        <button type="button" class="btn btn-secondary m-2" data-toggle="modal" data-target="#replyEditModal">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
                     @endcan
                     @can('delete', $reply)
                         <div>
@@ -145,7 +145,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <p>
-                                    {!!$reply->body!!}
+                                    {!! $reply->body !!}
                                 </p>
                             </div>
                         </div>
@@ -160,6 +160,44 @@
             {{ $replies->links() }}
         </div>
     </div>
+
+    <!-- Edit Discussion Modal -->
+    <div class="modal fade" id="discussionEditModal" tabindex="-1" role="dialog" aria-labelledby="discussionEditModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="discussionEditModalLabel">Edit Discussion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('forums.edit')
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if ($replies->count() > 0)
+        <!-- Edit Reply Modal -->
+        <div class="modal fade" id="replyEditModal" tabindex="-1" role="dialog" aria-labelledby="replyEditModalLabel"
+        aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="replyEditModalLabel">Edit Reply</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @include('replies.edit')
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection
 
 
@@ -176,7 +214,16 @@
         tinycomments_author: 'Author name',
     });
     tinymce.init({
-        selector: 'textarea#replyBodyTwo',
+        selector: 'textarea#replyBodyInEdit',
+        width: "100%",
+        menubar: 'file edit view format',
+        toolbar: 'undo redo | bold | align | casechange checklist pageembed table media tinymcespellchecker',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+    tinymce.init({
+        selector: 'textarea#discussionBody',
         width: "100%",
         menubar: 'file edit view format',
         toolbar: 'undo redo | bold | align | casechange checklist pageembed table media tinymcespellchecker',

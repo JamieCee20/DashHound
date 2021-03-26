@@ -44,12 +44,12 @@
                 <div class="navContent">
                     @if (Auth::user())
                         <a class="navbar-brand" href="{{ url('/home') }}">
-                            <img class="border rounded-circle" src="/storage/images/dashhound.png" alt="Logo" height="10%" width="10%">
+                            <img class="border rounded-circle" src="/storage/images/dashhound.png" alt="Logo" height="auto" width="10%">
                             DashHound
                         </a>
                     @else
                         <a class="navbar-brand" href="{{ url('/') }}">
-                            <img class="border rounded-circle" src="/storage/images/dashhound.png" alt="Logo" height="10%" width="10%">
+                            <img class="border rounded-circle" src="/storage/images/dashhound.png" alt="Logo" height="auto" width="10%">
                             DashHound
                         </a>
                     @endif
@@ -83,7 +83,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
-                                    <a href="/profile/{{Auth::user()->id}}" class="dropdown-item">Profile</a>
+                                    <a href="/profile/{{Auth::user()->username}}" class="dropdown-item">Profile</a>
                                     <a href="{{ route('home')}}" class="dropdown-item">Search Users</a>
                                     <hr style="background-color: white;">
                                     @can('manage-users')

@@ -1,9 +1,4 @@
-@extends('layouts.app')
-@section('title', 'Edit Forum Post')
-
-@section('content')
-<div class="container text-white">
-    <h1>Edit Discussion</h1>
+<div class="container">
     {!! Form::open(['action' => ['DiscussionController@update', $discussion->slug], 'files' => true, 'method' => 'POST']) !!}
         <div class="form-group row">
             @if ($errors->any())
@@ -25,22 +20,9 @@
             {{ Form::textarea('body', $discussion->body, ['class' => 'form-control', 'placeholder' => 'Discussion Content', 'id' => 'discussionBody'])}}
         </div>  
         {{ Form::hidden('_method', 'PATCH')}}
-        {{ Form::submit('Submit', ['class' => 'btn btn-outline-secondary']) }}
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
+        </div>
     {!!Form::close() !!}
 </div>
-@endsection
-
-@section('editor-js')
-    <script src="https://cdn.tiny.cloud/1/ijfbgkzbhtffss6jx1a1jcgeuxzesckga022eg6os2bg3xjl/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea#discussionBody',
-            width: "100%",
-            menubar: 'file edit view format',
-            toolbar: 'undo redo | bold | align | casechange checklist pageembed table media tinymcespellchecker',
-            toolbar_mode: 'floating',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-        });
-        </script>
-@endsection

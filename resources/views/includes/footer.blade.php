@@ -15,6 +15,9 @@
                             <a href="/contact" style="color:black">Contact</a>
                         </li>
                         <li class="mx-3">
+                            <a href="/tickets" style="color:black">Support</a>
+                        </li>
+                        <li class="mx-3">
                             <a href="/posts" style="color:black">Posts</a>
                         </li>
                         <li class="mx-3">

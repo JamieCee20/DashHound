@@ -25,7 +25,7 @@
                 <li class="list-group-item home-hover"><a href="{{ route('post.index') }}">Posts</a></li>
                 <li class="list-group-item home-hover"><a href="{{ route('vpost.index') }}">Official Content</a></li>
                 <li class="list-group-item home-hover"><a href="{{ route('forum.index') }}">Forums</a></li>
-                <li class="list-group-item home-hover"><a href="{{ route('profiles.show', Auth::user()->id) }}">Profile</a></li>
+                <li class="list-group-item home-hover"><a href="{{ route('profiles.show', Auth::user()->username) }}">Profile</a></li>
             </ul>
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-secondary">Welcome, {{Auth::user()->name}}</div>
+                    <div class="card-header text-secondary">Welcome, {{Auth::user()->username}}</div>
                     <div class="card-body">
                         <h3 class="text-dark text-center mt-2">Welcome to DashHound, the home of game sharing experiences!</h3>
                         <img src="http://www.jlcwd.me/img/dashhound.jpg" width="100%" alt="DashHound Logo">
@@ -49,14 +49,14 @@
         <table class="table table-striped text-white">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Username</th>
                     <th>Email</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($details as $user)
                 <tr>
-                    <td><a href="/profile/{{$user->id}}" style="color: red; text-decoration:none;">{{$user->name}}</a></td>
+                    <td><a href="/profile/{{$user->username}}" style="color: red; text-decoration:none;">{{$user->username}}</a></td>
                     <td>{{$user->email}}</td>
                 </tr>
                 @endforeach

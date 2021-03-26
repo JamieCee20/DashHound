@@ -12,8 +12,8 @@
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/hover-effect.css">
+        <link rel="stylesheet" href="css/style.css">
 
         <!-- Scripts -->
         <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
@@ -30,6 +30,18 @@
                                     <img class="header-logo-image" src="storage/images/dashhound.png" alt="Logo" height="25px" width="25px">
                                 </a>
                             </h1>
+                        </div>
+                        <div class="flex-center position-ref full-height nav-login-buttons" style="z-index: 5;">
+                            @if (Route::has('login'))
+                                @auth
+                                    <a class="loginHover" style="text-decoration: none; color: white; font-weight: bold;" href="{{ url('/home') }}">Home</a>
+                                @else
+                                    <a class="loginHover mx-2" style="text-decoration: none; color: white; font-weight: bold;" href="{{ route('login') }}">Login</a>
+                                    @if (Route::has('register'))
+                                        <a class="loginHover mx-2" style="text-decoration: none; color: white; font-weight: bold;" href="{{ route('register') }}">Register</a>
+                                    @endif
+                                @endauth
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -134,7 +146,7 @@
                     </div>
                 </section>
     
-                <section class="pricing section">
+                {{-- <section class="pricing section">
                     <div class="container-sm">
                         <div class="pricing-inner section-inner">
                             <div class="pricing-header text-center">
@@ -172,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> --}}
             </main>
     
             <footer class="site-footer">

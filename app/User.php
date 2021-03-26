@@ -16,8 +16,16 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'image', 'bio', 'password', 'banned_until',
+        'email', 'username', 'image', 'bio', 'password', 'banned_until',
     ];
+
+    /**
+     * Attribute that profile gets identified by
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 
     /**
      * The attributes for dates

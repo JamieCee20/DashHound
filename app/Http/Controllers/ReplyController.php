@@ -64,19 +64,6 @@ class ReplyController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reply $reply)
-    {
-        //
-        $this->authorize('update', $reply);
-
-        return view('replies.edit', compact('reply'));
-    }
 
     /**
      * Update the specified resource in storage.

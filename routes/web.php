@@ -30,6 +30,13 @@ Route::get('testing',function(){
     return 'DONE'; //Return anything
 });
 
+Route::get('/abort', function() {
+    abort(403, "You are not authorised to view this ticket");
+})->name('abort');
+Route::get('/private', function() {
+    abort(403, "This user has marked their profile private!");
+})->name('private');
+
 /**
  * |--------------------------------------------------------------------------
  * | Home Functionality
@@ -37,12 +44,12 @@ Route::get('testing',function(){
  * | Search functions take parameter in search bar and find details relating
  * | to that query and display accordinly. Other functions are basic routing
  */
-Route::get('/', function () { return view('welcome'); })->name('landing');
-Route::get('/contact', function() { return view('contact'); });
+Route::view('/', 'welcome')->name('landing');
+Route::view('/contact', 'contact');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/search',function(Request $request){
     $q = $request->get( 'q' );
-    $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+    $user = User::where('username','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
     if(count($user) > 0)
         return view('home')->withDetails($user)->withQuery ( $q );
     else return view ('home')->with('error', 'No Details found. Try to search again !');
@@ -50,7 +57,7 @@ Route::any('/search',function(Request $request){
 Route::any('/usersearch',function(Request $request){
     $q = $request->get( 'qUser' );
     if(isset($q)) {
-        $user = User::where('name','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
+        $user = User::where('username','LIKE','%'.$q.'%')->orWhere('email','LIKE','%'.$q.'%')->get();
         if(count($user) > 0) {
             $users = User::where('id', '>', 0)->paginate(20, ['*'], 'users');
             $pinned = Discussion::where('pinned', 1)->paginate(20, ['*'], 'pinned');
@@ -92,7 +99,6 @@ Route::get('/posts', 'PostsController@index')->name('post.index');
 Route::get('/p/create', 'PostsController@create')->name('post.create')->middleware('auth');
 Route::post('/p', 'PostsController@store')->name('post.store')->middleware('auth');
 Route::get('/p/{post}', 'PostsController@show')->name('post.show');
-Route::get('/p/{post}/edit', 'PostsController@edit')->name('post.edit')->middleware('auth');
 Route::patch('/p/{post}', 'PostsController@update')->name('post.update')->middleware('auth');
 Route::delete('/p/{post}', 'PostsController@destroy')->name('post.delete')->middleware('auth');
 
@@ -103,10 +109,11 @@ Route::delete('/p/{post}', 'PostsController@destroy')->name('post.delete')->midd
  * | Comments have fewer methods due to the main display of comments are
  * | on the user posts meaning I can combine into post controller functions
  */
-Route::post('/comment/{post}', 'CommentsController@store')->name('comments.store')->middleware('auth');
-Route::get('/comment/{comment}/edit', 'CommentsController@edit')->middleware('auth');
-Route::patch('/comment/{comment}', 'CommentsController@update')->name('comments.update')->middleware('auth');
-Route::delete('/comment/{comment}', 'CommentsController@destroy')->name('comments.delete')->middleware('auth');
+Route::group(['middleware' => 'auth', 'prefix' => 'comment'], function() {
+    Route::post('/{post}', 'CommentsController@store')->name('comments.store');
+    Route::patch('/{comment}', 'CommentsController@update')->name('comments.update');
+    Route::delete('/{comment}', 'CommentsController@destroy')->name('comments.delete');
+});
 
 /**
  * |---------------------------------------
@@ -167,12 +174,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
  * |
  * |
  */
-Route::get('/tickets', 'TicketController@index')->name('tickets.index');
-Route::get('ticket/create', 'TicketController@create')->name('tickets.create')->middleware('auth');
-Route::post('tickets', 'TicketController@store')->name('tickets.store')->middleware('auth');
-Route::get('/ticket/{ticket}', 'TicketController@show')->name('tickets.show');
-Route::get('/ticket/close/{ticket}', 'TicketController@closeTicket')->name('tickets.close')->middleware('auth');
-Route::get('/ticket/assign/{user}/{ticket}', 'TicketController@assignUser')->name('tickets.assign')->middleware('auth');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/tickets', 'TicketController@index')->name('tickets.index');
+    Route::get('ticket/create', 'TicketController@create')->name('tickets.create');
+    Route::post('tickets', 'TicketController@store')->name('tickets.store');
+    Route::get('/ticket/{ticket}', 'TicketController@show')->name('tickets.show');
+    Route::get('/ticket/close/{ticket}', 'TicketController@closeTicket')->name('tickets.close');
+    Route::patch('/ticket/assign/{ticket}', 'TicketController@assignUser')->name('tickets.assign');
+});
 
 /**
  * |---------------------------------------
@@ -196,7 +205,6 @@ Route::get('/forums/admin', 'DiscussionController@admin')->name('forum.admin')->
 Route::get('/forums/create', 'DiscussionController@create')->name('forum.create')->middleware('auth');
 Route::post('/forums', 'DiscussionController@store')->name('forum.store')->middleware('auth');
 Route::get('/forums/{discussion}', 'DiscussionController@show')->name('forum.show');
-Route::get('/forums/{discussion}/edit', 'DiscussionController@edit')->name('forum.edit')->middleware('auth');
 Route::patch('/forums/{discussion}', 'DiscussionController@update')->name('forum.update')->middleware('auth');
 Route::delete('/forums/{discussion}', 'DiscussionController@destroy')->name('forum.delete')->middleware('auth');
 

@@ -38,7 +38,7 @@ class TicketBodyController extends Controller
                 $string = Str::random(25);
                 $name = $string.'.'.$file->getClientOriginalExtension();
         
-                $dest = public_path('storage/ticketFile/');
+                $dest = 'storage/ticketFile/';
                 $file->move($dest, $name);
                 $input = $request->all();
                 $input['image'] = $name;
@@ -46,7 +46,7 @@ class TicketBodyController extends Controller
                 auth()->user()->ticketBodies()->create([
                     'ticket_id' => $request->ticket_id,
                     'user_id' => auth()->user()->id,
-                    'body' => $data['body'],
+                    'body' => clean($data['body']),
                     'image' => $name
                 ]);
             } 
@@ -54,7 +54,7 @@ class TicketBodyController extends Controller
                 auth()->user()->ticketBodies()->create([
                     'ticket_id' => $request->ticket_id,
                     'user_id' => auth()->user()->id,
-                    'body' => $data['body']
+                    'body' => clean($data['body'])
                 ]);
             }
             return redirect()->route('tickets.show', [$ticketReturn])->with('success', 'Reply sent!');
