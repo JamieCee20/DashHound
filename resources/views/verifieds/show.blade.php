@@ -2,56 +2,87 @@
 @section('title', 'Published Posts')
 
 @section('content')
-<div class="p-2 mx-3 text-white">
+<div class="container text-white mb-5">
     <div class="row">
-        <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-            <img src="/storage/posts/{{ $verified->image }}" class="w-100 rounded" width="100%" height="100%">
+        <div class="col-12 mx-2">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-12 col-sm-12 col-lg-12">
-            <div class="post-buttons">
-                <div class="d-flex align-items-center">
-                    <div>
-                        <div class="font-weight-bold">
-                            <span style="color: Red; font-weight: normal;">Posted By:</span> <a href="/profile/{{$verified->user->id}}"><span class="text-white">{{$verified->user->name}}</span></a>    
-                        </div>
-                        <div class="row">
-                            <div class="ml-3 pt-3">
-                                @can('update', $verified)
-                                    <a href="/v/{{$verified->id}}/edit">Edit Post</a>
-                                @endcan
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="ml-3 pt-3">
-                                <span class="like-btn d-flex">
-                                    <a class="like" href="/v/toggleLike/{{$verified->id}}"><i class="fas fa-thumbs-up mr-2"></i></a><div>{{ $likes->count() }} like(s)</div>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-12 mx-2">
+            <button class="btn btn-outline-secondary mr-5"><a href="/v/posts" style="color:white;text-decoration: none;">Go Back</a></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mx-2">
+            <h1>
+                <span class="text-info" style="font-size: 3.25em;font-weight: 900; line-height: 1.12;margin:0px 0px 15px;">{{$verified->title}}</span>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 col-sm-12 col-lg-12 mx-2">
+            <img src="/storage/posts/{{ $verified->image }}" class="w-100 rounded" width="100%" height="100%" style="border: 1px solid #888888;box-shadow: 5px 5px #C0C0C0;">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-3" style="color: red;">
+            <span style="font-size: 24px;">By <a href="{{route('profiles.show', $verified->user->username)}}" style="text-decoration: none;color: red;">{{$verified->user->username}}</a></span>
+            @can('update', $verified)
+                {{-- <a href="/v/{{$verified->id}}/edit">Edit Post</a> --}}
+                <button type="button" class="mr-2 pt-1" style="background:none;border:none;padding:0;font-family:arial, sans-serif;color:#90D9D6;text-decoration:none;" data-toggle="modal" data-target="#editVerifiedModal">
+                    Edit
+                </button>
+            @endcan
+        </div>
+        <div class="col-md-5" style="color: red;">
+            <span style="font-size: 24px;"><i class="fas fa-edit"></i> Updated: {{date('F dS, Y - g:iA' ,strtotime($verified->updated_at))}}</span>
+        </div>
+        <div class="col-md-4" style="color: #888888;">
+            <span style="font-size: 24px;"><i class="fas fa-check-circle"></i> Created: {{date('F dS, Y - g:iA' ,strtotime($verified->created_at))}}</span>
+        </div>
+    </div>
+    <hr class="splitter" style="background-color: #fff;">
+    <div class="row">
+        <div class="col-12 d-flex">
+            <span class="like-btn d-flex mx-2">
+                <a class="like" href="/v/toggleLike/{{$verified->id}}"><i class="fas fa-thumbs-up mr-2"></i></a><div>{{ $likes->count() }} like(s)</div>
+            </span>
+            @can('delete', $verified)
+                {!!Form::open(['action' => ['VerifiedController@destroy', $verified->id ], 'method' => 'POST'])!!}
+                    {{Form::hidden('_method', 'DELETE')}}
+                    {{Form::submit('Delete', ['class' => 'btn btn-danger', 'style' => 'color:white;text-decoration: none;'])}}
+                {!!Form::close()!!}
+            @endcan
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mx-2">
+            <h2 style="font-weight: normal;line-height:1.08;margin:20px 0px 0px;rgb(124,125,125);">{{$verified->description}}</h2>
+        </div>
+    </div>
+
+    <!-- Edit Post Modal -->
+    <div class="modal fade" id="editVerifiedModal" tabindex="-1" role="dialog" aria-labelledby="editVerifiedModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color: black;" id="editVerifiedModalLabel">Edit Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-
-                <hr class="splitter">
-
-                <p class="postDesc pb-4"><span class="font-weight-bold" style="color: red;">{{$verified->title}}: </span><br>
-                    <span class="overflow-auto">{{$verified->description}}</span><br><br>
-                    <span class="font-italic text-center" style="color:white;opacity:0.5;">posted on {{ date('F dS, Y - g:iA' ,strtotime($verified->created_at)) }}</span>
-                </p>
-
-                <div class="container bottom-link mb-5">
-                    <div class="row">
-                        <div class="col-12 d-flex">
-                            <button class="btn btn-outline-secondary mr-5" style="margin-left: -15px;"><a href="/v/posts" style="color:white;text-decoration: none;">Go Back</a></button>
-                            @can('delete', $verified)
-                                {!!Form::open(['action' => ['VerifiedController@destroy', $verified->id ], 'method' => 'POST'])!!}
-                                    {{Form::hidden('_method', 'DELETE')}}
-                                    {{Form::submit('Delete', ['class' => 'btn btn-outline-secondary float-left', 'style' => 'color:white;text-decoration: none;'])}}
-                                {!!Form::close()!!}
-                            @endcan
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    @include('verifieds.edit')
                 </div>
             </div>
         </div>

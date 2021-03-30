@@ -7,6 +7,7 @@ use App\Verified;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image as Image;
 
 class VerifiedController extends Controller
 {
@@ -48,20 +49,18 @@ class VerifiedController extends Controller
             return view('welcome')->with('error', 'You do not have access to upload verified posts');
         }
         $data = $request->validate([
-            'title' => 'required|max:255|string',
+            'title' => 'required|min:3|max:50|string',
             'description' => 'required|string',
             'image' => 'required|image',
         ]);
 
         if($request->file('image')) {
             $file = $request->file('image');
-            $string = Str::random(25);
-            $name = $string.'.'.$file->getClientOriginalExtension();
+            $name = $file->getClientOriginalName();
 
-            $dest = public_path('storage/posts/');
-            $file->move($dest, $name);
-            $input = $request->all();
-            $input['image'] = $name;
+            $image_resize = Image::make($file->getRealPath());
+            $image_resize->resize(1200, 1200);
+            $image_resize->save('storage/posts/'.$name);
 
             auth()->user()->vposts()->create([
                 'title' => $data['title'],
@@ -116,7 +115,7 @@ class VerifiedController extends Controller
         $this->authorize('update', $verified);
 
         $data = request()->validate([
-            'title' => 'required|max:255|',
+            'title' => 'required|min:3|max:50|string',
             'description' => 'required',
             'image' => 'image|',
         ]);

@@ -6,19 +6,19 @@
 @endsection
 
 @section('content')
-@if (Auth::check() && Auth::user()->hasAnyRoles(['owner', 'administrator', 'moderator']))
-    @include('profiles.show.staff')
-@else
-    @if ($user->privacy == 1)
-        @if (Auth::check() && Auth::user()->id == $user->id)
-            @include('profiles.show.user')
-        @else
-            <script>window.location = "/private";</script>
-        @endif
+    @if (Auth::check() && Auth::user()->hasAnyRoles(['owner', 'administrator', 'moderator']))
+        @include('profiles.show.staff')
     @else
-        @include('profiles.show.no-auth-user')
+        @if ($user->privacy == 1)
+            @if (Auth::check() && Auth::user()->id == $user->id)
+                @include('profiles.show.user')
+            @else
+                <script>window.location = "/private";</script>
+            @endif
+        @else
+            @include('profiles.show.no-auth-user')
+        @endif
     @endif
-@endif
     <!-- Edit Profile Modal -->
     <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog" aria-labelledby="profileEditModalLabel"
     aria-hidden="true">

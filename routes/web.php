@@ -30,6 +30,7 @@ Route::get('testing',function(){
     return 'DONE'; //Return anything
 });
 
+
 Route::get('/abort', function() {
     abort(403, "You are not authorised to view this ticket");
 })->name('abort');
@@ -122,14 +123,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'comment'], function() {
  * |
  * |
  */
-Route::get('/v/posts', 'VerifiedController@index')->name('vpost.index');
-Route::get('/v/create', 'VerifiedController@create')->name('vpost.create')->middleware('can:post-verified-create');
-Route::post('/v', 'VerifiedController@store')->name('verifieds.store')->middleware('can:post-verified-create');
-Route::get('/v/{verified}', 'VerifiedController@show')->name('verifieds.show');
-Route::get('/v/{verified}/edit', 'VerifiedController@edit')->name('verifieds.edit')->middleware('can:post-verified-create');
-Route::patch('/v/{verified}', 'VerifiedController@update')->name('verifieds.update')->middleware('can:post-verified-create');
-Route::delete('/v/{verified}', 'VerifiedController@destroy')->name('verifieds.delete')->middleware('can:post-verified-create');
-Route::get('/v/toggleLike/{verified}', 'LikesController@toggleLike')->name('toggleLike')->middleware('auth');
+Route::group(['prefix' => 'v'], function() {
+    Route::get('/posts', 'VerifiedController@index')->name('vpost.index');
+    Route::get('/create', 'VerifiedController@create')->name('vpost.create')->middleware('can:post-verified-create');
+    Route::post('', 'VerifiedController@store')->name('verifieds.store')->middleware('can:post-verified-create');
+    Route::get('/{verified}', 'VerifiedController@show')->name('verifieds.show');
+    Route::get('/{verified}/edit', 'VerifiedController@edit')->name('verifieds.edit')->middleware('can:post-verified-create');
+    Route::patch('/{verified}', 'VerifiedController@update')->name('verifieds.update')->middleware('can:post-verified-create');
+    Route::delete('/{verified}', 'VerifiedController@destroy')->name('verifieds.delete')->middleware('can:post-verified-create');
+    Route::get('/toggleLike/{verified}', 'LikesController@toggleLike')->name('toggleLike')->middleware('auth');
+});
 
 /**
  * |---------------------------------------

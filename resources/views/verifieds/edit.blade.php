@@ -1,9 +1,4 @@
-@extends('layouts.app')
-@section('title', 'Edit Published Post')
-
-@section('content')
-<div class="container text-white">
-    <h1>Edit Post</h1>
+<div class="container" style="color: black;">
     {!! Form::open(['action' => ['VerifiedController@update', $verified->id ], 'files' => true, 'method' => 'POST']) !!}
         <div class="form-group row">
             {{ Form::label('title', 'Post Title')}}
@@ -18,7 +13,10 @@
             {{ Form::file('image', ['class' => 'form-control-file'])}}
         </div>
         {{ Form::hidden('_method', 'PATCH')}}
-        {{ Form::submit('Submit', ['class' => 'btn btn-outline-primary', 'style' => 'margin-left: -15px;']) }}
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            {{ Form::submit('Save Changes', ['class' => 'btn btn-primary']) }}
+        </div>
     {!! Form::close() !!}
 </div>
-@endsection
+

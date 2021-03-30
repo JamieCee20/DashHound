@@ -3,31 +3,14 @@
 
 @section('content')
     <div class="container">
-        @if($vposts->count() == 0)
-            <h2>Be the first to post a screenshot</h2>
-        @endif
-    </div>
-    <div class="container">
         <div class="row">
             <div class="col-12">
                 <a class="btn btn-outline-light float-right" href="{{ route('vpost.create') }}">Create Post</a>
             </div>
         </div>
-        @foreach($vposts as $vpost)
-            <div class="row my-3  p-2" id="postBox">
-                <div class="col-6">
-                    <img class="mx-auto" src="/storage/posts/{{$vpost->image}}" height="200px" width="75%" alt="Published Image">
-                </div>
-                <div class="col-6 text-left">
-                    <p class="h2"><a href="/v/{{ $vpost->id }}" style="color: red; text-decoration: none;">{{ $vpost->title }}</a></p><br>
-                    <p class="text-muted font-italic">Published by: {{ $vpost->user->name }} | {{ date('F dS, Y - g:iA' ,strtotime($vpost->created_at)) }}</p><br>
-                    <p class="text-muted font-italic">
-                        <strong>Total Likes: </strong>{{ $vpost->likes()->count() }}
-                    </p>
-                </div>
-            </div>
-        @endforeach
-
+    </div>
+    @each('verifieds.vposts', $vposts, 'vpost', 'verifieds.no-vposts')
+    <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 {{ $vposts->links() }}

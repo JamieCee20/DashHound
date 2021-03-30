@@ -49,6 +49,7 @@ class TicketBodyController extends Controller
                     'body' => clean($data['body']),
                     'image' => $name
                 ]);
+                
             } 
             else {
                 auth()->user()->ticketBodies()->create([
