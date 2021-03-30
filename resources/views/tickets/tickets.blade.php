@@ -12,15 +12,6 @@
                               <h4><strong><a href="{{route('tickets.show', $ticket->ticket_id)}}" style="color: black;text-decoration:none;">{!! $ticket->title !!}</a></strong></h4>
                           </div>
                       </div>
-                      <div class="row">
-                          <div class="col-lg-12">
-                              @if(strlen($ticket->body) > 200)
-                                  {{substr($ticket->body, 0, 200)}}...
-                              @else
-                                  {{$ticket->body}}
-                              @endif
-                          </div>
-                      </div>
                   </div>
                   <div class="col-lg-1 border-left">
                       <div class="float-right px-2">
@@ -37,7 +28,7 @@
                       @endif
                   </div>
                   <div class="col-lg-4 border-right text-center">
-                      <strong>Raised by: </strong> {{$ticket->user->name}}
+                      <strong>Raised by: </strong> {{$ticket->user->username}}
                   </div>
                   <div class="col-lg-2 border-right text-center">
                       <strong>Issue: </strong>{{$ticket->category->name}}

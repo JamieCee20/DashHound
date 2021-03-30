@@ -71,11 +71,11 @@ class UsersController extends Controller
 
         $user->roles()->sync($request->roles);
 
-        $user->name = $request->name;
+        $user->username = $request->name;
         $user->email = $request->email;
 
         if($user->save()) {
-            $request->session()->flash('success', $user->name . ' has updated successfully');
+            $request->session()->flash('success', $user->username . ' has updated successfully');
         } else {
             $request->session()->flash('error', 'Error updating details');
         }
@@ -98,7 +98,7 @@ class UsersController extends Controller
         // $user->delete(); Old method of deleting, improved with alert checking.
 
         if($user->delete()) {
-            $request->session()->flash('success', $user->name . ' has been deleted');
+            $request->session()->flash('success', $user->username . ' has been deleted');
         } else {
             $request->session()->flash('error', 'Unable to delete user at this time');
         }
@@ -116,9 +116,9 @@ class UsersController extends Controller
             $user->banned_until = $suspension;
             $user->save();
 
-            return redirect()->route('admin.users.index')->with('warning', $user->name .' has been suspended for 30 days');
+            return redirect()->route('admin.users.index')->with('warning', $user->username .' has been suspended for 30 days');
         } else {
-            return redirect()->route('admin.users.index')->with('error', $user->name .' is already suspended');
+            return redirect()->route('admin.users.index')->with('error', $user->username .' is already suspended');
         }
     }
 }

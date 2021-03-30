@@ -85,7 +85,7 @@
                                                             </div>
                                                             <div class="col-3 col-md-3">
                                                                 @can('edit-users')
-                                                                    <a data-toggle="tooltip" data-html="true" data-html="true" title="Edit this user" href="{{ route('admin.users.edit', $qUser->id) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>   
+                                                                    <a data-toggle="tooltip" data-html="true" data-html="true" title="Edit this user" href="{{ route('admin.users.edit', $qUser) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>   
                                                                 @endcan
                                                                 @can('delete-users')
                                                                     <form action="{{ route('admin.users.destroy', $qUser) }}" method="POST" class="float-left">
@@ -141,7 +141,7 @@
                                                         </div>
                                                         <div class="col-3 col-md-3">
                                                             @can('edit-users')
-                                                                <a data-toggle="tooltip" data-html="true" data-html="true" title="Edit this user" href="{{ route('admin.users.edit', $user->id) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>   
+                                                                <a data-toggle="tooltip" data-html="true" data-html="true" title="Edit this user" href="{{ route('admin.users.edit', $user) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>   
                                                             @endcan
                                                             @can('delete-users')
                                                                 <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="float-left">
