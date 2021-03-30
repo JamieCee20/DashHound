@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TicketCreated;
 use App\User;
 use App\Ticket;
 use App\TicketBody;
@@ -103,7 +104,7 @@ class TicketController extends Controller
                         'body' => clean($data['body'])
                     ]);
                 }
-                
+                // event(new TicketCreated($newTicket)); // Fire event listener on ticket creation
                 return redirect('/tickets')->with('success', 'Ticket successfully created!');
             }
         }
@@ -118,18 +119,6 @@ class TicketController extends Controller
         })->get();
         // $staffUsers = $staffUsers->hasAnyRoles(['owner', 'administrator', 'moderator']);
         return view('tickets.show', compact('ticket', 'ticketbodies', 'staffUsers'));
-    }
-
-    public function edit() {
-
-    }
-
-    public function update() {
-
-    }
-
-    public function destroy() {
-
     }
 
     public function closeTicket(Ticket $ticket) {

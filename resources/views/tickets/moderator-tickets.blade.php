@@ -12,15 +12,6 @@
                               <h4><strong><a href="{{route('tickets.show', $ticket->ticket_id)}}" style="color: black;text-decoration:none;">{!! $ticket->title !!}</a></strong></h4>
                           </div>
                       </div>
-                      <div class="row">
-                          <div class="col-lg-12">
-                              @if(strlen($ticket->body) > 200)
-                                  {{substr($ticket->body, 0, 200)}}...
-                              @else
-                                  {{$ticket->body}}
-                              @endif
-                          </div>
-                      </div>
                   </div>
               </div>
               <div class="row border-top">

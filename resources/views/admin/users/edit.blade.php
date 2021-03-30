@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-secondary">Edit User - {{ $user->name }}</div>
+                    <div class="card-header text-secondary">Edit User - {{ $user->username }}</div>
 
                     <div class="card-body text-dark">
                         <form action="{{ route('admin.users.update', $user) }}" method="POST">
@@ -27,10 +27,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-2 col-form-label text-md-right">Username</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
+                                    <input id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="name" value="{{ $user->username }}" required autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-secondary">Edit User - {{ $user->name }}</div>
+                    <div class="card-header text-secondary">Edit User - {{ $user->username }}</div>
 
                     <div class="card-body text-dark">
                         <form action="{{ route('admin.users.update', $user) }}" method="POST">
@@ -89,10 +89,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-2 col-form-label text-md-right">Username</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
+                                    <input id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="name" value="{{ $user->username }}" required autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -129,7 +129,7 @@
     <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header text-secondary">Edit User - {{ $user->name }}</div>
+                    <div class="card-header text-secondary">Edit User - {{ $user->username }}</div>
 
                     <div class="card-body text-dark">
                         <form action="{{ route('admin.users.update', $user) }}" method="POST">
@@ -149,10 +149,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-2 col-form-label text-md-right">Username</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autofocus>
+                                    <input id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="name" value="{{ $user->username }}" required autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

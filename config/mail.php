@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => 'welcome@DashHound.in',
+        'address' => 'staff@dashhound',
         'name' => 'Jamie Cee',
     ],
 
