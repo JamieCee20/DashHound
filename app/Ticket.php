@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\TicketCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
@@ -13,6 +14,9 @@ class Ticket extends Model
     }
 
     protected $fillable = ['title', 'body', 'ticket_id', 'ticket_category', 'ticket_status'];
+
+    //Alternative way of firing event listener on ticket creation
+    protected $dispatchesEvents = ['created' => TicketCreated::class]; 
 
     // A Ticket can only belong to ONE user
     public function user() {

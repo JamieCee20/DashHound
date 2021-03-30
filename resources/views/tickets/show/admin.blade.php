@@ -145,7 +145,7 @@
                                                     class="float-right">{{ date('d/m/Y (H:i)', strtotime($body->created_at)) }}</span>
                                             </h5>
                                             <p class="p-2 user-reply">
-                                                {{ $body->body }}
+                                                {{ strip_tags($body->body) }}
                                             </p>
                                             {{-- <edit-reply></edit-reply> --}}
                                             @if ($body->image !== null)
