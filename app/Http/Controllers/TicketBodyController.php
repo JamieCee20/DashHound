@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TicketReply;
 use App\Ticket;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -62,21 +63,5 @@ class TicketBodyController extends Controller
         }
 
         return redirect()->route('tickets.show', [$ticketReturn])->with('error', 'An error occured!');
-    }
-
-    public function show(Ticket $ticket) {
-
-    }
-
-    public function edit() {
-
-    }
-
-    public function update() {
-
-    }
-
-    public function destroy() {
-
     }
 }

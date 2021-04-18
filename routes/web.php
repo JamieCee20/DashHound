@@ -184,17 +184,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/ticket/{ticket}', 'TicketController@show')->name('tickets.show');
     Route::get('/ticket/close/{ticket}', 'TicketController@closeTicket')->name('tickets.close');
     Route::patch('/ticket/assign/{ticket}', 'TicketController@assignUser')->name('tickets.assign');
+    Route::post('/ticketbodies', 'TicketBodyController@store')->name('ticket.body');
 });
-
-/**
- * |---------------------------------------
- * | Ticket Body
- * |---------------------------------------
- * |
- * |
- */
-Route::post('/ticketbodies', 'TicketBodyController@store')->name('ticket.body')->middleware('auth');
-
 
 /**
  * |---------------------------------------

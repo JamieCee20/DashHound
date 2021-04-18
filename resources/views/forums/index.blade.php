@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-12">
                                 <p style="color: lightgrey;font-style:italic;">
-                                    By {{ $qForum->user->name }}
+                                    By {{ $qForum->user->username }}
                                     <span>
                                         @if (Gate::forUser($qForum->user)->allows('official-publisher', $qForum->user))
                                             <i class="fas fa-user-check"></i>
@@ -106,7 +106,7 @@
                                     </div>
                                     <div class="col-12">
                                         <p style="color: lightgrey;font-style:italic;">
-                                            By {{ $pin->user->name }}
+                                            By {{ $pin->user->username }}
                                             <span>
                                                 @if (Gate::forUser($pin->user)->allows('official-publisher', $pin->user))
                                                     <i class="fas fa-user-check"></i>
@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="col-12">
                                         <p style="color: lightgrey;font-style:italic;">
-                                            By {{ $item->user->name }}
+                                            By {{ $item->user->username }}
                                             <span>
                                                 @if(Gate::forUser($item->user)->allows('official-publisher', $item->user))
                                                     <i class="fas fa-user-check"></i>

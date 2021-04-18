@@ -13,7 +13,7 @@ class TicketBody extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function tickets() {
-        return $this->belongsToMany('App\Ticket');
+    public function ticket() {
+        return $this->belongsTo('App\Ticket');
     }
 }
