@@ -21,6 +21,6 @@ DashHound is owned by http://www.jlcwd.me and is based in regards to a Universit
 
 The project is primarily based on the Laravel MVC Framework for PHP and uses the built in Vue.js for javascript attributes. All contents in terms of unique features are all built and coded by myself. I do not take credit for the features that came with Laravel and only take credit for edited features from myself.
 
-## Custom Features to implemenet
+## Custom Features implemented
 * [Ticket-System] - The ticket system is a support system for users to be able to communicate with community staff without having to use emails.
 * [Forums] - A custom written forum is the central hub for DashHound, allowing users to communicate and interact with each other about various topics.
