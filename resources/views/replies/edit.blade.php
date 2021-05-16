@@ -14,7 +14,7 @@
         <div class="form-group row">
             {{ Form::label('body', 'Reply Content')}}
             {{ Form::textarea('body', $reply->body, ['class' => 'form-control', 'placeholder' => 'What\'s on your mind?...', 'id' => 'replyBodyInEdit'])}}
-        </div>  
+        </div>
         {{ Form::hidden('_method', 'PATCH')}}
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -22,4 +22,5 @@
         </div>
     {!!Form::close() !!}
 </div>
+
 

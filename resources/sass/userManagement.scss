@@ -41,3 +41,13 @@
     visibility: visible;
     opacity: 1;
 }
+@media(min-width: 768px) {
+    .btnSize {
+        min-width: 25%;
+    }
+}
+@media(max-width: 767px) {
+    .btnSize {
+        min-width: 100%;
+    }
+}
