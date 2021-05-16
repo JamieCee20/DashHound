@@ -545,7 +545,7 @@
                                           class="btn btn-primary btnSize my-1">Edit</button></a>
                                     @endcan
                                   </div>
-                                  {{-- <div class="col-12">
+                                  <div class="col-12">
                                     @can('delete-users')
                                       @if (!$qUser->hasAnyRoles(['owner', 'administrator', 'moderator']))
                                         {!! Form::open(['method' => 'POST', 'route' => ['admin.users.destroy', $qUser], 'onsubmit' => 'ConfirmDelete()']) !!}
@@ -554,7 +554,7 @@
                                         {!! Form::close() !!}
                                       @endif
                                     @endcan
-                                  </div> --}}
+                                  </div>
                                   <div class="col-12">
                                     @can('manage-users')
                                       @if (!$qUser->hasAnyRoles(['owner', 'administrator', 'moderator']))
@@ -636,7 +636,7 @@
                                   @endcan
                                 </div>
                                 <div class="col-12">
-                                   @can('delete-users')
+                                  @can('delete-users')
                                     @if (!$user->hasAnyRoles(['owner', 'administrator', 'moderator']))
                                       {!! Form::open(['method' => 'POST', 'route' => ['admin.users.destroy', $user->username], 'onsubmit' => 'ConfirmDelete()']) !!}
                                         {{ Form::hidden('_method', 'DELETE') }}
@@ -757,10 +757,5 @@
 @endsection
 
 @section('editor-js')
-  {{-- <script>
-    function ConfirmDelete() {
-      return confirm('Are you sure you want to delete this user?');
-    }
 
-  </script> --}}
 @endsection
