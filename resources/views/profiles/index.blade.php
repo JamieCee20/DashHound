@@ -19,6 +19,7 @@
             @include('profiles.show.no-auth-user')
         @endif
     @endif
+    
     <!-- Edit Profile Modal -->
     <div class="modal fade" id="profileEditModal" tabindex="-1" role="dialog" aria-labelledby="profileEditModalLabel"
     aria-hidden="true">

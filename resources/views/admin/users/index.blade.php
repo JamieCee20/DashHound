@@ -753,7 +753,8 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
+
 @endsection
 
 @section('editor-js')

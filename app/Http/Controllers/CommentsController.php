@@ -35,7 +35,7 @@ class CommentsController extends Controller
     {
         $postId = Post::find($id);
         $userId = Auth::user()->id;
-        $name = Auth::user()->name;
+        $name = Auth::user()->username;
 
         $this->validate($request, array(
             'comment' => 'required|min:5|max:2000'

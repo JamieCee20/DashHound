@@ -20,7 +20,8 @@
                           <div class="col-4">
                               <div class="text-left float-right">
                                   @if(auth()->user() == $user)
-                                      <a role="button" href="/profile/{{$user->username}}/edit">Edit Profile</a>
+                                      {{-- <a role="button" href="/profile/{{$user->username}}/edit">Edit Profile</a> --}}
+                                      <button class="btn btn-primary" data-toggle="Modal" data-target="#profileEditModal">Edit Profile</button>
                                       <toggle-button :props-userid={{Auth::user()->id}} :props-current={{Auth::user()->privacy}} />
                                   @endif
                               </div>

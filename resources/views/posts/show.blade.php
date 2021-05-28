@@ -298,23 +298,21 @@
         </div>
     </div>
 
-    @if ($comments->count() < 0)
-        <!-- Edit Comment Modal -->
-        <div class="modal fade" id="postCommentEditModal" tabindex="-1" role="dialog" aria-labelledby="postCommentEditModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="postCommentEditModalLabel">Edit Comment</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        @include('comments.edit')
-                    </div>
+    <!-- Edit Comment Modal -->
+    <div class="modal fade" id="postCommentEditModal" tabindex="-1" role="dialog" aria-labelledby="postCommentEditModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="postCommentEditModalLabel">Edit Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('comments.edit')
                 </div>
             </div>
         </div>
-    @endif
+    </div>
 @endsection

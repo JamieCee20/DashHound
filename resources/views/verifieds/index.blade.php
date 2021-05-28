@@ -5,7 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+                @if (auth()->user()->hasAnyRoles(['owner', 'admin', 'moderator', 'verified']))
                 <a class="btn btn-outline-light float-right" href="{{ route('vpost.create') }}">Create Post</a>
+                @endif
             </div>
         </div>
     </div>
