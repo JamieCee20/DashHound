@@ -9,7 +9,7 @@
         </div>
         <div class="col-12 d-flex" style="color: white;">
             <p>
-                <i class="fas fa-user"></i> {{$discussion->user->name}} 	&middot; <i class="fas fa-clock"></i> {{ date('M dS, g:iA' ,strtotime($discussion->created_at)) }} 	&middot; <i class="fas fa-reply"></i> {{$replies->count()}}
+                <i class="fas fa-user"></i> {{$discussion->user->username}} 	&middot; <i class="fas fa-clock"></i> {{ date('M dS, g:iA' ,strtotime($discussion->created_at)) }} 	&middot; <i class="fas fa-reply"></i> {{$replies->count()}}
                 @if ($discussion->pinned == 1)
                     <span class="mx-2">
                         <i class="fas fa-thumbtack" style="color: red;"></i>
@@ -30,13 +30,13 @@
                 <span>
                     @if (Gate::forUser($discussion->user)->allows('official-publisher', $discussion->user))
                         <i class="fas fa-user-check"></i>
-                    @endif   
+                    @endif
                 </span>
             </span><br>
             @foreach($discussion->user->roles as $role)
                 <div>
                     <span style="font-style: italic;color: grey;">{{ $role->name }}</span>
-                    
+
                     @if(!$loop->last)
                     ,
                     @endif
@@ -111,7 +111,7 @@
             @foreach($reply->user->roles as $role)
                 <div>
                     <span style="font-style: italic;color: grey;">{{ $role->name }}</span>
-                    
+
                     @if(!$loop->last)
                     ,
                     @endif
