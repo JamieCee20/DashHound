@@ -1,6 +1,3 @@
-<p align="center"><img src="https://www.jlcwd.me/img/dashhound.jpg" width="400"></p>
-
-
 ## DashHound Project
 
 DashHound is a game forum website which allows different users to share their gameplay experiences and interact with each other.
@@ -24,3 +21,36 @@ The project is primarily based on the Laravel MVC Framework for PHP and uses the
 ## Custom Features implemented
 * [Ticket-System] - The ticket system is a support system for users to be able to communicate with community staff without having to use emails.
 * [Forums] - A custom written forum is the central hub for DashHound, allowing users to communicate and interact with each other about various topics.
+
+# Installation
+First clone the repo into your local project. 
+```
+git clone https://github.com/JamieCee20/DashHound
+```
+
+Next we need to setup the dependencies. We do this via composer. Make sure you are in the project directly in your terminal before running this.
+```
+composer install
+```
+
+## Setup your local database
+
+Make a copy of the .env.example file and rename it to .env. Inside your .env file, you need to fill out the DB_DATABASE, DB_USERNAME and DB_PASSWORD fields to match with your local database setup.
+
+## Generate a local key
+```
+php artisan key:generate
+```
+
+## Run your migrations
+Next we need to occupy the database with our required tables, we do this with artisan.
+```
+php artisan migrate
+```
+
+## Start local server
+Finally to view our server, we use artisan to spin up a localhost server
+```
+php artisan serve
+```
+
